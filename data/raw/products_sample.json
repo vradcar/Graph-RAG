@@ -1,0 +1,26 @@
+[
+  {
+    "product_id": "TH1110D",
+    "name": "Legacy Thermostat TH1110D",
+    "status": "discontinued",
+    "system_type": "HVAC",
+    "compatible_accessories": ["WALL-PLATE-A", "WIRE-C-ADAPTER"],
+    "replacement_for": null
+  },
+  {
+    "product_id": "T6-PRO",
+    "name": "T6 Pro Smart Thermostat",
+    "status": "active",
+    "system_type": "HVAC",
+    "compatible_accessories": ["WALL-PLATE-A", "REDLINK-GATEWAY"],
+    "replacement_for": "TH1110D"
+  },
+  {
+    "product_id": "SMK-100",
+    "name": "Smoke Detector SMK-100",
+    "status": "active",
+    "system_type": "Fire Safety",
+    "compatible_accessories": ["BASE-LOW-PROFILE"],
+    "replacement_for": null
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "question": "What is the modern replacement for TH1110D?",
+    "depth": 1,
+    "expected": "T6-PRO"
+  },
+  {
+    "question": "Which accessories are compatible with T6-PRO?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A and REDLINK-GATEWAY"
+  },
+  {
+    "question": "What compliance standards relate to SMK-100?",
+    "depth": 2,
+    "expected": "NFPA 72 and UL 268"
+  }
+]

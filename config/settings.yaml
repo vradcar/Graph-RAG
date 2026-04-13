@@ -1,0 +1,15 @@
+project:
+  name: GraphRAG-POC
+  domain: product_compatibility
+
+graph:
+  backend: networkx   # options: networkx | neo4j
+  max_default_depth: 2
+
+retrieval:
+  mode: hybrid        # options: graph | vector | hybrid
+  top_k_chunks: 5
+
+evaluation:
+  queries_file: data/eval/queries.json
+  output_file: data/eval/results.json
