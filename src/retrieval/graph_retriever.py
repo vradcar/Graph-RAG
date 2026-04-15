@@ -127,10 +127,11 @@ def graph_retrieve(
     """Main entry point: resolve entities via LLM, validate, retrieve graph context."""
     resolved = resolve_entities(client, model, question, known_ids)
 
-    # Validate resolved IDs against the actual graph
+    # Validate resolved IDs against the known_ids set (stricter than has_node)
+    known_set = set(known_ids)
     valid_ids = []
     for nid in resolved:
-        if store.has_node(nid):
+        if nid in known_set:
             valid_ids.append(nid)
         else:
             print(f"[graph_retriever] Filtered out unknown node_id: {nid}", file=sys.stderr)
