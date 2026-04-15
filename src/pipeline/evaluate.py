@@ -11,6 +11,7 @@ load_dotenv()
 import argparse
 import json
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -26,7 +27,10 @@ def run_eval(queries_path: str, output_path: str, provider: str | None = None, m
     settings = load_settings()
     neo4j_uri = settings["graph"]["neo4j_uri"]
     neo4j_user = settings["graph"]["neo4j_user"]
-    neo4j_password = os.getenv("NEO4J_PASSWORD", settings["graph"]["neo4j_password"])
+    neo4j_password = os.getenv("NEO4J_PASSWORD")
+    if not neo4j_password:
+        print("ERROR: NEO4J_PASSWORD environment variable is required", file=sys.stderr)
+        sys.exit(1)
     model = model or settings["llm"]["model"]
     provider = provider or settings["llm"].get("provider", "groq")
 
