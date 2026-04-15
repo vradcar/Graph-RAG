@@ -1,0 +1,207 @@
+[
+  {
+    "question": "What accessories are compatible with the T9?",
+    "depth": 2,
+    "answer": "The T9 (model rcht9610wf) is compatible with several accessories, including the C-wire adapter, wireless room sensor, UWP wallplate, wall anchor, UWP, and wireless sensor. These accessories can be used to enhance installation options, sensing capabilities, and mounting configurations for the T9 thermostat.",
+    "evidence": [
+      {
+        "source": "c-wire-adapter",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "c-wire-adapter"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wireless-room-sensor"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "uwp-wallplate"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "uwp"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wall-anchor"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wireless-sensor"
+      },
+      {
+        "source": "uwp",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "uwp-wallplate",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "wall-anchor",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "wireless-room-sensor",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "wireless-sensor",
+        "relation": "COMPATIBLE_WITH",
+        "target": "rcht9610wf"
+      }
+    ],
+    "not_found": false,
+    "latency_sec": 5.592,
+    "expected": "COMPATIBLE_WITH edges from T9 product node"
+  },
+  {
+    "question": "What wiring configs does the T9 support?",
+    "depth": 2,
+    "answer": "The T9 (model rcht9610wf) supports several wiring configurations, including 5-wire heat/cool, C-wire, and R-wire/RC/RH wiring. This variety allows compatibility with a wide range of HVAC setups. Additionally, the T9 is compatible with a C-wire adapter for installations lacking a dedicated C-wire.",
+    "evidence": [
+      {
+        "source": "5-wire-heat-cool",
+        "relation": "SUPPORTS_WIRING",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "5-wire-heat-cool"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "c-wire"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "r-wire-rc-rh-wiring"
+      },
+      {
+        "source": "c-wire",
+        "relation": "SUPPORTS_WIRING",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "r-wire-rc-rh-wiring",
+        "relation": "SUPPORTS_WIRING",
+        "target": "rcht9610wf"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "c-wire-adapter"
+      }
+    ],
+    "not_found": false,
+    "latency_sec": 7.562,
+    "expected": "SUPPORTS_WIRING edges from T9 product node"
+  },
+  {
+    "question": "What are the T9 specifications?",
+    "depth": 2,
+    "answer": "The T9 (model rcht9610wf) specifications include compatibility with a range of HVAC system components, such as wireless sensors, wall anchors, UWP wallplates, zoning panels, line voltage systems, millivolt systems, electric baseboards, heating and cooling systems, heat pumps, and C-wire adapters. It supports c-wire, 5-wire heat/cool, and R-wire (RC/RH) wiring. Additionally, its electrical specification is 24V, 60Hz, 0.2A.",
+    "evidence": [
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wireless-sensor"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wall-anchor"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "uwp"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "zoning-panel"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "line-voltage"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "millivolt-system"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "electric-baseboard"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "heating-cooling"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "heat-pump"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "uwp-wallplate"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "c-wire-adapter"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "COMPATIBLE_WITH",
+        "target": "wireless-room-sensor"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "c-wire"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "5-wire-heat-cool"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "SUPPORTS_WIRING",
+        "target": "r-wire-rc-rh-wiring"
+      },
+      {
+        "source": "rcht9610wf",
+        "relation": "HAS_SPEC",
+        "target": "24v-60hz-0-2a"
+      }
+    ],
+    "not_found": false,
+    "latency_sec": 5.526,
+    "expected": "HAS_SPEC edges from T9 product node"
+  }
+]
