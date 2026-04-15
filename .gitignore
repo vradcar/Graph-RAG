@@ -6,3 +6,6 @@ data/processed/*.json
 data/eval/results.json
 .ipynb_checkpoints/
 .planning/
+.DS_Store
+.idea/
+.claude/
