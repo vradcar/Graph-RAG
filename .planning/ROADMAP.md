@@ -36,7 +36,12 @@ Plans:
   2. At least 3 canned demo queries (e.g. "What wiring configs does the T9 support?", "What does the T9 replace?", "What specs does the T9 have?") produce verified correct answers
   3. Answers reference graph-traversal results (multi-hop, depth 2+), not hallucinated content
   4. Groq model name is changed in settings.yaml alone — no code edits required
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Rewrite graph_retriever.py (LLM entity resolver + Cypher retriever) and generate.py (structured answer generation)
+- [ ] 02-02-PLAN.md — Rewrite query.py CLI and evaluate.py + update demo queries to D-10 set
+- [ ] 02-03-PLAN.md — End-to-end verification of 3 demo queries against live Neo4j (checkpoint)
 
 ### Phase 3: Web UI
 **Goal**: A user can query the knowledge graph through a web browser and see answers alongside a link to the Neo4j graph visualization
@@ -54,5 +59,5 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Graph Schema & Ingestion | 0/5 | Not started | - |
-| 2. Query Pipeline | 0/? | Not started | - |
+| 2. Query Pipeline | 0/3 | Not started | - |
 | 3. Web UI | 0/? | Not started | - |
