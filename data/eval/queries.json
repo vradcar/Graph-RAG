@@ -1,17 +1,5 @@
 [
-  {
-    "question": "What is the modern replacement for TH1110D?",
-    "depth": 1,
-    "expected": "T6-PRO"
-  },
-  {
-    "question": "Which accessories are compatible with T6-PRO?",
-    "depth": 1,
-    "expected": "WALL-PLATE-A and REDLINK-GATEWAY"
-  },
-  {
-    "question": "What compliance standards relate to SMK-100?",
-    "depth": 2,
-    "expected": "NFPA 72 and UL 268"
-  }
+  {"question": "What accessories are compatible with the T9?", "depth": 2, "expected": "COMPATIBLE_WITH edges from T9 product node"},
+  {"question": "What wiring configs does the T9 support?", "depth": 2, "expected": "SUPPORTS_WIRING edges from T9 product node"},
+  {"question": "What are the T9 specifications?", "depth": 2, "expected": "HAS_SPEC edges from T9 product node"}
 ]

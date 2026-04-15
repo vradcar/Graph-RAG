@@ -1,68 +1,84 @@
+"""
+Evaluate query pipeline against demo queries.
+
+Usage:
+    python -m src.pipeline.evaluate
+    python -m src.pipeline.evaluate --queries data/eval/queries.json --output data/eval/results.json
+"""
+from dotenv import load_dotenv
+load_dotenv()
+
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
-from src.pipeline.query import build_graph, load_graph_items, load_sample_docs
-from src.retrieval.graph_retriever import graph_retrieve
-from src.retrieval.hybrid_retriever import hybrid_retrieve
-from src.retrieval.vector_store import SimpleVectorStore
+from src.common.config import load_settings
+from src.graph.store import Neo4jGraphStore
+from src.llm.provider import build_instructor_client
+from src.retrieval.graph_retriever import load_all_node_ids, graph_retrieve
+from src.llm.generate import generate_answer
 
 
 def run_eval(queries_path: str, output_path: str) -> None:
-    graph_items = load_graph_items()
-    graph_store = build_graph(graph_items)
+    """Run evaluation pipeline against a set of demo queries."""
+    settings = load_settings()
+    neo4j_uri = settings["graph"]["neo4j_uri"]
+    neo4j_user = settings["graph"]["neo4j_user"]
+    neo4j_password = os.getenv("NEO4J_PASSWORD", settings["graph"]["neo4j_password"])
+    model = settings["llm"]["model"]
+    provider = settings["llm"].get("provider", "groq")
 
-    vector_store = SimpleVectorStore()
-    vector_store.add_documents(load_sample_docs())
+    client = build_instructor_client(provider)
 
-    with Path(queries_path).open("r", encoding="utf-8") as file:
-        queries = json.load(file)
+    with Neo4jGraphStore(uri=neo4j_uri, user=neo4j_user, password=neo4j_password) as store:
+        known_ids = load_all_node_ids(store)
 
-    results = []
-    for item in queries:
-        question = item["question"]
-        depth = item.get("depth", 2)
+        with Path(queries_path).open("r", encoding="utf-8") as f:
+            queries = json.load(f)
 
-        start = time.perf_counter()
-        graph_hits = graph_retrieve(graph_store, question, depth=depth)
-        graph_time = time.perf_counter() - start
+        results = []
+        for item in queries:
+            question = item["question"]
+            depth = item.get("depth", 2)
 
-        start = time.perf_counter()
-        vector_hits = vector_store.search(question, top_k=5)
-        vector_time = time.perf_counter() - start
+            start = time.perf_counter()
+            triples = graph_retrieve(store, client, model, question, known_ids, depth=depth)
+            answer = generate_answer(client, model, question, triples)
+            latency = time.perf_counter() - start
 
-        start = time.perf_counter()
-        hybrid_hits = hybrid_retrieve(graph_store, vector_store, question, depth=depth, top_k=5)
-        hybrid_time = time.perf_counter() - start
-
-        results.append(
-            {
+            results.append({
                 "question": question,
                 "depth": depth,
-                "graph": {"hit_count": len(graph_hits), "latency_sec": graph_time},
-                "vector": {"hit_count": len(vector_hits), "latency_sec": vector_time},
-                "hybrid": {
-                    "graph_hit_count": len(hybrid_hits["graph_hits"]),
-                    "doc_hit_count": len(hybrid_hits["doc_hits"]),
-                    "latency_sec": hybrid_time,
-                },
-                "expected": item.get("expected"),
-            }
-        )
+                "answer": answer.prose,
+                "evidence": [e.model_dump() for e in answer.evidence],
+                "not_found": answer.not_found,
+                "latency_sec": round(latency, 3),
+                "expected": item.get("expected", ""),
+            })
 
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("w", encoding="utf-8") as file:
-        json.dump(results, file, indent=2)
+    with output.open("w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2)
 
-    print(f"Saved evaluation results to {output}")
+    print(f"Evaluated {len(results)} queries. Saved to {output_path}")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate graph, vector, and hybrid retrieval")
-    parser.add_argument("--queries", default="data/eval/queries.json")
-    parser.add_argument("--output", default="data/eval/results.json")
+    settings = load_settings()
+    parser = argparse.ArgumentParser(description="Evaluate query pipeline against demo queries")
+    parser.add_argument(
+        "--queries",
+        default=settings["evaluation"]["queries_file"],
+        help="Path to queries JSON file",
+    )
+    parser.add_argument(
+        "--output",
+        default=settings["evaluation"]["output_file"],
+        help="Path to write results JSON",
+    )
     args = parser.parse_args()
     run_eval(args.queries, args.output)
 
