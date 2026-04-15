@@ -1,5 +1,11 @@
 networkx==3.4.2
 python-dotenv==1.0.1
 pyyaml==6.0.2
-neo4j==5.28.1
+neo4j==5.28.3
 numpy==2.2.6
+PyMuPDF==1.27.2.2
+pdfplumber==0.11.9
+groq==1.1.2
+instructor==1.15.1
+pydantic==2.12.5
+pytest==9.0.2
