@@ -18,5 +18,5 @@ evaluation:
   output_file: data/eval/results.json
 
 llm:
-  provider: groq  # or "openai"
-  model: moonshotai/kimi-k2-instruct-0905  # groq model; for openai use e.g. "gpt-4o-mini"
+  provider: openai
+  model: gpt-4.1

@@ -24,7 +24,7 @@ load_dotenv()  # MUST be first — loads .env before any os.getenv() calls
 from src.common.config import load_settings
 from src.graph.store import Neo4jGraphStore
 from src.ingest.entity_extractor import build_client, extract_from_page
-from src.ingest.normalizer import normalize_and_deduplicate
+from src.ingest.normalizer import normalize_and_deduplicate, normalize_node_id
 from src.ingest.pdf_parser import extract_page_content
 
 
@@ -47,9 +47,10 @@ def run_ingest(pdf_path: str, dry_run: bool = False) -> dict:
     print(f"  → {len(pages)} pages extracted")
 
     # Step 2: LLM extraction
-    print("Extracting entities with Groq LLM...")
+    provider = settings["llm"].get("provider", "groq")
+    print(f"Extracting entities with {provider} LLM (model: {model})...")
     try:
-        client = build_client()
+        client = build_client(provider=provider)
     except ValueError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
@@ -69,6 +70,20 @@ def run_ingest(pdf_path: str, dry_run: bool = False) -> dict:
 
     # Step 3: Normalize and deduplicate
     nodes = normalize_and_deduplicate(all_nodes)
+    # Normalize edge source/target IDs to match normalized node IDs
+    for edge in all_edges:
+        edge["source_id"] = normalize_node_id(edge["source_id"])
+        edge["target_id"] = normalize_node_id(edge["target_id"])
+    # Filter edges: source must be a Product node (drop LLM hallucinations like Accessory→Accessory)
+    node_kinds = {n["node_id"]: n["kind"] for n in nodes}
+    valid_edges = []
+    for edge in all_edges:
+        src_kind = node_kinds.get(edge["source_id"])
+        if src_kind == "Product":
+            valid_edges.append(edge)
+        else:
+            print(f"  Dropped invalid edge: {edge['source_id']} ({src_kind}) -[{edge['relation']}]-> {edge['target_id']}")
+    all_edges = valid_edges
     print(f"After deduplication: {len(nodes)} unique nodes, {len(all_edges)} edges")
 
     if dry_run:
@@ -98,15 +113,71 @@ def run_ingest(pdf_path: str, dry_run: bool = False) -> dict:
             nodes_written += 1
 
         edges_written = 0
+        edges_skipped = 0
         for edge in all_edges:
-            store.upsert_edge(
+            created = store.upsert_edge(
                 source_id=edge["source_id"],
                 target_id=edge["target_id"],
                 relation=edge["relation"],
             )
-            edges_written += 1
+            if created:
+                edges_written += 1
+            else:
+                edges_skipped += 1
+                print(
+                    f"  WARNING: Edge skipped — {edge['source_id']} -[{edge['relation']}]-> {edge['target_id']} "
+                    f"(source or target node_id not found)"
+                )
 
-        print(f"  Written: {nodes_written} nodes, {edges_written} edges")
+        print(f"  Written: {nodes_written} nodes, {edges_written} edges"
+              + (f" ({edges_skipped} skipped — missing nodes)" if edges_skipped else ""))
+
+        # Step 5: Link orphaned nodes to the primary product
+        # Nodes extracted on different pages often lack edges back to the product.
+        # Auto-generate edges based on node kind:
+        #   Spec → HAS_SPEC, WiringConfig → SUPPORTS_WIRING,
+        #   HVACSystemType/Accessory → COMPATIBLE_WITH
+        node_ids_with_incoming = set()
+        for edge in all_edges:
+            node_ids_with_incoming.add(edge["target_id"])
+        for edge in all_edges:
+            node_ids_with_incoming.add(edge["source_id"])
+
+        # Find the primary product (most connected, or first Product node)
+        product_nodes = [n for n in nodes if n["kind"] == "Product"]
+        if product_nodes:
+            primary_product = product_nodes[0]["node_id"]
+
+            kind_to_relation = {
+                "Spec": "HAS_SPEC",
+                "WiringConfig": "SUPPORTS_WIRING",
+                "HVACSystemType": "COMPATIBLE_WITH",
+                "Accessory": "COMPATIBLE_WITH",
+            }
+
+            inferred = 0
+            for node in nodes:
+                if node["node_id"] == primary_product:
+                    continue
+                if node["kind"] == "Product":
+                    continue
+                relation = kind_to_relation.get(node["kind"])
+                if not relation:
+                    continue
+                # Check if this node already has any edge connecting it
+                if node["node_id"] in node_ids_with_incoming:
+                    continue
+                created = store.upsert_edge(
+                    source_id=primary_product,
+                    target_id=node["node_id"],
+                    relation=relation,
+                )
+                if created:
+                    inferred += 1
+                    edges_written += 1
+
+            if inferred:
+                print(f"  Inferred: {inferred} edges linking orphaned nodes to {primary_product}")
 
         # Post-ingest validation: check for REPLACES edges with missing targets
         with store._driver.session() as session:

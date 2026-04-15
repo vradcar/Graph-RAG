@@ -13,7 +13,6 @@ import instructor
 from pydantic import BaseModel, Field
 
 from src.graph.schema import NODE_KIND, ALLOWED_RELATIONS
-from src.llm.provider import build_instructor_client
 
 
 # ---------------------------------------------------------------------------
@@ -60,29 +59,46 @@ class ExtractionResult(BaseModel):
 # System prompt — embedded in the extractor, not in the pipeline
 # ---------------------------------------------------------------------------
 
-EXTRACTION_SYSTEM_PROMPT = """You are a product knowledge graph extractor.
+EXTRACTION_SYSTEM_PROMPT = """You are a product knowledge graph extractor for HVAC thermostat documentation.
 
-Extract entities and relationships from HVAC thermostat documentation.
-
-Node kinds (use EXACTLY these values):
+## Node kinds (use EXACTLY these values)
 - Product: thermostats, sensors, devices with model numbers
-- Accessory: add-on hardware that works with a product
-- WiringConfig: wiring configurations (e.g., "2-wire", "4-wire heat/cool")
-- HVACSystemType: HVAC system types (e.g., "heat pump", "conventional", "heat only")
-- Spec: specifications like voltage, dimensions, temperature range
+- Accessory: add-on hardware that works with a product (e.g., wallplate, wire adapter, room sensor)
+- WiringConfig: wiring configurations (e.g., "2-wire heat only", "4-wire heat/cool")
+- HVACSystemType: HVAC system types (e.g., "heat pump", "conventional", "electric baseboard")
+- Spec: specifications like voltage, current, dimensions, temperature range
 
-Relationship types (use EXACTLY these values — no synonyms allowed):
-- COMPATIBLE_WITH: product works with accessory or HVAC system type
-- REPLACES: one product replaces an older product
-- SUPPORTS_WIRING: product supports a wiring configuration
-- HAS_SPEC: product has a specification
+## Relationship types — use the CORRECT type for each situation
 
-Rules:
-1. Use the product model number (e.g., RCHT9510WF) as the node_id for Product nodes
+COMPATIBLE_WITH: A Product works with an Accessory or HVACSystemType.
+  Source must be Product. Target must be Accessory or HVACSystemType.
+  Example: "T9 works with wireless room sensors" → T9 -[COMPATIBLE_WITH]-> wireless-room-sensor
+  Example: "Compatible with heat pump systems" → T9 -[COMPATIBLE_WITH]-> heat-pump
+
+REPLACES: One Product replaces another (older) Product.
+  Source and target must BOTH be Product.
+  Example: "T9 replaces TH6320WF" → rcht9610wf -[REPLACES]-> th6320wf
+
+SUPPORTS_WIRING: A Product supports a WiringConfig (wire count, terminal connections, wiring setup).
+  Source must be Product. Target must be WiringConfig.
+  Look for: wiring diagrams, terminal labels (R, W, Y, G, C, O/B), wire counts, "connect to" instructions.
+  Example: "Supports 2-wire heat only systems" → T9 -[SUPPORTS_WIRING]-> 2-wire-heat-only
+  Example: "Connect R, W, Y, G, C terminals" → T9 -[SUPPORTS_WIRING]-> 5-wire-heat-cool
+  Example: "C-wire required" → T9 -[SUPPORTS_WIRING]-> c-wire
+
+HAS_SPEC: A Product has a Spec (voltage, current, dimensions, range).
+  Source must be Product. Target must be Spec.
+  Example: "Power: 24VAC, 60Hz, 0.2A" → T9 -[HAS_SPEC]-> 24vac-60hz-0-2a
+  WRONG: spec -[COMPATIBLE_WITH]-> accessory (specs are never "compatible with" anything)
+
+## Rules
+1. Use the product model number (e.g., RCHT9610WF) as the node_id for Product nodes
 2. Use lowercase-hyphenated slugs for non-product nodes (e.g., "2-wire-heat-only")
 3. If a model number appears as compatible or replaced, create a Product node for it
 4. Only extract relationships explicitly stated in the text — do not infer
 5. If no entities are found on this page, return empty lists
+6. A Spec node should ONLY appear as the target of a HAS_SPEC edge from a Product
+7. Wiring configurations (wire count, terminal labels) are WiringConfig, not Spec
 """
 
 
@@ -92,17 +108,15 @@ Rules:
 
 def build_client(provider: str = "groq") -> instructor.Instructor:
     """
-    Build an instructor-wrapped LLM client.
-
-    Delegates to src.llm.provider.build_instructor_client for all provider logic.
-    Defaults to "groq" for backward compatibility.
+    Build an instructor-wrapped LLM client for the given provider.
 
     Args:
-        provider: LLM provider name — "groq" or "openai".
+        provider: "groq" or "openai" (from settings.yaml llm.provider)
 
     Raises:
-        ValueError: If the required API key is not set or provider is unknown.
+        ValueError: If the provider is unknown or the required API key is not set.
     """
+    from src.llm.provider import build_instructor_client
     return build_instructor_client(provider)
 
 

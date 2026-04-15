@@ -52,22 +52,27 @@ class Neo4jGraphStore:
         with self._driver.session() as session:
             session.execute_write(_tx)
 
-    def upsert_edge(self, source_id: str, target_id: str, relation: str, **attributes) -> None:
-        """MERGE an edge between two nodes by node_id. relation must be a valid type."""
+    def upsert_edge(self, source_id: str, target_id: str, relation: str, **attributes) -> bool:
+        """MERGE an edge between two nodes by node_id. relation must be a valid type.
+
+        Returns:
+            True if the edge was created/matched, False if source or target node was missing.
+        """
         props = {k: v for k, v in attributes.items() if k not in ("source_id", "target_id", "relation")}
 
         def _tx(tx):
-            # relation appears in f-string (validated Literal); all ids parameterized
-            tx.run(
+            result = tx.run(
                 f"MATCH (a {{node_id: $src}}), (b {{node_id: $tgt}}) "
-                f"MERGE (a)-[r:{relation}]->(b) SET r += $props",
+                f"MERGE (a)-[r:{relation}]->(b) SET r += $props "
+                f"RETURN a.node_id AS src",
                 src=source_id,
                 tgt=target_id,
                 props=props,
             )
+            return result.single() is not None
 
         with self._driver.session() as session:
-            session.execute_write(_tx)
+            return session.execute_write(_tx)
 
     def neighbors_multi_hop(self, start_node: str, depth: int = 1) -> List[Tuple[str, str, str]]:
         """Return (source_id, relation, target_id) tuples within `depth` hops."""

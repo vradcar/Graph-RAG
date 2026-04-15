@@ -54,7 +54,7 @@ def build_instructor_client(provider: str) -> instructor.Instructor:
             )
         return instructor.from_groq(
             Groq(api_key=api_key),
-            mode=instructor.Mode.TOOLS,
+            mode=instructor.Mode.JSON,
         )
 
     if provider == "openai":
