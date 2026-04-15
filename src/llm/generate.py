@@ -57,18 +57,28 @@ def generate_answer(
             suggestion="Try asking about T9 thermostat compatibility, wiring configurations, specifications, or replacements.",
         )
 
-    return client.chat.completions.create(
-        model=model,
-        response_model=QueryAnswer,
-        max_retries=2,
-        messages=[
-            {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
-            {
-                "role": "user",
-                "content": f"Question: {question}\n\nGraph evidence:\n{format_triples(triples)}",
-            },
-        ],
-    )
+    try:
+        return client.chat.completions.create(
+            model=model,
+            response_model=QueryAnswer,
+            max_retries=2,
+            messages=[
+                {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": f"Question: {question}\n\nGraph evidence:\n{format_triples(triples)}",
+                },
+            ],
+        )
+    except Exception as e:
+        import sys
+        print(f"[generate] LLM answer generation failed: {e}", file=sys.stderr)
+        return QueryAnswer(
+            prose="",
+            evidence=[],
+            not_found=True,
+            suggestion="LLM call failed. Please try again later.",
+        )
 
 
 def format_answer(answer: QueryAnswer) -> str:

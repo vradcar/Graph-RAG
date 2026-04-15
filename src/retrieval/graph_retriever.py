@@ -45,22 +45,26 @@ def resolve_entities(
     known_ids: List[str],
 ) -> List[str]:
     """Use LLM to resolve which node IDs are relevant to the question."""
-    result = client.chat.completions.create(
-        model=model,
-        response_model=EntityResolution,
-        max_retries=2,
-        messages=[
-            {"role": "system", "content": ENTITY_RESOLUTION_SYSTEM},
-            {
-                "role": "user",
-                "content": (
-                    f"Question: {question}\n\n"
-                    f"Known node IDs:\n{', '.join(known_ids)}"
-                ),
-            },
-        ],
-    )
-    return result.node_ids
+    try:
+        result = client.chat.completions.create(
+            model=model,
+            response_model=EntityResolution,
+            max_retries=2,
+            messages=[
+                {"role": "system", "content": ENTITY_RESOLUTION_SYSTEM},
+                {
+                    "role": "user",
+                    "content": (
+                        f"Question: {question}\n\n"
+                        f"Known node IDs:\n{', '.join(known_ids)}"
+                    ),
+                },
+            ],
+        )
+        return result.node_ids
+    except Exception as e:
+        print(f"[graph_retriever] LLM entity resolution failed: {e}", file=sys.stderr)
+        return []
 
 
 # Per-relation Cypher queries using undirected matching to catch both directions
