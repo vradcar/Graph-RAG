@@ -3,13 +3,20 @@ project:
   domain: product_compatibility
 
 graph:
-  backend: networkx   # options: networkx | neo4j
+  backend: neo4j          # changed from networkx
   max_default_depth: 2
+  neo4j_uri: bolt://localhost:7687
+  neo4j_user: neo4j
+  neo4j_password: "password"
 
 retrieval:
-  mode: hybrid        # options: graph | vector | hybrid
+  mode: hybrid
   top_k_chunks: 5
 
 evaluation:
   queries_file: data/eval/queries.json
   output_file: data/eval/results.json
+
+llm:
+  provider: groq
+  model: llama-3.1-8b-instant
