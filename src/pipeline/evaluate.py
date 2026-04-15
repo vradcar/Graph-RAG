@@ -21,14 +21,14 @@ from src.retrieval.graph_retriever import load_all_node_ids, graph_retrieve
 from src.llm.generate import generate_answer
 
 
-def run_eval(queries_path: str, output_path: str) -> None:
+def run_eval(queries_path: str, output_path: str, provider: str | None = None, model: str | None = None) -> None:
     """Run evaluation pipeline against a set of demo queries."""
     settings = load_settings()
     neo4j_uri = settings["graph"]["neo4j_uri"]
     neo4j_user = settings["graph"]["neo4j_user"]
     neo4j_password = os.getenv("NEO4J_PASSWORD", settings["graph"]["neo4j_password"])
-    model = settings["llm"]["model"]
-    provider = settings["llm"].get("provider", "groq")
+    model = model or settings["llm"]["model"]
+    provider = provider or settings["llm"].get("provider", "groq")
 
     client = build_instructor_client(provider)
 
@@ -79,8 +79,12 @@ def main() -> None:
         default=settings["evaluation"]["output_file"],
         help="Path to write results JSON",
     )
+    parser.add_argument("--provider", choices=["groq", "openai"], default=None,
+                        help="LLM provider override (default: from settings.yaml)")
+    parser.add_argument("--model", default=None,
+                        help="Model name override (default: from settings.yaml)")
     args = parser.parse_args()
-    run_eval(args.queries, args.output)
+    run_eval(args.queries, args.output, provider=args.provider, model=args.model)
 
 
 if __name__ == "__main__":

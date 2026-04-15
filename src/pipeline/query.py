@@ -18,20 +18,20 @@ from src.retrieval.graph_retriever import graph_retrieve, load_all_node_ids
 from src.llm.generate import generate_answer, format_answer, QueryAnswer
 
 
-def run_query(question: str, depth: int = 2) -> str:
+def run_query(question: str, depth: int = 2, provider: str | None = None, model: str | None = None) -> str:
     """Run a query against the Neo4j knowledge graph and return a formatted answer."""
-    answer = run_query_structured(question, depth)
+    answer = run_query_structured(question, depth, provider=provider, model=model)
     return format_answer(answer)
 
 
-def run_query_structured(question: str, depth: int = 2) -> QueryAnswer:
+def run_query_structured(question: str, depth: int = 2, provider: str | None = None, model: str | None = None) -> QueryAnswer:
     """Run a query and return the raw QueryAnswer object."""
     settings = load_settings()
     neo4j_uri = settings["graph"]["neo4j_uri"]
     neo4j_user = settings["graph"]["neo4j_user"]
     neo4j_password = os.getenv("NEO4J_PASSWORD", settings["graph"]["neo4j_password"])
-    model = settings["llm"]["model"]
-    provider = settings["llm"].get("provider", "groq")
+    model = model or settings["llm"]["model"]
+    provider = provider or settings["llm"].get("provider", "groq")
 
     try:
         client = build_instructor_client(provider)
@@ -55,9 +55,13 @@ def main() -> None:
     )
     parser.add_argument("--question", required=True, help="Natural language question")
     parser.add_argument("--depth", type=int, default=2, help="Graph traversal depth")
+    parser.add_argument("--provider", choices=["groq", "openai"], default=None,
+                        help="LLM provider override (default: from settings.yaml)")
+    parser.add_argument("--model", default=None,
+                        help="Model name override (default: from settings.yaml)")
     args = parser.parse_args()
 
-    result = run_query(args.question, depth=args.depth)
+    result = run_query(args.question, depth=args.depth, provider=args.provider, model=args.model)
     print(result)
 
 
