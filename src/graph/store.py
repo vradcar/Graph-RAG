@@ -79,11 +79,10 @@ class Neo4jGraphStore:
 
         def _tx(tx):
             result = tx.run(
-                "MATCH path = (start {node_id: $start_node})-[*1..$depth]-(neighbor) "
+                f"MATCH path = (start {{node_id: $start_node}})-[*1..{int(depth)}]-(neighbor) "
                 "UNWIND relationships(path) AS rel "
                 "RETURN startNode(rel).node_id AS src, type(rel) AS rel_type, endNode(rel).node_id AS tgt",
                 start_node=start_node,
-                depth=depth,
             )
             return [(r["src"], r["rel_type"], r["tgt"]) for r in result]
 
