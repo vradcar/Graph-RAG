@@ -116,6 +116,12 @@ class Neo4jGraphStore:
         with self._driver.session() as session:
             return session.execute_read(_tx)
 
+    def run_cypher(self, query: str, **params) -> List[Dict]:
+        """Execute a read-only Cypher query and return results as a list of dicts."""
+        with self._driver.session() as session:
+            result = session.run(query, **params)
+            return [record.data() for record in result]
+
     def close(self) -> None:
         self._driver.close()
 

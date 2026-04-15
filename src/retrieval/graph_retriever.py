@@ -31,11 +31,10 @@ def load_all_node_ids(store: Neo4jGraphStore) -> List[str]:
     NOTE: For graphs with >200 nodes, consider a pre-filtering strategy
     (e.g., embedding similarity on node labels) before passing to the LLM.
     """
-    with store._driver.session() as session:
-        result = session.run(
-            "MATCH (n) RETURN n.node_id AS node_id ORDER BY n.node_id LIMIT 200"
-        )
-        return [record["node_id"] for record in result]
+    records = store.run_cypher(
+        "MATCH (n) RETURN n.node_id AS node_id ORDER BY n.node_id LIMIT 200"
+    )
+    return [record["node_id"] for record in records]
 
 
 def resolve_entities(
@@ -99,14 +98,13 @@ def retrieve_graph_context(
 
     for node_id in node_ids:
         # Per-relation targeted queries
-        with store._driver.session() as session:
-            for cypher in RELATION_QUERIES.values():
-                result = session.run(cypher, node_id=node_id)
-                for record in result:
-                    triple = (record["src"], record["rel"], record["tgt"])
-                    if triple not in seen:
-                        seen.add(triple)
-                        triples.append(triple)
+        for cypher in RELATION_QUERIES.values():
+            records = store.run_cypher(cypher, node_id=node_id)
+            for record in records:
+                triple = (record["src"], record["rel"], record["tgt"])
+                if triple not in seen:
+                    seen.add(triple)
+                    triples.append(triple)
 
         # BFS multi-hop for broader context
         bfs_triples = store.neighbors_multi_hop(node_id, depth=depth)
