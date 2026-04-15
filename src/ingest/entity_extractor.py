@@ -7,14 +7,13 @@ level — instructor retries if the LLM returns an invalid value.
 NODE_KIND and ALLOWED_RELATIONS are imported from src.graph.schema (single source of truth).
 NEVER redefine them here.
 """
-import os
 from typing import List
 
 import instructor
-from groq import Groq
 from pydantic import BaseModel, Field
 
 from src.graph.schema import NODE_KIND, ALLOWED_RELATIONS
+from src.llm.provider import build_instructor_client
 
 
 # ---------------------------------------------------------------------------
@@ -91,24 +90,20 @@ Rules:
 # Client factory and extraction function
 # ---------------------------------------------------------------------------
 
-def build_client() -> instructor.Instructor:
+def build_client(provider: str = "groq") -> instructor.Instructor:
     """
-    Build an instructor-wrapped Groq client.
+    Build an instructor-wrapped LLM client.
 
-    Reads GROQ_API_KEY from environment (loaded by ingest.py via dotenv before this call).
+    Delegates to src.llm.provider.build_instructor_client for all provider logic.
+    Defaults to "groq" for backward compatibility.
+
+    Args:
+        provider: LLM provider name — "groq" or "openai".
 
     Raises:
-        ValueError: If GROQ_API_KEY is not set in the environment.
+        ValueError: If the required API key is not set or provider is unknown.
     """
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        raise ValueError(
-            "GROQ_API_KEY is not set. Add it to your .env file: GROQ_API_KEY=your_key_here"
-        )
-    return instructor.from_groq(
-        Groq(api_key=api_key),
-        mode=instructor.Mode.TOOLS,
-    )
+    return build_instructor_client(provider)
 
 
 def extract_from_page(
