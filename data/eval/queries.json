@@ -1,17 +1,98 @@
 [
   {
+    "id": "q01",
     "question": "What is the modern replacement for TH1110D?",
     "depth": 1,
-    "expected": "T6-PRO"
+    "expected": "T6-PRO",
+    "type": "simple",
+    "notes": "Direct replacement edge — 1-hop graph lookup"
   },
   {
+    "id": "q02",
+    "question": "Is TH1110D still an active product?",
+    "depth": 1,
+    "expected": "discontinued",
+    "type": "simple",
+    "notes": "Single node attribute — tests if graph retrieval surfaces metadata"
+  },
+  {
+    "id": "q03",
     "question": "Which accessories are compatible with T6-PRO?",
     "depth": 1,
-    "expected": "WALL-PLATE-A and REDLINK-GATEWAY"
+    "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
+    "type": "simple",
+    "notes": "1-hop neighbor lookup on active product"
   },
   {
-    "question": "What compliance standards relate to SMK-100?",
+    "id": "q04",
+    "question": "Which accessories are compatible with TH1110D?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A and WIRE-C-ADAPTER",
+    "type": "simple",
+    "notes": "1-hop neighbor lookup on discontinued product"
+  },
+  {
+    "id": "q05",
+    "question": "What system type does the SMK-100 belong to?",
+    "depth": 1,
+    "expected": "Fire Safety",
+    "type": "simple",
+    "notes": "Single node attribute — different domain from thermostat questions"
+  },
+  {
+    "id": "q06",
+    "question": "What accessories can I use with the replacement for TH1110D?",
     "depth": 2,
-    "expected": "NFPA 72 and UL 268"
+    "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
+    "type": "multi_hop",
+    "notes": "2-hop: TH1110D -> T6-PRO -> accessories. Graph should outperform vector here."
+  },
+  {
+    "id": "q07",
+    "question": "What system type does the replacement for TH1110D belong to?",
+    "depth": 2,
+    "expected": "HVAC",
+    "type": "multi_hop",
+    "notes": "2-hop: TH1110D -> T6-PRO -> system_type attribute"
+  },
+  {
+    "id": "q08",
+    "question": "Which accessories are shared between TH1110D and its replacement?",
+    "depth": 2,
+    "expected": "WALL-PLATE-A",
+    "type": "multi_hop",
+    "notes": "2-hop intersection query — requires comparing neighbor sets across two nodes"
+  },
+  {
+    "id": "q09",
+    "question": "Which thermostat is recommended for retrofit installations?",
+    "depth": 1,
+    "expected": "T6-PRO",
+    "type": "vector_favored",
+    "notes": "Answer lives in doc-2 text, not a graph edge. Vector retrieval should do well here."
+  },
+  {
+    "id": "q10",
+    "question": "What compliance standards apply to the SMK-100 smoke detector?",
+    "depth": 2,
+    "expected": "UL 268 and NFPA 72",
+    "type": "vector_favored",
+    "notes": "Answer is in doc-3 text. Graph has no compliance edges — pure vector win expected."
+  },
+  {
+    "id": "q11",
+    "question": "Can WALL-PLATE-A be used with a discontinued thermostat?",
+    "depth": 2,
+    "expected": "yes",
+    "type": "multi_hop",
+    "notes": "2-hop: WALL-PLATE-A -> TH1110D -> status. Tests graph reasoning on accessory side."
+  },
+  {
+    "id": "q12",
+    "question": "Which active HVAC products support REDLINK-GATEWAY?",
+    "depth": 2,
+    "expected": "T6-PRO",
+    "type": "multi_hop",
+    "notes": "Reverse 2-hop: REDLINK-GATEWAY -> products -> filter by status=active and system_type=HVAC"
   }
 ]
