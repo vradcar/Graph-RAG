@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GraphRAG Ingestion Intermediate Format",
+  "description": "Schema for the normalized JSON that the PDF extractor emits and the graph loader consumes. See schema.md for the human-readable contract.",
+  "type": "object",
+  "required": ["nodes", "edges", "source_document"],
+  "properties": {
+    "source_document": {
+      "type": "object",
+      "required": ["name", "pages"],
+      "properties": {
+        "name": { "type": "string" },
+        "pages": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "source_page"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Thermostat",
+              "HVACSystemType",
+              "WiringTerminal",
+              "RoomSensor",
+              "Adapter",
+              "ElectricalSpec",
+              "OperatingRange",
+              "ZoningPanel",
+              "Wallplate"
+            ]
+          },
+          "source_page": { "type": "integer", "minimum": 1 },
+          "properties": { "type": "object" }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "type", "source_page"],
+        "properties": {
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "COMPATIBLE_WITH",
+              "NOT_COMPATIBLE_WITH",
+              "REQUIRES",
+              "CONNECTS_TO",
+              "NEEDS_ADAPTER_IF_MISSING",
+              "COMPLEX_ON",
+              "HAS_ELECTRICAL_SPEC",
+              "HAS_OPERATING_RANGE",
+              "MOUNTS_ON",
+              "REPLACED_BY"
+            ]
+          },
+          "source_page": { "type": "integer", "minimum": 1 },
+          "properties": { "type": "object" }
+        }
+      }
+    }
+  }
+}
