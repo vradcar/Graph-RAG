@@ -1,0 +1,62 @@
+{
+  "_comment": "Hand-curated Honeywell thermostat replacement chains. Added manually because the T9 PDF alone does not document these relationships. This file enables multi-hop 'modern replacement' queries required by the Week 2 deliverable. Sources are Honeywell product pages and compatibility guides; verify before submission.",
+  "thermostats": [
+    {
+      "id": "t9_rcht9610wf",
+      "name": "Honeywell Home T9 Wi-Fi Smart Thermostat",
+      "model_number": "RCHT9610WF",
+      "status": "current",
+      "product_family": "T-Series",
+      "wifi": true,
+      "source_page": 1
+    },
+    {
+      "id": "t6_th6320wf",
+      "name": "Honeywell Home T6 Pro Wi-Fi Programmable Thermostat",
+      "model_number": "TH6320WF",
+      "status": "current",
+      "product_family": "T-Series",
+      "wifi": true,
+      "source_page": null
+    },
+    {
+      "id": "t10_thx321wfs",
+      "name": "Honeywell Home T10 Pro Smart Thermostat",
+      "model_number": "THX321WFS",
+      "status": "current",
+      "product_family": "T-Series",
+      "wifi": true,
+      "source_page": null
+    },
+    {
+      "id": "rth6580wf_legacy",
+      "name": "Honeywell 7-Day Programmable Wi-Fi Thermostat (legacy)",
+      "model_number": "RTH6580WF",
+      "status": "discontinued",
+      "product_family": "RTH-Series",
+      "wifi": true,
+      "source_page": null
+    },
+    {
+      "id": "th1110d_legacy",
+      "name": "Honeywell Pro 1000 Non-Programmable Thermostat (legacy)",
+      "model_number": "TH1110D",
+      "status": "discontinued",
+      "product_family": "Pro-Series",
+      "wifi": false,
+      "source_page": null
+    }
+  ],
+  "replacements": [
+    {
+      "from": "rth6580wf_legacy",
+      "to": "t9_rcht9610wf",
+      "replacement_date": "approx 2019"
+    },
+    {
+      "from": "th1110d_legacy",
+      "to": "t6_th6320wf",
+      "replacement_date": "approx 2018"
+    }
+  ]
+}
