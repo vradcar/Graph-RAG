@@ -21,6 +21,8 @@ class GraphStore:
         queue = deque([(start_node, 0)])
         paths = []
 
+        seen_edges = set()
+
         while queue:
             current, current_depth = queue.popleft()
             if current_depth >= depth:
@@ -28,14 +30,20 @@ class GraphStore:
 
             for _, target, edge_data in self.graph.out_edges(current, data=True):
                 relation = edge_data.get("relation", "RELATED_TO")
-                paths.append((current, relation, target))
+                edge_key = (current, relation, target)
+                if edge_key not in seen_edges:
+                    seen_edges.add(edge_key)
+                    paths.append(edge_key)
                 if target not in visited:
                     visited.add(target)
                     queue.append((target, current_depth + 1))
 
             for source, _, edge_data in self.graph.in_edges(current, data=True):
                 relation = edge_data.get("relation", "RELATED_TO")
-                paths.append((source, relation, current))
+                edge_key = (source, relation, current)
+                if edge_key not in seen_edges:
+                    seen_edges.add(edge_key)
+                    paths.append(edge_key)
                 if source not in visited:
                     visited.add(source)
                     queue.append((source, current_depth + 1))
