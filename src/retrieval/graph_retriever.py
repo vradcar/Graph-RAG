@@ -4,7 +4,9 @@ from src.graph.store import GraphStore
 
 
 def extract_candidate_entities(question: str) -> List[str]:
-    return re.findall(r"[A-Z]{2,}\d+[A-Z0-9]*|[A-Z]{2,}-\d+", question)
+    # Matches hyphen-separated uppercase tokens (WALL-PLATE-A, REDLINK-GATEWAY, T6-PRO)
+    # and plain uppercase+digit codes (TH1110D, SMK100).
+    return re.findall(r"[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+|[A-Z]{2,}\d+[A-Z0-9]*", question)
 
 
 def graph_retrieve(graph_store: GraphStore, question: str, depth: int = 1) -> List[Tuple[str, str, str]]:
