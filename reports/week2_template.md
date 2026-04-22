@@ -8,64 +8,75 @@ quality across the evaluation query set.
 ## Use Case Chosen
 - **Product Compatibility (HVAC)**
 - **Why this use case:** Real compatibility questions in this domain are
-  inherently multi-hop — e.g. "what accessories work with the replacement of a
-  discontinued product" requires traversing: discontinued product → its
-  replacement → the replacement's accessories. A flat document search cannot
-  reliably reason across these relationship chains; graph traversal is the
-  natural fit.
+  inherently multi-hop — e.g. "what does a homeowner need to know when
+  replacing a discontinued thermostat?" requires traversing: legacy device →
+  its replacement → the replacement's compatible systems, wiring requirements,
+  and accessories. A flat document search cannot reliably reason across these
+  relationship chains; graph traversal is the natural fit.
 
 ## Multi-hop Implementation
-- **Traversal strategy:** Breadth-first search (BFS) starting from any graph
-  node that matches an entity extracted from the question. At each step,
-  outgoing *and* incoming edges are followed, collecting
-  `(source, relation, target)` triples. Implemented in
-  `src/graph/store.py → GraphStore.neighbors_multi_hop()`.
+- **Traversal strategy:** Two implementations running in parallel:
+  - **NetworkX (main pipeline):** BFS from keyword-matched entity nodes,
+    following both outgoing and incoming edges, collecting
+    `(source, relation, target)` triples. Implemented in
+    `src/graph/store.py → GraphStore.neighbors_multi_hop()`.
+  - **Neo4j/Cypher (Member 2):** Cypher-based traversal using
+    `OPTIONAL MATCH path = (start {id: $entity_id}) -[*1..{depth}]-> (end)`.
+    Implemented in `src/graph/neo4j_query.py → Neo4jQueryEngine.traverse_from()`.
+    Loaded into Neo4j via `src/graph/neo4j_loader.py`.
 - **Depth parameter design:** Exposed as `--depth` CLI flag (default 1).
-  Depth 1 = direct neighbours only. Depth 2 = neighbours of neighbours,
-  which is required for questions that chain two relationship hops (e.g.
-  TH1110D → T6-PRO → REDLINK-GATEWAY).
-- **Entity linking approach:** Regex extraction of uppercase product codes
-  (`[A-Z]{2,}\d+[A-Z0-9]*|[A-Z]{2,}-\d+`) from the raw question string.
-  Matched tokens are looked up directly in the graph; unmatched tokens are
-  silently skipped.
+  Depth 1 = direct neighbours only. Depth 2 = neighbours of neighbours.
+  Depth parameter provably does not invent extra hops — leaf nodes and
+  nodes with no outbound edges return identical results at depth=1 and depth=2.
+- **Entity linking approach:** Regex extraction of uppercase product codes and
+  hyphen-separated tokens (e.g. `T6-PRO`, `WALL-PLATE-A`, `RCHT9610WF`)
+  from the raw question string. Matched tokens are looked up directly in the
+  graph; unmatched tokens fall through to vector retrieval.
 
 ## Single-hop vs Multi-hop Comparison
 
-| Query | Single-hop hits | Multi-hop hits (depth 2) | Quality difference |
+Source: `reports/week2_evidence/demo_output.txt` — Neo4j traversal on a 31-entity graph.
+
+| Query | Single-hop result | Multi-hop result (depth 2) | Quality difference |
 |---|---|---|---|
-| What accessories can I use with the replacement for TH1110D? | 0 (TH1110D has no accessory named in question) | 9 — full neighbourhood of TH1110D and T6-PRO | Multi-hop surfaces the replacement and its accessories; single-hop cannot cross the REPLACES edge |
-| What system type does the replacement for TH1110D belong to? | 0 | 9 — includes T6-PRO node with system_type=HVAC | Single-hop misses T6-PRO entirely; multi-hop walks through the replacement chain |
-| Which accessories are shared between TH1110D and its replacement? | 3 (TH1110D direct neighbours) | 9 — both product neighbourhoods | Depth 2 captures both sides of the comparison; depth 1 only sees one product |
-| Which accessories are compatible with TH1110D? | 3 ✓ | 3 (no improvement needed) | Simple 1-hop lookup — depth has no effect here |
+| What does the T9 thermostat connect to and depend on? | 26 nodes, 25 hops — all direct T9 relationships (compatible systems, wiring terminals, electrical spec) | 27 nodes, 27 hops — adds Zoning Panel discovered through C-Wire Adapter | Multi-hop surfaces a non-obvious installation dependency: if the home has a zoning panel, the C-Wire Adapter installation is more complex. 1-hop misses this entirely. |
+| If a homeowner has a discontinued RTH6580WF, what is the modern path forward? | 2 nodes, 1 hop — only finds the replacement (T9) | 20 nodes, 37 hops — surfaces all HVAC systems T9 supports, all wiring requirements, and all compatible accessories | 1-hop answers "what replaces it?" but not "what do I need to install the replacement?" 2-hop gives the full migration picture in one query. Δ: +18 nodes, +36 hops. |
+| What does the C-Wire Adapter affect? | 2 nodes, 1 hop — Zoning Panel dependency | 2 nodes, 1 hop — identical | Leaf node with no further connections. Demonstrates depth parameter behaves correctly — no phantom hops invented. |
+| What does the wireless room sensor do? | No paths (leaf node) | No paths (leaf node) | Graceful handling of nodes with no outbound edges at any depth. |
+
+**Key finding:** The biggest multi-hop gain is on replacement chain queries. Depth=2 returned 18x more nodes (+18 nodes, +36 hops) than depth=1 on the RTH6580WF migration question — the difference between a one-word answer ("T9") and a complete installation guide.
 
 ## Evidence
-1. **Traversal path (depth 2, q06):**
+1. **Traversal path (depth=2, RTH6580WF replacement query):**
    ```
-   TH1110D --[COMPATIBLE_WITH]--> WALL-PLATE-A
-   TH1110D --[COMPATIBLE_WITH]--> WIRE-C-ADAPTER
-   T6-PRO  --[REPLACES]---------> TH1110D
-   T6-PRO  --[COMPATIBLE_WITH]--> WALL-PLATE-A
-   T6-PRO  --[COMPATIBLE_WITH]--> REDLINK-GATEWAY
-   (+ reverse edges back to source)
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf -[COMPATIBLE_WITH]-> central_cooling
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf -[COMPATIBLE_WITH]-> forced_air_heating
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf -[COMPATIBLE_WITH]-> heat_pump
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf -[CONNECTS_TO]-> wireless_room_sensor
+   rth6580wf_legacy -[REPLACED_BY]-> t9_rcht9610wf -[REQUIRES]-> terminal_c  (+ 13 more terminals)
+   Δ depth=1 → depth=2: +18 nodes, +36 hops
    ```
-2. **Evaluation results:** Full 12-query comparison run — see
-   `data/eval/results.json` and `notebooks/scoring_analysis.ipynb`
-3. **Chart:** `reports/retrieval_comparison.png` — accuracy and latency by method
+   Full output: `reports/week2_evidence/demo_output.txt`
+
+2. **Evaluation results:** Full 12-query comparison run across graph, vector,
+   and hybrid — see `data/eval/results.json` and `notebooks/scoring_analysis.ipynb`.
+   Graph accuracy: 91.7% (11/12). Only failure: q09 — text-only question with no graph node.
+
+3. **Chart:** `reports/retrieval_comparison.png` — accuracy and latency by method.
 
 ## Lessons Learned / Week 3 Prep
-- **Graph retriever gap — reverse traversal:** When the query entity is an
-  accessory (e.g. WALL-PLATE-A or REDLINK-GATEWAY), the retriever returns 0
-  hits on 3 of 12 queries because the regex does not extract accessory-style
-  tokens and the BFS never starts. Fix: broaden entity extraction or add
-  reverse-index lookup.
-- **Vector covers graph's blind spots:** Vector retrieval scored 100% accuracy
-  vs graph's 67% — but graph returned 3x more hits on multi-hop questions
-  where it did work (9 vs 3). Neither alone is sufficient.
-- **Hybrid is the safest baseline:** 100% accuracy, never 0 hits, only ~0.013ms
-  overhead vs vector alone.
+- **Multi-hop depth matters most on chain queries:** Replacement/migration questions
+  see the largest gain (18x more context at depth=2). Simple attribute lookups
+  see no improvement from increasing depth.
+- **Graph retrieval gap — text-only questions:** One question (q09, "retrofit
+  installations") returns 0 graph hits at any depth because the concept has no
+  graph node. Vector retrieval is the only solution here — hybrid covers it.
+- **Neo4j backend is not yet wired into the main pipeline:** `evaluate.py` runs
+  against NetworkX only. For week 3, if Neo4j is integrated, the evaluation
+  should be re-run to compare NetworkX vs Neo4j traversal quality as well.
 - **Week 3 priorities:**
-  1. Wire real LLM (Member 4) to replace the generate.py stub so correctness
-     scoring can check actual answer text, not just hit counts
-  2. Ingest real domain data (Member 1) and re-run full evaluation
-  3. Fix reverse-traversal gap in graph retriever
-  4. Add per-query correctness column to scoring notebook once LLM is live
+  1. Wire real LLM (Member 4) so correctness scoring checks actual answer text
+  2. Re-run eval on expanded real-world data (Member 1)
+  3. Integrate Neo4j into the main pipeline evaluation (Member 2 coordination)
+  4. Finalize week 3 report with full graph vs vector vs hybrid comparison
