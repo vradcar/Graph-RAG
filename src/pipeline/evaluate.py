@@ -18,7 +18,7 @@ from pathlib import Path
 from src.common.config import load_settings
 from src.graph.store import Neo4jGraphStore
 from src.llm.provider import build_instructor_client
-from src.retrieval.graph_retriever import load_all_node_ids, graph_retrieve
+from src.retrieval.graph_retriever import graph_retrieve
 from src.llm.generate import generate_answer
 
 
@@ -34,11 +34,14 @@ def run_eval(queries_path: str, output_path: str, provider: str | None = None, m
     model = model or settings["llm"]["model"]
     provider = provider or settings["llm"].get("provider", "groq")
 
-    client = build_instructor_client(provider)
+    client = None
+    try:
+        client = build_instructor_client(provider)
+    except ValueError as e:
+        print(f"WARNING: {e}", file=sys.stderr)
+        print("WARNING: Falling back to deterministic non-LLM answer mode", file=sys.stderr)
 
     with Neo4jGraphStore(uri=neo4j_uri, user=neo4j_user, password=neo4j_password) as store:
-        known_ids = load_all_node_ids(store)
-
         with Path(queries_path).open("r", encoding="utf-8") as f:
             queries = json.load(f)
 
@@ -48,7 +51,7 @@ def run_eval(queries_path: str, output_path: str, provider: str | None = None, m
             depth = item.get("depth", 2)
 
             start = time.perf_counter()
-            triples = graph_retrieve(store, client, model, question, known_ids, depth=depth)
+            triples = graph_retrieve(store, question, depth=depth)
             answer = generate_answer(client, model, question, triples)
             latency = time.perf_counter() - start
 

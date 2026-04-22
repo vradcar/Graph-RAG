@@ -2,6 +2,9 @@
 
 Starter template for a 3-week GraphRAG proof of concept focused on relationship-heavy enterprise questions (product compatibility, supply chain, and compliance).
 
+## Usage Guide
+- Detailed setup and execution steps: `HOW_TO_USE.md`
+
 ## What this template gives you
 - A minimal end-to-end GraphRAG flow: ingest → graph retrieval → answer generation
 - Multi-hop traversal with configurable depth

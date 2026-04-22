@@ -14,7 +14,7 @@ import sys
 from src.common.config import load_settings
 from src.graph.store import Neo4jGraphStore
 from src.llm.provider import build_instructor_client
-from src.retrieval.graph_retriever import graph_retrieve, load_all_node_ids
+from src.retrieval.graph_retriever import graph_retrieve
 from src.llm.generate import generate_answer, format_answer, QueryAnswer
 
 
@@ -36,17 +36,17 @@ def run_query_structured(question: str, depth: int = 2, provider: str | None = N
     model = model or settings["llm"]["model"]
     provider = provider or settings["llm"].get("provider", "groq")
 
+    client = None
     try:
         client = build_instructor_client(provider)
     except ValueError as e:
-        print(f"ERROR: {e}", file=sys.stderr)
-        sys.exit(1)
+        # Keep the pipeline usable for demos by falling back to deterministic
+        # answer generation in src.llm.generate when provider setup fails.
+        print(f"WARNING: {e}", file=sys.stderr)
+        print("WARNING: Falling back to deterministic non-LLM answer mode", file=sys.stderr)
 
     with Neo4jGraphStore(uri=neo4j_uri, user=neo4j_user, password=neo4j_password) as store:
-        known_ids = load_all_node_ids(store)
-        print(f"Loaded {len(known_ids)} node IDs from Neo4j", file=sys.stderr)
-
-        triples = graph_retrieve(store, client, model, question, known_ids, depth=depth)
+        triples = graph_retrieve(store, question, depth=depth)
         answer = generate_answer(client, model, question, triples)
 
     return answer

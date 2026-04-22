@@ -79,9 +79,12 @@ class Neo4jGraphStore:
 
         def _tx(tx):
             result = tx.run(
-                f"MATCH path = (start {{node_id: $start_node}})-[*1..{int(depth)}]-(neighbor) "
+                f"MATCH (start) WHERE start.node_id = $start_node OR start.id = $start_node "
+                f"MATCH path = (start)-[*1..{int(depth)}]-(neighbor) "
                 "UNWIND relationships(path) AS rel "
-                "RETURN startNode(rel).node_id AS src, type(rel) AS rel_type, endNode(rel).node_id AS tgt",
+                "RETURN coalesce(startNode(rel).node_id, startNode(rel).id) AS src, "
+                "type(rel) AS rel_type, "
+                "coalesce(endNode(rel).node_id, endNode(rel).id) AS tgt",
                 start_node=start_node,
             )
             return [(r["src"], r["rel_type"], r["tgt"]) for r in result]
@@ -94,7 +97,8 @@ class Neo4jGraphStore:
 
         def _tx(tx):
             result = tx.run(
-                "MATCH (n {node_id: $node_id}) RETURN properties(n) AS props LIMIT 1",
+                "MATCH (n) WHERE n.node_id = $node_id OR n.id = $node_id "
+                "RETURN properties(n) AS props LIMIT 1",
                 node_id=node_id,
             )
             record = result.single()
@@ -108,7 +112,8 @@ class Neo4jGraphStore:
 
         def _tx(tx):
             result = tx.run(
-                "MATCH (n {node_id: $node_id}) RETURN count(n) AS cnt",
+                "MATCH (n) WHERE n.node_id = $node_id OR n.id = $node_id "
+                "RETURN count(n) AS cnt",
                 node_id=node_id,
             )
             return result.single()["cnt"] > 0

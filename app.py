@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()  # MUST be first — loads .env before any os.getenv() calls
 
 import streamlit as st
+import json
 
 from src.common.config import load_settings
 from src.pipeline.query import run_query_structured
@@ -47,6 +48,21 @@ def _render_answer(answer) -> None:
             st.markdown("\n".join(lines))
 
 
+def _build_export_payload(question: str, depth: int, answer) -> dict:
+    """Build a serializable payload for report evidence export."""
+    return {
+        "question": question,
+        "depth": depth,
+        "answer": answer.prose,
+        "not_found": answer.not_found,
+        "suggestion": answer.suggestion,
+        "evidence": [
+            {"source": t.source, "relation": t.relation, "target": t.target}
+            for t in answer.evidence
+        ],
+    }
+
+
 # ---------------------------------------------------------------------------
 # Page configuration (UI-SPEC §"Page Configuration")
 # ---------------------------------------------------------------------------
@@ -81,6 +97,12 @@ if "pending_question" not in st.session_state:
     st.session_state.pending_question = ""
 if "auto_submit" not in st.session_state:
     st.session_state.auto_submit = False
+if "last_answer" not in st.session_state:
+    st.session_state.last_answer = None
+if "last_question" not in st.session_state:
+    st.session_state.last_question = ""
+if "last_depth" not in st.session_state:
+    st.session_state.last_depth = default_depth
 
 # ---------------------------------------------------------------------------
 # Sidebar (UI-SPEC §"Widget Contract" → "Sidebar Widgets")
@@ -162,4 +184,45 @@ if submit:
             message = _friendly_error_message(exc)
             st.error(message)
         else:
+            st.session_state.last_answer = answer
+            st.session_state.last_question = current_question
+            st.session_state.last_depth = depth
             _render_answer(answer)
+
+# Evidence export panel for reporting/screenshots (Member 5 deliverable helper)
+if st.session_state.last_answer is not None:
+    st.divider()
+    st.subheader("Export Evidence")
+    payload = _build_export_payload(
+        st.session_state.last_question,
+        st.session_state.last_depth,
+        st.session_state.last_answer,
+    )
+    col1, col2 = st.columns(2)
+    with col1:
+        st.download_button(
+            label="Download Evidence (JSON)",
+            data=json.dumps(payload, indent=2),
+            file_name="query_evidence.json",
+            mime="application/json",
+        )
+    with col2:
+        text_lines = [
+            f"Question: {payload['question']}",
+            f"Depth: {payload['depth']}",
+            "",
+            "Answer:",
+            payload["answer"] or "(no answer)",
+            "",
+            "Evidence:",
+        ]
+        for e in payload["evidence"]:
+            text_lines.append(f"- {e['source']} --[{e['relation']}]--> {e['target']}")
+        if not payload["evidence"]:
+            text_lines.append("- (none)")
+        st.download_button(
+            label="Download Evidence (TXT)",
+            data="\n".join(text_lines),
+            file_name="query_evidence.txt",
+            mime="text/plain",
+        )
