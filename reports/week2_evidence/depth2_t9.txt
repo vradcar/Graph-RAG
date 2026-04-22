@@ -1,0 +1,61 @@
+
+=== Traversal from t9_rcht9610wf (depth=2) ===
+Start node: Honeywell Home T9 Wi-Fi Smart Thermostat
+Reached 27 unique nodes via 27 relationship traversals
+Total paths returned: 26
+
+--- 1-hop paths (25) ---
+  t9_rcht9610wf -[MOUNTS_ON]-> uwp
+    edge props: {'source_page': 10}
+  t9_rcht9610wf -[COMPATIBLE_WITH]-> forced_air_heating
+    edge props: {'source_page': 3}
+  t9_rcht9610wf -[COMPATIBLE_WITH]-> central_cooling
+    edge props: {'source_page': 3}
+  t9_rcht9610wf -[COMPATIBLE_WITH]-> heat_pump
+    edge props: {'source_page': 3}
+  t9_rcht9610wf -[NOT_COMPATIBLE_WITH]-> electric_baseboard
+    edge props: {'reason': 'Line voltage 120-240V; T9 is a 24V AC low-voltage thermostat', 'source_page': 3}
+  t9_rcht9610wf -[NOT_COMPATIBLE_WITH]-> millivolt
+    edge props: {'reason': 'Millivolt systems are not supported by the T9', 'source_page': 3}
+  t9_rcht9610wf -[HAS_ELECTRICAL_SPEC]-> t9_power
+    edge props: {'source_page': 3}
+  t9_rcht9610wf -[NEEDS_ADAPTER_IF_MISSING]-> c_wire_adapter
+    edge props: {'source_page': 3, 'condition': 'No C-Wire present at thermostat'}
+  t9_rcht9610wf -[REQUIRES]-> terminal_a
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_c
+    edge props: {'source_page': 6, 'required': True}
+  t9_rcht9610wf -[REQUIRES]-> terminal_e
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_g
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_k
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_o_b
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_r
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_rc
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_rh
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_u
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_w
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_w2
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_y
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[REQUIRES]-> terminal_y2
+    edge props: {'source_page': 6, 'required': False}
+  t9_rcht9610wf -[CONNECTS_TO]-> wireless_room_sensor
+    edge props: {'max_count': 20, 'source_page': 13, 'max_range_ft': 200}
+  t9_rcht9610wf -[HAS_OPERATING_RANGE]-> t9_heat_range
+    edge props: {'source_page': 16}
+  t9_rcht9610wf -[HAS_OPERATING_RANGE]-> t9_cool_range
+    edge props: {'source_page': 16}
+
+--- 2-hop paths (1) ---
+  t9_rcht9610wf -[NEEDS_ADAPTER_IF_MISSING]-> c_wire_adapter -[COMPLEX_ON]-> zoning_panel
+    edge props: {'note': 'Professional installer recommended on zoned systems', 'source_page': 7}
