@@ -27,6 +27,29 @@ class Neo4jGraphStore:
                 "Start with: docker run -p 7474:7474 -p 7687:7687 "
                 "-e NEO4J_AUTH=neo4j/password neo4j:5"
             ) from e
+        self._id_keys = self._load_id_keys()
+
+    def _load_id_keys(self) -> List[str]:
+        with self._driver.session() as session:
+            keys = session.run(
+                "CALL db.propertyKeys() YIELD propertyKey RETURN collect(propertyKey) AS keys"
+            ).single()
+        if not keys:
+            return []
+        present = set(keys["keys"] or [])
+        return [k for k in ("node_id", "id") if k in present]
+
+    def _where_id_clause(self, alias: str, param_name: str) -> str:
+        if not self._id_keys:
+            return "false"
+        return " OR ".join([f"{alias}.{k} = ${param_name}" for k in self._id_keys])
+
+    def _return_id_expr(self, alias: str) -> str:
+        if not self._id_keys:
+            return "null"
+        if len(self._id_keys) == 1:
+            return f"{alias}.{self._id_keys[0]}"
+        return f"coalesce({alias}.node_id, {alias}.id)"
 
     def setup_constraints(self) -> None:
         """Create uniqueness constraints on node_id per label. Idempotent via IF NOT EXISTS."""
@@ -62,9 +85,10 @@ class Neo4jGraphStore:
 
         def _tx(tx):
             result = tx.run(
-                f"MATCH (a {{node_id: $src}}), (b {{node_id: $tgt}}) "
+                f"MATCH (a {{{self._id_keys[0] if self._id_keys else 'id'}: $src}}), "
+                f"(b {{{self._id_keys[0] if self._id_keys else 'id'}: $tgt}}) "
                 f"MERGE (a)-[r:{relation}]->(b) SET r += $props "
-                f"RETURN a.node_id AS src",
+                f"RETURN {self._return_id_expr('a')} AS src",
                 src=source_id,
                 tgt=target_id,
                 props=props,
@@ -77,14 +101,17 @@ class Neo4jGraphStore:
     def neighbors_multi_hop(self, start_node: str, depth: int = 1) -> List[Tuple[str, str, str]]:
         """Return (source_id, relation, target_id) tuples within `depth` hops."""
 
+        if not self._id_keys:
+            return []
+
         def _tx(tx):
             result = tx.run(
-                f"MATCH (start) WHERE start.node_id = $start_node OR start.id = $start_node "
+                f"MATCH (start) WHERE {self._where_id_clause('start', 'start_node')} "
                 f"MATCH path = (start)-[*1..{int(depth)}]-(neighbor) "
                 "UNWIND relationships(path) AS rel "
-                "RETURN coalesce(startNode(rel).node_id, startNode(rel).id) AS src, "
+                f"RETURN {self._return_id_expr('startNode(rel)')} AS src, "
                 "type(rel) AS rel_type, "
-                "coalesce(endNode(rel).node_id, endNode(rel).id) AS tgt",
+                f"{self._return_id_expr('endNode(rel)')} AS tgt",
                 start_node=start_node,
             )
             return [(r["src"], r["rel_type"], r["tgt"]) for r in result]
@@ -95,9 +122,12 @@ class Neo4jGraphStore:
     def node_payload(self, node_id: str) -> Dict:
         """Return all properties of the node with the given node_id, or {}."""
 
+        if not self._id_keys:
+            return {}
+
         def _tx(tx):
             result = tx.run(
-                "MATCH (n) WHERE n.node_id = $node_id OR n.id = $node_id "
+                f"MATCH (n) WHERE {self._where_id_clause('n', 'node_id')} "
                 "RETURN properties(n) AS props LIMIT 1",
                 node_id=node_id,
             )
@@ -110,9 +140,12 @@ class Neo4jGraphStore:
     def has_node(self, node_id: str) -> bool:
         """Return True if a node with the given node_id exists."""
 
+        if not self._id_keys:
+            return False
+
         def _tx(tx):
             result = tx.run(
-                "MATCH (n) WHERE n.node_id = $node_id OR n.id = $node_id "
+                f"MATCH (n) WHERE {self._where_id_clause('n', 'node_id')} "
                 "RETURN count(n) AS cnt",
                 node_id=node_id,
             )

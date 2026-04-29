@@ -1,207 +1,620 @@
 [
   {
-    "question": "What accessories are compatible with the T9?",
-    "depth": 2,
-    "answer": "The T9 (model rcht9610wf) is compatible with several accessories, including the C-wire adapter, wireless room sensor, UWP wallplate, wall anchor, UWP, and wireless sensor. These accessories can be used to enhance installation options, sensing capabilities, and mounting configurations for the T9 thermostat.",
-    "evidence": [
-      {
-        "source": "c-wire-adapter",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "c-wire-adapter"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wireless-room-sensor"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "uwp-wallplate"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "uwp"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wall-anchor"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wireless-sensor"
-      },
-      {
-        "source": "uwp",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "uwp-wallplate",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "wall-anchor",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "wireless-room-sensor",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "wireless-sensor",
-        "relation": "COMPATIBLE_WITH",
-        "target": "rcht9610wf"
-      }
-    ],
-    "not_found": false,
-    "latency_sec": 5.592,
-    "expected": "COMPATIBLE_WITH edges from T9 product node"
+    "question": "What is the modern replacement for TH1110D?",
+    "depth": 1,
+    "expected": "T6-PRO",
+    "graph": {
+      "hit_count": 2,
+      "latency_sec": 0.065,
+      "evidence": [
+        {
+          "source": "rth6580wf_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t9_rcht9610wf"
+        },
+        {
+          "source": "th1110d_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t6_th6320wf"
+        }
+      ]
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 2,
+      "doc_hit_count": 3,
+      "latency_sec": 0.009,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    }
   },
   {
-    "question": "What wiring configs does the T9 support?",
-    "depth": 2,
-    "answer": "The T9 (model rcht9610wf) supports several wiring configurations, including 5-wire heat/cool, C-wire, and R-wire/RC/RH wiring. This variety allows compatibility with a wide range of HVAC setups. Additionally, the T9 is compatible with a C-wire adapter for installations lacking a dedicated C-wire.",
-    "evidence": [
-      {
-        "source": "5-wire-heat-cool",
-        "relation": "SUPPORTS_WIRING",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "5-wire-heat-cool"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "c-wire"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "r-wire-rc-rh-wiring"
-      },
-      {
-        "source": "c-wire",
-        "relation": "SUPPORTS_WIRING",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "r-wire-rc-rh-wiring",
-        "relation": "SUPPORTS_WIRING",
-        "target": "rcht9610wf"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "c-wire-adapter"
-      }
-    ],
-    "not_found": false,
-    "latency_sec": 7.562,
-    "expected": "SUPPORTS_WIRING edges from T9 product node"
+    "question": "Is TH1110D still an active product?",
+    "depth": 1,
+    "expected": "discontinued",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.006,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.006,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    }
   },
   {
-    "question": "What are the T9 specifications?",
+    "question": "Which accessories are compatible with T6-PRO?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.008,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.01,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "question": "Which accessories are compatible with TH1110D?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A and WIRE-C-ADAPTER",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.008,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.008,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "question": "What system type does the SMK-100 belong to?",
+    "depth": 1,
+    "expected": "Fire Safety",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.005,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.006,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "question": "What accessories can I use with the replacement for TH1110D?",
     "depth": 2,
-    "answer": "The T9 (model rcht9610wf) specifications include compatibility with a range of HVAC system components, such as wireless sensors, wall anchors, UWP wallplates, zoning panels, line voltage systems, millivolt systems, electric baseboards, heating and cooling systems, heat pumps, and C-wire adapters. It supports c-wire, 5-wire heat/cool, and R-wire (RC/RH) wiring. Additionally, its electrical specification is 24V, 60Hz, 0.2A.",
-    "evidence": [
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wireless-sensor"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wall-anchor"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "uwp"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "zoning-panel"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "line-voltage"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "millivolt-system"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "electric-baseboard"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "heating-cooling"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "heat-pump"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "uwp-wallplate"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "c-wire-adapter"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "COMPATIBLE_WITH",
-        "target": "wireless-room-sensor"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "c-wire"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "5-wire-heat-cool"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "SUPPORTS_WIRING",
-        "target": "r-wire-rc-rh-wiring"
-      },
-      {
-        "source": "rcht9610wf",
-        "relation": "HAS_SPEC",
-        "target": "24v-60hz-0-2a"
-      }
-    ],
-    "not_found": false,
-    "latency_sec": 5.526,
-    "expected": "HAS_SPEC edges from T9 product node"
+    "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
+    "graph": {
+      "hit_count": 25,
+      "latency_sec": 0.026,
+      "evidence": [
+        {
+          "source": "rth6580wf_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t9_rcht9610wf"
+        },
+        {
+          "source": "th1110d_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t6_th6320wf"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced_air_heating"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "central_cooling"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat_pump"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "HAS_ELECTRICAL_SPEC",
+          "target": "t9_power"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "NEEDS_ADAPTER_IF_MISSING",
+          "target": "c_wire_adapter"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_a"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_c"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_e"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_g"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_k"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_o_b"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_r"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rc"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rh"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_u"
+        }
+      ]
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 25,
+      "doc_hit_count": 3,
+      "latency_sec": 0.053,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "question": "What system type does the replacement for TH1110D belong to?",
+    "depth": 2,
+    "expected": "HVAC",
+    "graph": {
+      "hit_count": 25,
+      "latency_sec": 0.019,
+      "evidence": [
+        {
+          "source": "rth6580wf_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t9_rcht9610wf"
+        },
+        {
+          "source": "th1110d_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t6_th6320wf"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced_air_heating"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "central_cooling"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat_pump"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "HAS_ELECTRICAL_SPEC",
+          "target": "t9_power"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "NEEDS_ADAPTER_IF_MISSING",
+          "target": "c_wire_adapter"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_a"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_c"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_e"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_g"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_k"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_o_b"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_r"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rc"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rh"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_u"
+        }
+      ]
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 25,
+      "doc_hit_count": 3,
+      "latency_sec": 0.019,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "question": "Which accessories are shared between TH1110D and its replacement?",
+    "depth": 2,
+    "expected": "WALL-PLATE-A",
+    "graph": {
+      "hit_count": 25,
+      "latency_sec": 0.019,
+      "evidence": [
+        {
+          "source": "rth6580wf_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t9_rcht9610wf"
+        },
+        {
+          "source": "th1110d_legacy",
+          "relation": "REPLACED_BY",
+          "target": "t6_th6320wf"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced_air_heating"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "central_cooling"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat_pump"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "HAS_ELECTRICAL_SPEC",
+          "target": "t9_power"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "NEEDS_ADAPTER_IF_MISSING",
+          "target": "c_wire_adapter"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_a"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_c"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_e"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_g"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_k"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_o_b"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_r"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rc"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_rh"
+        },
+        {
+          "source": "t9_rcht9610wf",
+          "relation": "REQUIRES",
+          "target": "terminal_u"
+        }
+      ]
+    },
+    "vector": {
+      "hit_count": 4,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-3",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 25,
+      "doc_hit_count": 4,
+      "latency_sec": 0.018,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-3",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "question": "Which thermostat is recommended for retrofit installations?",
+    "depth": 1,
+    "expected": "T6-PRO",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "question": "What compliance standards apply to the SMK-100 smoke detector?",
+    "depth": 2,
+    "expected": "UL 268 and NFPA 72",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.006,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.006,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "question": "Can WALL-PLATE-A be used with a discontinued thermostat?",
+    "depth": 2,
+    "expected": "yes",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.061,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.008,
+      "doc_ids": [
+        "doc-2",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "question": "Which active HVAC products support REDLINK-GATEWAY?",
+    "depth": 2,
+    "expected": "T6-PRO",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.011,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 1,
+      "latency_sec": 0.0,
+      "doc_ids": [
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 1,
+      "latency_sec": 0.006,
+      "doc_ids": [
+        "doc-1"
+      ]
+    }
   }
 ]
