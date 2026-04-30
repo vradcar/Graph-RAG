@@ -198,6 +198,8 @@ if st.session_state.last_answer is not None:
         st.session_state.last_depth,
         st.session_state.last_answer,
     )
+    with st.expander("Debug Answer Payload", expanded=False):
+        st.json(payload)
     col1, col2 = st.columns(2)
     with col1:
         st.download_button(
