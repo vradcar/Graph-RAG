@@ -30,6 +30,7 @@ def test_document_upsert(clean_db, neo4j_driver, sample_doc_a):
     assert node["ingested_at"] is not None
     # second upsert: last_reingested updated, first_ingested unchanged
     first_ingested = node.get("first_ingested")
+    assert first_ingested is not None, "first_ingested must be set on CREATE"
     with neo4j_driver.session() as session:
         session.execute_write(lambda tx: merge_document(tx, sample_doc_a))
         result2 = session.run(
@@ -38,6 +39,7 @@ def test_document_upsert(clean_db, neo4j_driver, sample_doc_a):
         ).single()
     node2 = result2["d"]
     assert node2.get("first_ingested") == first_ingested
+    assert node2.get("last_reingested") is not None, "last_reingested must be set on MATCH"
 
 
 @pytest.mark.integration
