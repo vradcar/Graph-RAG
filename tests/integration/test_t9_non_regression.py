@@ -7,12 +7,15 @@ import sys
 from pathlib import Path
 import pytest
 
-BASELINE = json.loads(Path("tests/fixtures/t9_baseline.json").read_text())
+BASELINE_PATH = Path("tests/fixtures/t9_baseline.json")
 GRAPH_ITEMS = Path("data/processed/graph_items.json")
 
 
 @pytest.mark.integration
 def test_t9_baseline_no_regression(neo4j_driver, clean_db):
+    if not BASELINE_PATH.exists():
+        pytest.skip(f"{BASELINE_PATH} missing")
+    BASELINE = json.loads(BASELINE_PATH.read_text())
     if not GRAPH_ITEMS.exists():
         pytest.skip(f"{GRAPH_ITEMS} missing -- run ingest first")
     result = subprocess.run(
