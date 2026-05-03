@@ -126,8 +126,8 @@ def normalize_label(raw: str) -> str:
         "24 VAC" → "24VAC"
         "conventional" → "conventional" (unchanged if not in alias map)
     """
-    normalized = raw.strip().upper().replace("  ", " ")
-    return ALIAS_MAP.get(normalized, raw.strip())
+    upper = raw.strip().upper().replace("  ", " ")
+    return ALIAS_MAP.get(upper, raw.strip())
 
 
 def normalize_node(node: dict) -> dict:
