@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Schema & Provenance Foundation** - Additive schema for Document nodes, MENTIONED_IN, source_doc edge property, and per-document MERGE/dedup semantics
+- [x] **Phase 1: Schema & Provenance Foundation** - Additive schema for Document nodes, MENTIONED_IN, source_doc edge property, and per-document MERGE/dedup semantics
 - [ ] **Phase 2: Corpus Curation & Extractor Hardening** - Onboard T6 Pro, THP9045, T10 Pro PDFs; harden parser/extractor/normalizer with no T9 regression
 - [ ] **Phase 3: Batch Ingestion Tooling** - scripts/batch_ingest.py with dry-run, per-doc reports, structured failure log, and idempotent re-runs
 - [ ] **Phase 4: Multi-Document Quality Verification** - Curated cross-doc query set with citations and graph-vs-vector comparison demonstrating graph-only wins
@@ -27,9 +27,9 @@
   3. A node mentioned in N PDFs exists exactly once in Neo4j and has a source_docs[] array of length N populated via ON CREATE / ON MATCH semantics.
   4. Every edge written by neo4j_loader.py has a non-null source_doc property, verifiable via Cypher `MATCH ()-[r]->() WHERE r.source_doc IS NULL RETURN count(r)` returning 0.
 **Plans**: 3 plans
-- [ ] 01-01-PLAN.md — Schema additions (Document, MENTIONED_IN) + failing test scaffolding
-- [ ] 01-02-PLAN.md — provenance.py helpers + neo4j_loader.py refactor + --doc-id CLI
-- [ ] 01-03-PLAN.md — T9 backfill re-ingest + audit verification (checkpoint)
+- [x] 01-01-PLAN.md — Schema additions (Document, MENTIONED_IN) + failing test scaffolding
+- [x] 01-02-PLAN.md — provenance.py helpers + neo4j_loader.py refactor + --doc-id CLI
+- [x] 01-03-PLAN.md — T9 backfill re-ingest + audit verification (checkpoint)
 
 ### Phase 2: Corpus Curation & Extractor Hardening
 **Goal**: A curated 3-PDF Honeywell corpus is checked in and ingests cleanly through hardened parser/extractor/normalizer code with zero T9 regression.
@@ -69,10 +69,10 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Schema & Provenance Foundation | 0/3 | Planned | - |
+| 1. Schema & Provenance Foundation | 3/3 | Complete | 2026-05-02 |
 | 2. Corpus Curation & Extractor Hardening | 0/0 | Not started | - |
 | 3. Batch Ingestion Tooling | 0/0 | Not started | - |
 | 4. Multi-Document Quality Verification | 0/0 | Not started | - |
 
 ---
-*Last updated: 2026-05-02 — Phase 1 planned (3 plans across 3 waves)*
+*Last updated: 2026-05-02 — Phase 1 complete (3/3 plans done, all SCHEMA-* requirements verified)*

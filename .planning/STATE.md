@@ -1,17 +1,17 @@
 ---
 gsd_state_version: 1.0
 milestone: v2.0
-milestone_name: T1-Sai
-status: planning
-stopped_at: ""
+milestone_name: milestone
+status: executing
+stopped_at: Phase 01 complete — all 3 plans done
 last_updated: "2026-05-02T00:00:00.000Z"
-last_activity: 2026-05-02 -- Roadmap created for milestone v2.0 T1-Sai
+last_activity: 2026-05-02 -- Phase 01 complete (01-03 backfill + audit verification approved)
 progress:
   total_phases: 4
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 3
+  completed_plans: 3
+  percent: 25
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-02)
 
 **Core value:** Relationship-aware answers about HVAC product compatibility and replacements via a Neo4j knowledge graph — answers a flat RAG system would miss
-**Current focus:** Multi-PDF coverage & extraction hardening (T1-Sai)
+**Current focus:** Phase 02 — corpus-curation-extractor-hardening (next)
 
 ## Current Position
 
-Phase: Not started (roadmap created, awaiting Phase 1 planning)
-Plan: —
-Status: Roadmap approved
-Last activity: 2026-05-02 — ROADMAP.md written; 4 phases defined; 21/21 v2.0 REQ-IDs mapped
+Phase: 01 (schema-provenance-foundation) — COMPLETE
+Plan: 3 of 3 — ALL DONE
+Status: Phase 01 complete; ready to begin Phase 02
+Last activity: 2026-05-02 -- Phase 01 complete (01-03 backfill + audit verification approved)
 
 ## Accumulated Context
 
@@ -44,6 +44,9 @@ Recent decisions affecting current work:
 - v2.0: Schema changes are additive only — `:Document`, `MENTIONED_IN`, `source_doc` property; no renaming of existing kinds/relations
 - v2.0: Corpus pinned to 3 PDFs (T6 Pro, THP9045, T10 Pro) — research recommended 5, requirements scoped to 3 for milestone focus
 - v2.0: T9 baseline non-regression treated as a quality gate inside Phase 2, not a separate phase
+- Phase 01 (01-03): D-02 confirmed — backfill by --reset re-ingest, not Cypher migration
+- Phase 01 (01-03): D-10 confirmed — canonical doc_id slug is 't9_install_guide'; Phase 2 manifest must preserve this value
+- Phase 01 (01-03): Test isolation needed — integration tests must use separate NEO4J_TEST_URI or session-scoped teardown
 
 ### Pending Todos
 
@@ -68,8 +71,10 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-05-02T00:00:00.000Z
-Stopped at: Roadmap creation complete
+Stopped at: Phase 01 complete — all 3 plans done; 01-03 human checkpoint approved
 Resume instructions:
 
-  1. Review .planning/ROADMAP.md and .planning/REQUIREMENTS.md traceability
-  2. Run `/gsd-discuss-phase 1` to begin Phase 1 (Schema & Provenance Foundation)
+  1. Begin Phase 02: Corpus Curation & Extractor Hardening
+  2. Reference .planning/phases/01-schema-provenance-foundation/_t9_baseline.txt for INGEST-05 non-regression baseline
+  3. Canonical doc_id slug for manifest: t9_install_guide
+  4. Add test isolation before running integration tests (NEO4J_TEST_URI or session teardown)
