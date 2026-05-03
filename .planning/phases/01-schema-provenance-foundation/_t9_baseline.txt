@@ -7,6 +7,13 @@ Loader: python -m src.graph.neo4j_loader --reset --doc-id t9_install_guide \
         --doc-source-url "honeywellhome.com/t9-install-guide" \
         --input data/processed/graph_items.json --verify
 
+NOTE (Re-run 2026-05-02): After the initial load, the Plan 01-01 integration tests ran
+against the same local Neo4j instance and left test fixture nodes (doc_a, doc_b, a single
+Product node) in the database. The loader was re-run with --reset to wipe these fixtures and
+restore the correct t9_install_guide state. Counts below are from the clean re-run and match
+the original Run 1 results exactly. Root cause: integration tests must use a separate Neo4j
+database or teardown all fixtures after each test run to avoid polluting the loader baseline.
+
 ===========================================================================
 RUN 1 (--reset + --doc-id t9_install_guide)
 ===========================================================================
@@ -46,12 +53,14 @@ Audit 4 — Entities vs MENTIONED_IN edges (expected entities == mentions):
   MATCH (n) WHERE NOT n:Document RETURN count(n) AS entities ...
   Result: entities = 7, mentions = 7   PASS
 
-Sample source_docs (first 5 entity nodes):
+Sample source_docs (all 7 entity nodes):
+  BASE-LOW-PROFILE      source_docs=['t9_install_guide']  len=1
+  REDLINK-GATEWAY       source_docs=['t9_install_guide']  len=1
+  SMK-100               source_docs=['t9_install_guide']  len=1
+  T6-PRO                source_docs=['t9_install_guide']  len=1
   TH1110D               source_docs=['t9_install_guide']  len=1
   WALL-PLATE-A          source_docs=['t9_install_guide']  len=1
   WIRE-C-ADAPTER        source_docs=['t9_install_guide']  len=1
-  T6-PRO                source_docs=['t9_install_guide']  len=1
-  REDLINK-GATEWAY       source_docs=['t9_install_guide']  len=1
 
 ===========================================================================
 RUN 2 (no --reset, same --doc-id — idempotency check)
@@ -110,3 +119,15 @@ Canonical doc_id slug: t9_install_guide
 Baseline node count:   8  (7 entities + 1 Document)
 Baseline edge count:   13 (7 MENTIONED_IN + 5 COMPATIBLE_WITH + 1 REPLACES)
 Entity labels:         Accessory (4), Product (3)
+
+===========================================================================
+TEST ISOLATION NOTE FOR PHASE 2
+===========================================================================
+
+The Plan 01-01 integration tests (tests/integration/test_neo4j_loader_integration.py) use
+the same local Neo4j instance and create nodes with doc_id='doc_a'/'doc_b'. If these tests
+run AFTER the baseline loader command, they will pollute the database with test fixtures.
+
+Recommendation for Phase 2: add a conftest.py fixture that either (a) uses a dedicated test
+database (NEO4J_TEST_URI env var), or (b) calls reset_database() in a session-scoped teardown
+so the live graph is not corrupted by test runs.
