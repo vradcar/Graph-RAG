@@ -439,13 +439,9 @@ def ingest_replacements(
             if not old_id or not new_id:
                 skipped += 1
                 continue
-            if old_id not in therms_by_id or new_id not in therms_by_id:
-                log.warning(
-                    "Replacement endpoints missing in thermostats[]: %s -> %s",
-                    old_id, new_id,
-                )
-                skipped += 1
-                continue
+            # Removed therms_by_id membership check — Neo4j MERGE handles missing
+            # nodes and this guard silently dropped valid cross-document replacement
+            # edges whose endpoints come from a different document's product catalog.
             # Direction: (new)-[:REPLACES]->(old)
             edge = {
                 "source_id": new_id,
