@@ -1,0 +1,5 @@
+Power input [1] is 24VAC.
+Terminal R [2] connects to transformer.
+Compatible with 1H/1C [3] and 2H/2C systems.
+See note [11] for heat-pump wiring.
+Cool-only systems use Y and G [4].
