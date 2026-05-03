@@ -43,6 +43,49 @@ from src.graph.extract import (
 log = logging.getLogger(__name__)
 
 
+def drop_dangling_edges(
+    nodes: list[dict], edges: list[dict]
+) -> tuple[list[dict], list[dict]]:
+    """Drop edges whose source_id or target_id is not in ``nodes``.
+
+    Replaces an earlier anti-pattern that synthesized stub nodes with an
+    out-of-schema ``kind`` value for missing endpoints. That kind is not in ``NODE_KIND``
+    (``src/graph/schema.py``), so synthesizing such stubs makes the corpus
+    unloadable through ``EntityNode`` and unusable downstream in Neo4j.
+
+    Args:
+        nodes: List of node dicts with ``node_id`` keys.
+        edges: List of edge dicts with ``source_id`` and ``target_id`` keys.
+
+    Returns:
+        ``(nodes, kept_edges)`` — ``nodes`` is returned unchanged; ``kept_edges``
+        contains only edges whose endpoints both exist in ``nodes``.
+
+    Logs a WARNING with the count of dropped edges and up to 10 of the missing
+    endpoint ids for observability.
+    """
+    existing_ids = {n["node_id"] for n in nodes}
+    kept: list[dict] = []
+    dropped: list[dict] = []
+    for e in edges:
+        if e["source_id"] in existing_ids and e["target_id"] in existing_ids:
+            kept.append(e)
+        else:
+            dropped.append(e)
+    if dropped:
+        missing = sorted(
+            {e["source_id"] for e in dropped if e["source_id"] not in existing_ids}
+            | {e["target_id"] for e in dropped if e["target_id"] not in existing_ids}
+        )[:10]
+        log.warning(
+            "Dropped %d dangling edges (missing endpoint nodes). "
+            "Sample missing ids: %s",
+            len(dropped),
+            missing,
+        )
+    return nodes, kept
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Ingest source data into graph-ready JSON")
     parser.add_argument(
@@ -192,13 +235,7 @@ def main() -> None:
                     if key not in seen:
                         seen.add(key)
                         norm_edges.append({**e, "source_id": src, "target_id": tgt})
-                existing_ids = {n["node_id"] for n in norm_nodes}
-                for e in norm_edges:
-                    for endpoint_key in ("source_id", "target_id"):
-                        eid = e[endpoint_key]
-                        if eid not in existing_ids:
-                            norm_nodes.append({"node_id": eid, "label": eid, "kind": "Unknown"})
-                            existing_ids.add(eid)
+                norm_nodes, norm_edges = drop_dangling_edges(norm_nodes, norm_edges)
                 graph_items = {"nodes": norm_nodes, "edges": norm_edges}
                 print(
                     f"[cache] hit: {cache_path} "
@@ -231,15 +268,10 @@ def main() -> None:
                         seen.add(key)
                         norm_edges.append({**e, "source_id": src, "target_id": tgt})
                 # Repair dangling edge endpoints: if the LLM emitted an edge whose
-                # source or target wasn't extracted as a node, add a minimal stub so
-                # the neo4j_loader MATCH doesn't fail.
-                existing_ids = {n["node_id"] for n in norm_nodes}
-                for e in norm_edges:
-                    for endpoint_key in ("source_id", "target_id"):
-                        eid = e[endpoint_key]
-                        if eid not in existing_ids:
-                            norm_nodes.append({"node_id": eid, "label": eid, "kind": "Unknown"})
-                            existing_ids.add(eid)
+                # source or target wasn't extracted as a node, drop the edge.
+                # Synthesizing out-of-schema stub kinds (the previous behavior)
+                # makes the corpus unloadable via EntityNode and is not allowed.
+                norm_nodes, norm_edges = drop_dangling_edges(norm_nodes, norm_edges)
 
                 graph_items = {"nodes": norm_nodes, "edges": norm_edges}
                 log.info(
