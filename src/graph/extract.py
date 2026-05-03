@@ -371,6 +371,103 @@ def _build_thermostat_nodes(replacements_path: Optional[Path]) -> Tuple[List[Dic
     return nodes, edges
 
 
+def ingest_replacements(
+    json_path: Path,
+    driver: "Any",
+    doc_id: str = "replacements_manifest",
+) -> Dict[str, int]:
+    """
+    Ingest the curated replacements manifest into Neo4j as Product nodes
+    + REPLACES edges with provenance. Direction: (new_sku)-[:REPLACES]->(old_sku).
+
+    Returns counts: {"products": N, "replaces_edges": M, "skipped": K}.
+    Idempotent — uses MERGE via provenance helpers, safe to re-run.
+    """
+    from datetime import datetime, timezone
+    from src.graph.provenance import (
+        merge_document,
+        merge_node_with_provenance,
+        merge_edge_with_provenance,
+    )
+
+    if not json_path.exists():
+        log.warning("Replacements file not found: %s — skipping", json_path)
+        return {"products": 0, "replaces_edges": 0, "skipped": 0}
+
+    with json_path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    thermostats = data.get("thermostats", [])
+    replacements = data.get("replacements", [])
+    therms_by_id = {t["id"]: t for t in thermostats}
+
+    # 1) Document node — must commit before any node MERGE (Pitfall 5).
+    with driver.session() as session:
+        session.execute_write(
+            lambda tx: merge_document(tx, {
+                "doc_id": doc_id,
+                "title": "Replacements manifest",
+                "sku": None,
+                "source_url": str(json_path),
+                "ingested_at": datetime.now(timezone.utc).isoformat(),
+            })
+        )
+
+    # 2) Nodes + edges in separate transactions.
+    product_count = 0
+    edge_count = 0
+    skipped = 0
+    with driver.session() as session:
+        for therm in thermostats:
+            node = {
+                "node_id": therm["id"],
+                "label": therm.get("name") or therm.get("model_number") or therm["id"],
+                "kind": "Product",
+                "properties": {
+                    k: v for k, v in therm.items()
+                    if k not in ("id",) and v is not None
+                },
+            }
+            session.execute_write(
+                lambda tx, n=node: merge_node_with_provenance(tx, n, doc_id)
+            )
+            product_count += 1
+
+        for rep in replacements:
+            old_id = rep.get("from")
+            new_id = rep.get("to")
+            if not old_id or not new_id:
+                skipped += 1
+                continue
+            if old_id not in therms_by_id or new_id not in therms_by_id:
+                log.warning(
+                    "Replacement endpoints missing in thermostats[]: %s -> %s",
+                    old_id, new_id,
+                )
+                skipped += 1
+                continue
+            # Direction: (new)-[:REPLACES]->(old)
+            edge = {
+                "source_id": new_id,
+                "target_id": old_id,
+                "relation": "REPLACES",
+                "properties": {
+                    k: v for k, v in rep.items()
+                    if k not in ("from", "to") and v is not None
+                },
+            }
+            session.execute_write(
+                lambda tx, e=edge: merge_edge_with_provenance(tx, e, doc_id)
+            )
+            edge_count += 1
+
+    log.info(
+        "ingest_replacements: %d products, %d REPLACES edges, %d skipped (doc_id=%s)",
+        product_count, edge_count, skipped, doc_id,
+    )
+    return {"products": product_count, "replaces_edges": edge_count, "skipped": skipped}
+
+
 def _validate(graph: Dict) -> List[str]:
     errs: List[str] = []
     node_ids = {n["id"] for n in graph["nodes"]}
