@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 @pytest.fixture(scope="session")
 def neo4j_driver():
     load_dotenv()
-    uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+    uri = os.getenv("NEO4J_TEST_URI") or os.getenv("NEO4J_URI", "bolt://localhost:7687")
     user = os.getenv("NEO4J_USER", "neo4j")
     password = os.getenv("NEO4J_PASSWORD")
+    chosen_var = "NEO4J_TEST_URI" if os.getenv("NEO4J_TEST_URI") else "NEO4J_URI"
+    print(f"[conftest] using {chosen_var}={uri}")
     if not password:
         pytest.skip("NEO4J_PASSWORD not set", allow_module_level=False)
     from neo4j import GraphDatabase
@@ -24,9 +26,13 @@ def neo4j_driver():
 
 @pytest.fixture(scope="function")
 def clean_db(neo4j_driver):
+    # Setup: wipe any pre-existing data before the test
     with neo4j_driver.session() as session:
         session.run("MATCH (n) DETACH DELETE n")
     yield
+    # Teardown: wipe again after the test, even if it errors mid-flight
+    with neo4j_driver.session() as session:
+        session.run("MATCH (n) DETACH DELETE n")
 
 
 @pytest.fixture
