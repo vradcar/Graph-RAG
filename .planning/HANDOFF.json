@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-03T02:17:34.865Z",
+  "timestamp": "2026-05-03T02:28:41.660Z",
   "phase": "01",
   "phase_name": "schema-provenance-foundation",
   "phase_dir": ".planning/phases/01-schema-provenance-foundation",
@@ -20,11 +20,6 @@
   ],
   "blockers": [],
   "human_actions_pending": [
-    {
-      "action": "Obtain the 3 target PDFs: T6 Pro, THP9045 C-Wire Adapter, T10 Pro. Place in data/raw/",
-      "context": "Phase 02 DISCOVER-01/02/03 requires these files. Source URLs need to be found from Honeywell/Resideo product pages.",
-      "blocking": true
-    },
     {
       "action": "Set up a separate test Neo4j database (NEO4J_TEST_URI env var) for integration test isolation",
       "context": "Decision from Phase 01 (01-03): integration tests must not pollute the production baseline. Current conftest.py reads NEO4J_URI which points to the same DB.",
@@ -47,6 +42,12 @@
     ".planning/phases/01-schema-provenance-foundation/01-REVIEW.md",
     ".planning/phases/01-schema-provenance-foundation/01-REVIEW-FIX.md"
   ],
-  "next_action": "Run /gsd-plan-phase 2 to plan Phase 02 (corpus-curation-extractor-hardening). Before planning, ensure the 3 target PDFs are in data/raw/.",
-  "context_notes": "Phase 01 is fully complete including code review and all fixes. The src/graph layer (schema, provenance, neo4j_loader, utils) is clean. 9 fix commits were applied atomically this session. Phase 02 is the next milestone phase — it adds PDF parsing, entity extraction, and T9 non-regression checks."
+  "corpus": {
+    "t9": {"file": "data/raw/t9-thermostat.pdf", "doc_id": "t9_install_guide", "status": "ingested"},
+    "t6_pro": {"file": "data/raw/t6-pro-thermostat.pdf", "models": ["TH6320U2008", "TH6220U2000", "TH6210U2001"], "status": "ready"},
+    "thp9045": {"file": "data/raw/thp9045-wiring-module.pdf", "models": ["THP9045A1023"], "status": "ready"},
+    "t10_pro": {"file": "data/raw/t10-pro-thermostat.pdf", "models": ["THX321WFS3001W", "THX321WF3003W", "THX321WFS2001W", "THX321WF2003W", "THX321WF2001W"], "status": "ready"}
+  },
+  "next_action": "Run /gsd-plan-phase 2 — PDFs are in data/raw/, corpus is ready.",
+  "context_notes": "Phase 01 is fully complete including code review and all fixes. The src/graph layer (schema, provenance, neo4j_loader, utils) is clean. 9 fix commits were applied atomically. All 4 corpus PDFs are now in data/raw/. Phase 02 can begin immediately — no pre-requisites outstanding."
 }
