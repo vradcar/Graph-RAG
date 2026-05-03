@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
-from typing import Dict, Any, Literal, get_args
+from typing import Dict, Any, Literal, Optional, get_args
 
-NODE_KIND = Literal["Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec"]
+NODE_KIND = Literal["Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Document"]
 ALLOWED_RELATIONS = Literal[
-    "COMPATIBLE_WITH", "REPLACES", "SUPPORTS_WIRING", "HAS_SPEC"
+    "COMPATIBLE_WITH", "REPLACES", "SUPPORTS_WIRING", "HAS_SPEC", "MENTIONED_IN"
 ]
 VALID_KINDS: set[str] = set(get_args(NODE_KIND))
 VALID_RELATIONS: set[str] = set(get_args(ALLOWED_RELATIONS))
@@ -35,3 +35,12 @@ class RelationEdge:
             raise ValueError(
                 f"Invalid relation '{self.relation}'. Must be one of {VALID_RELATIONS}"
             )
+
+
+@dataclass
+class Document:
+    doc_id: str
+    title: str
+    sku: Optional[str] = None
+    source_url: Optional[str] = None
+    ingested_at: Optional[str] = None  # ISO-8601; DB stores as datetime()
