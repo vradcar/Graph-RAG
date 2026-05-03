@@ -77,7 +77,7 @@ def merge_document(tx: ManagedTransaction, doc: Dict[str, Any]) -> None:
         title=doc.get("title", ""),
         sku=doc.get("sku"),
         source_url=doc.get("source_url"),
-        ingested_at=doc.get("ingested_at", ""),
+        ingested_at=doc.get("ingested_at") or None,
     )
 
 
