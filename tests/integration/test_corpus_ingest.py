@@ -40,6 +40,6 @@ def test_extractor_smoke_first_page(doc_id):
     pages = extract_page_content(str(pdf_path), pages=pages_filter)
     provider = "groq" if os.getenv("GROQ_API_KEY") else "openai"
     client = build_client(provider)
-    model = os.getenv("LLM_MODEL", "llama-3.1-8b-instant" if provider == "groq" else "gpt-4o-mini")
+    model = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile" if provider == "groq" else "gpt-4o-mini")
     result = extract_from_page(client, model, pages[0], doc_id=doc_id)
     assert isinstance(result, ExtractionResult)

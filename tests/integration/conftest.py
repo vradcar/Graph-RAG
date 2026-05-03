@@ -18,12 +18,23 @@ _ALL_CORPUS_IDS = [
 ]
 _PROCESSED = Path("data/processed")
 
+# Which LLM backend the corpus ingest fixture should use.
+# Override with `INFERENCER=openrouter pytest ...` to dodge Groq daily quotas.
+_INFERENCER = os.getenv("INFERENCER", "groq")
+_KEY_VAR = {
+    "groq": "GROQ_API_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
+    "gemini": "GEMINI_API_KEY",
+}.get(_INFERENCER)
+
 
 @pytest.fixture(scope="session")
 def corpus_ingested(neo4j_driver):
     """Session-scoped: ingest T9 + 3 new PDFs into Neo4j. Shared by SC-2 and SC-3 tests."""
-    if not os.getenv("GROQ_API_KEY"):
-        pytest.skip("GROQ_API_KEY not set -- corpus ingest requires live LLM")
+    if _KEY_VAR is None:
+        pytest.skip(f"Unknown INFERENCER={_INFERENCER!r}; expected groq|openrouter|gemini")
+    if not os.getenv(_KEY_VAR):
+        pytest.skip(f"{_KEY_VAR} not set -- corpus ingest requires live LLM (inferencer={_INFERENCER})")
     _PROCESSED.mkdir(parents=True, exist_ok=True)
     ingested = []
     for doc_id in _ALL_CORPUS_IDS:
@@ -36,6 +47,7 @@ def corpus_ingested(neo4j_driver):
             [sys.executable, "-m", "src.pipeline.ingest",
              "--input", str(pdf_path),
              "--doc-id", doc_id,
+             "--inferencer", _INFERENCER,
              "--output", str(out_json)],
             capture_output=True, text=True,
         )

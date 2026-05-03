@@ -176,11 +176,35 @@ def main() -> None:
 
         if use_llm:
             if cached_graph is not None:
-                graph_items = cached_graph
+                # Re-normalize cached graphs: alias rules and id-canonicalization
+                # may have evolved since the JSON was written. Forward-compat is
+                # cheap (no LLM calls) and prevents cross-doc bridge drift when
+                # an older cache used a different separator convention.
+                from src.ingest.normalizer import normalize_and_deduplicate, normalize_node_id
+
+                norm_nodes = normalize_and_deduplicate(cached_graph.get("nodes", []))
+                seen: set = set()
+                norm_edges: list = []
+                for e in cached_graph.get("edges", []):
+                    src = normalize_node_id(e["source_id"])
+                    tgt = normalize_node_id(e["target_id"])
+                    key = (src, tgt, e["relation"])
+                    if key not in seen:
+                        seen.add(key)
+                        norm_edges.append({**e, "source_id": src, "target_id": tgt})
+                existing_ids = {n["node_id"] for n in norm_nodes}
+                for e in norm_edges:
+                    for endpoint_key in ("source_id", "target_id"):
+                        eid = e[endpoint_key]
+                        if eid not in existing_ids:
+                            norm_nodes.append({"node_id": eid, "label": eid, "kind": "Unknown"})
+                            existing_ids.add(eid)
+                graph_items = {"nodes": norm_nodes, "edges": norm_edges}
                 print(
                     f"[cache] hit: {cache_path} "
-                    f"({len(graph_items['nodes'])} nodes, {len(graph_items['edges'])} edges) "
-                    "— skipping LLM extraction (use --force-extract to override)"
+                    f"({len(graph_items['nodes'])} nodes, {len(graph_items['edges'])} edges "
+                    f"after re-normalization) — skipping LLM extraction "
+                    "(use --force-extract to override)"
                 )
             else:
                 from src.ingest.pdf_parser import extract_page_content

@@ -37,6 +37,7 @@ NODE_ID_ALIASES: dict[str, str] = {
     "t9-thermostat": "rcht9610wf",
     "t9-smart-thermostat": "rcht9610wf",
     "t9": "rcht9610wf",
+    "t9-rcht9610wf": "rcht9610wf",
     "uwp-wall-plate": "uwp-wallplate",
     "uwp": "uwp-wallplate",
     "wall-plate": "uwp-wallplate",

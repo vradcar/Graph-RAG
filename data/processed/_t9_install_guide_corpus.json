@@ -157,11 +157,6 @@
       "properties": {}
     },
     {
-      "node_id": "millivolt-systems",
-      "label": "millivolt-systems",
-      "kind": "Unknown"
-    },
-    {
       "node_id": "line-voltage-system",
       "label": "line-voltage-system",
       "kind": "Unknown"
@@ -194,6 +189,11 @@
     {
       "node_id": "cool-temp-range",
       "label": "cool-temp-range",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "millivolt-systems",
+      "label": "millivolt-systems",
       "kind": "Unknown"
     }
   ],
