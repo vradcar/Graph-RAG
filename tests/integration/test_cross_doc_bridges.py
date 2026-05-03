@@ -7,8 +7,7 @@ Depends on the `corpus_ingested` session fixture from test_corpus_ingest_full.py
 so Phase 2 self-gates SC-2 -- no manual ingest step required."""
 import pytest
 
-# Pull in the session-scoped corpus_ingested fixture from the full-ingest module.
-pytest_plugins = ["tests.integration.test_corpus_ingest_full"]
+# corpus_ingested session fixture lives in tests/integration/conftest.py
 
 NEW_DOC_IDS = ["t6_pro_install", "thp9045_wiring_module", "t10_pro_user_guide"]
 T9_DOC_ID = "t9_install_guide"
