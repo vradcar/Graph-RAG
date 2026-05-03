@@ -1,0 +1,44 @@
+{
+  "documents": [
+    {
+      "doc_id": "t9_install_guide",
+      "filename": "t9-thermostat.pdf",
+      "title": "T9 Smart Thermostat Installation Guide",
+      "sku": "T9",
+      "source_url": "honeywellhome.com/t9-install-guide",
+      "retrieved_at": "2026-04-15",
+      "pages": null,
+      "notes": null
+    },
+    {
+      "doc_id": "t6_pro_install",
+      "filename": "t6-pro-thermostat.pdf",
+      "title": "T6 Pro Programmable Thermostat Installation Guide",
+      "sku": "TH6320U2008",
+      "source_url": null,
+      "retrieved_at": "2026-04-30",
+      "pages": null,
+      "notes": "Covers TH6320U2008, TH6220U2000, TH6210U2001 (3 SKUs)"
+    },
+    {
+      "doc_id": "thp9045_wiring_module",
+      "filename": "thp9045-wiring-module.pdf",
+      "title": "THP9045 C-Wire Adapter Wiring Module",
+      "sku": "THP9045",
+      "source_url": null,
+      "retrieved_at": "2026-04-30",
+      "pages": [1, 4],
+      "notes": "Trilingual EN/FR/ES — pages 5-12 are translations of 1-4; ingest English only"
+    },
+    {
+      "doc_id": "t10_pro_user_guide",
+      "filename": "t10-pro-thermostat.pdf",
+      "title": "T10 Pro Smart Thermostat User Guide",
+      "sku": "THX321WFS3001W",
+      "source_url": null,
+      "retrieved_at": "2026-04-30",
+      "pages": null,
+      "notes": "User guide (no wiring tables); references RedLINK 3.0, HomeKit"
+    }
+  ]
+}
