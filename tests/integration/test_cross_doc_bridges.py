@@ -15,7 +15,7 @@ T9_DOC_ID = "t9_install_guide"
 
 @pytest.mark.integration
 @pytest.mark.parametrize("new_doc_id", NEW_DOC_IDS)
-def test_each_new_doc_bridges_to_t9(neo4j_driver, corpus_ingested, new_doc_id):
+def test_each_new_doc_bridges_to_t9(neo4j_driver, clean_db, corpus_ingested, new_doc_id):
     with neo4j_driver.session() as session:
         shared_nodes = session.run(
             "MATCH (n) WHERE $d1 IN n.source_docs AND $d2 IN n.source_docs RETURN count(n) AS c",
