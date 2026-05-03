@@ -6,3 +6,4 @@ data/processed/*.json
 data/eval/results.json
 .ipynb_checkpoints/
 data/processed/*.json
+reports/extraction_rejections.log

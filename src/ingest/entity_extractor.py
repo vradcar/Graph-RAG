@@ -11,8 +11,10 @@ from typing import List
 
 import instructor
 from pydantic import BaseModel, Field
+from pydantic import ValidationError
 
 from src.graph.schema import NODE_KIND, ALLOWED_RELATIONS
+from src.ingest.rejections import log_rejection
 
 
 # ---------------------------------------------------------------------------
@@ -99,6 +101,13 @@ HAS_SPEC: A Product has a Spec (voltage, current, dimensions, range).
 5. If no entities are found on this page, return empty lists
 6. A Spec node should ONLY appear as the target of a HAS_SPEC edge from a Product
 7. Wiring configurations (wire count, terminal labels) are WiringConfig, not Spec
+8. Multi-SKU pages: if multiple Product SKUs are listed at the top of a page
+   (e.g., "TH6320U2008, TH6220U2000, TH6210U2001"), emit one Product node per SKU.
+   When a wiring config or spec is annotated "applies only to X", emit the edge
+   from X. When unattributed on a multi-SKU page, emit the edge from the FIRST
+   SKU listed on that page.
+9. Image-only wiring diagrams cannot be parsed; rely on the text terminal table
+   and the prose compatibility list. Do not invent edges from images.
 """
 
 
@@ -124,6 +133,7 @@ def extract_from_page(
     client: instructor.Instructor,
     model: str,
     page: dict,
+    doc_id: str | None = None,
 ) -> ExtractionResult:
     """
     Extract entities and relationships from a single page dict.
@@ -132,21 +142,34 @@ def extract_from_page(
         client: instructor-wrapped Groq client from build_client()
         model: Groq model name (e.g., "llama-3.1-8b-instant")
         page: page dict with keys page_num, prose, tables
+        doc_id: optional document identifier for rejection logging (default: None)
 
     Returns:
-        ExtractionResult with nodes and edges lists
+        ExtractionResult with nodes and edges lists. On ValidationError after
+        retries, logs the rejection and returns an empty ExtractionResult so
+        the page loop continues without crashing.
     """
     from src.ingest.pdf_parser import format_page_for_llm
     content = format_page_for_llm(page)
     if not content.strip():
         return ExtractionResult()
 
-    return client.chat.completions.create(
-        model=model,
-        response_model=ExtractionResult,
-        messages=[
-            {"role": "system", "content": EXTRACTION_SYSTEM_PROMPT},
-            {"role": "user", "content": content},
-        ],
-        max_retries=2,
-    )
+    try:
+        return client.chat.completions.create(
+            model=model,
+            response_model=ExtractionResult,
+            messages=[
+                {"role": "system", "content": EXTRACTION_SYSTEM_PROMPT},
+                {"role": "user", "content": content},
+            ],
+            max_retries=2,
+        )
+    except ValidationError as e:
+        log_rejection(
+            doc_id=doc_id or "unknown",
+            page_num=page.get("page_num", -1),
+            error_class="ValidationError",
+            message=str(e),
+            snippet=page.get("prose", "")[:500],
+        )
+        return ExtractionResult()
