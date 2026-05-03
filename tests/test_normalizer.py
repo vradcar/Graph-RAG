@@ -7,7 +7,7 @@ import pytest
     ("2 Wire Heat Only", "2-wire-heat-only"),
     ("Heat Pump", "heat-pump"),
     ("24VAC", "24vac"),
-    ("T9 Smart Thermostat", "t9-smart-thermostat"),
+    ("T9 Smart Thermostat", "rcht9610wf"),  # alias: t9-smart-thermostat → rcht9610wf
     ("2-wire-heat-only", "2-wire-heat-only"),  # already normalized
 ])
 def test_normalize_node_id_lowercase_hyphen(raw, expected):
