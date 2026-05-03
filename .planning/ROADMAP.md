@@ -11,7 +11,7 @@
 ## Phases
 
 - [x] **Phase 1: Schema & Provenance Foundation** - Additive schema for Document nodes, MENTIONED_IN, source_doc edge property, and per-document MERGE/dedup semantics
-- [ ] **Phase 2: Corpus Curation & Extractor Hardening** - Onboard T6 Pro, THP9045, T10 Pro PDFs; harden parser/extractor/normalizer with no T9 regression
+- [x] **Phase 2: Corpus Curation & Extractor Hardening** - Onboard T6 Pro, THP9045, T10 Pro PDFs; harden parser/extractor/normalizer with no T9 regression (completed 2026-05-03)
 - [ ] **Phase 3: Batch Ingestion Tooling** - scripts/batch_ingest.py with dry-run, per-doc reports, structured failure log, and idempotent re-runs
 - [ ] **Phase 4: Multi-Document Quality Verification** - Curated cross-doc query set with citations and graph-vs-vector comparison demonstrating graph-only wins
 
@@ -41,7 +41,12 @@
   3. pdf_parser.py, entity_extractor.py, and normalizer.py ingest all 3 PDFs end-to-end with no unhandled exceptions; the extractor enforces the closed-world entity/relation enum and rejects invalid LLM outputs with a logged reason.
   4. Re-running the original T9 ingest after hardening produces node/edge counts equal to (or strictly greater than) the v1.0 baseline, with no kinds removed or renamed.
   5. Every extractor failure observed during corpus ingestion has a corresponding fix in pdf_parser/entity_extractor/normalizer with a regression test that fails on the unfixed code.
-**Plans**: TBD
+**Plans**: 5 plans
+- [x] 02-01-PLAN.md — Wave 0: manifest.json + loader, T9 baseline JSON fixture, conftest test isolation
+- [x] 02-02-PLAN.md — Wave 1: pdf_parser pages filter + footnote-marker stripping + parser regression tests
+- [x] 02-03-PLAN.md — Wave 1: entity_extractor ValidationError logging + multi-SKU prompt + rejection writer
+- [x] 02-04-PLAN.md — Wave 1: normalizer SKU regex + bridge alias map (UWP, THX9321R, terminals, system types)
+- [x] 02-05-PLAN.md — Wave 2: pipeline manifest wiring + corpus smoke ingest + cross-doc bridge + T9 non-regression gates
 
 ### Phase 3: Batch Ingestion Tooling
 **Goal**: A single batch command ingests the entire corpus repeatably with structured per-doc reporting and idempotent re-run safety.
@@ -70,7 +75,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Schema & Provenance Foundation | 3/3 | Complete | 2026-05-02 |
-| 2. Corpus Curation & Extractor Hardening | 0/0 | Not started | - |
+| 2. Corpus Curation & Extractor Hardening | 5/5 | Complete   | 2026-05-03 |
 | 3. Batch Ingestion Tooling | 0/0 | Not started | - |
 | 4. Multi-Document Quality Verification | 0/0 | Not started | - |
 
