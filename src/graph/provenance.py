@@ -99,6 +99,8 @@ def merge_node_with_provenance(
     ``doc_id`` is REQUIRED — never optional.
     """
     node_id = node.get("node_id") or node.get("id")
+    if not node_id:
+        raise ValueError(f"merge_node_with_provenance requires a non-empty node_id; got: {node!r}")
     label = node.get("kind") or node.get("type") or "Entity"
     extra_props = _clean_props(node.get("properties") or {})
 
