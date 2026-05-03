@@ -284,39 +284,43 @@ def main() -> None:
     args = parser.parse_args()
 
     input_path = Path(args.input)
-    if not input_path.exists():
-        raise SystemExit(f"Input not found: {input_path}")
-
-    with input_path.open() as f:
-        graph = json.load(f)
-
-    nodes = graph.get("nodes", [])
-    edges = graph.get("edges", [])
-    log.info("Loaded %s — %d nodes, %d edges", input_path, len(nodes), len(edges))
-
-    doc_metadata = {
-        "doc_id": args.doc_id,
-        "title": args.doc_title or args.doc_id,
-        "sku": args.doc_sku,
-        "source_url": args.doc_source_url,
-        "ingested_at": datetime.now(timezone.utc).isoformat(),
-    }
 
     driver = get_driver()
     try:
         if args.reset:
             reset_database(driver)
         create_constraints(driver)
-        # D-07: Document upsert MUST run in its own committed transaction BEFORE entity loop.
-        upsert_document(driver, doc_metadata)
-        load_nodes(driver, nodes, args.doc_id)
-        load_edges(driver, edges, args.doc_id)
+
+        if not args.verify or input_path.exists():
+            # Load data — only require the file when we're actually going to load.
+            if not input_path.exists():
+                raise SystemExit(f"Input not found: {input_path}")
+
+            with input_path.open() as f:
+                graph = json.load(f)
+
+            nodes = graph.get("nodes", [])
+            edges = graph.get("edges", [])
+            log.info("Loaded %s — %d nodes, %d edges", input_path, len(nodes), len(edges))
+
+            doc_metadata = {
+                "doc_id": args.doc_id,
+                "title": args.doc_title or args.doc_id,
+                "sku": args.doc_sku,
+                "source_url": args.doc_source_url,
+                "ingested_at": datetime.now(timezone.utc).isoformat(),
+            }
+
+            # D-07: Document upsert MUST run in its own committed transaction BEFORE entity loop.
+            upsert_document(driver, doc_metadata)
+            load_nodes(driver, nodes, args.doc_id)
+            load_edges(driver, edges, args.doc_id)
+            print(f"\nLoad complete. Open http://localhost:7474 to inspect the graph.")
+
         if args.verify:
             verify(driver)
     finally:
         driver.close()
-
-    print(f"\nLoad complete. Open http://localhost:7474 to inspect the graph.")
 
 
 if __name__ == "__main__":
