@@ -1,0 +1,392 @@
+{
+  "nodes": [
+    {
+      "node_id": "t9_rcht9610wf",
+      "label": "Honeywell Home T9 Wi-Fi Smart Thermostat",
+      "kind": "Thermostat",
+      "source_page": 1,
+      "name": "Honeywell Home T9 Wi-Fi Smart Thermostat",
+      "model_number": "RCHT9610WF",
+      "status": "current",
+      "product_family": "T-Series",
+      "wifi": true
+    },
+    {
+      "node_id": "uwp",
+      "label": "UWP Wallplate",
+      "kind": "Wallplate",
+      "source_page": 2,
+      "name": "UWP Wallplate"
+    },
+    {
+      "node_id": "forced_air_heating",
+      "label": "Forced Air Heating System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Forced Air Heating System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "central_cooling",
+      "label": "Central Cooling System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Central Cooling System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "heat_pump",
+      "label": "Heat Pump System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Heat Pump System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "electric_baseboard",
+      "label": "Electric Baseboard Heat",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Electric Baseboard Heat",
+      "voltage_class": "line_voltage"
+    },
+    {
+      "node_id": "millivolt",
+      "label": "Millivolt System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Millivolt System",
+      "voltage_class": "millivolt"
+    },
+    {
+      "node_id": "t9_power",
+      "label": "t9_power",
+      "kind": "ElectricalSpec",
+      "source_page": 3,
+      "voltage_v": 24.0,
+      "frequency_hz": 60.0,
+      "current_a": 0.2
+    },
+    {
+      "node_id": "c_wire_adapter",
+      "label": "C-Wire Adapter",
+      "kind": "Adapter",
+      "source_page": 3,
+      "name": "C-Wire Adapter",
+      "included": true
+    },
+    {
+      "node_id": "zoning_panel",
+      "label": "Zoning Panel Installation",
+      "kind": "ZoningPanel",
+      "source_page": 7,
+      "name": "Zoning Panel Installation"
+    },
+    {
+      "node_id": "terminal_a",
+      "label": "A",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Auxiliary / L1 output"
+    },
+    {
+      "node_id": "terminal_c",
+      "label": "C",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Common wire, 24V AC return (required)"
+    },
+    {
+      "node_id": "terminal_e",
+      "label": "E",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Emergency heat (heat pump)"
+    },
+    {
+      "node_id": "terminal_g",
+      "label": "G",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Fan relay"
+    },
+    {
+      "node_id": "terminal_k",
+      "label": "K",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Combined fan / auxiliary"
+    },
+    {
+      "node_id": "terminal_o_b",
+      "label": "O/B",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Heat pump reversing valve"
+    },
+    {
+      "node_id": "terminal_r",
+      "label": "R",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "24V AC power (single transformer)"
+    },
+    {
+      "node_id": "terminal_rc",
+      "label": "Rc",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "24V AC cooling transformer"
+    },
+    {
+      "node_id": "terminal_rh",
+      "label": "Rh",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "24V AC heating transformer"
+    },
+    {
+      "node_id": "terminal_u",
+      "label": "U",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Configurable universal terminal"
+    },
+    {
+      "node_id": "terminal_w",
+      "label": "W",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Heating stage 1"
+    },
+    {
+      "node_id": "terminal_w2",
+      "label": "W2",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Auxiliary / second-stage heat"
+    },
+    {
+      "node_id": "terminal_y",
+      "label": "Y",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Cooling stage 1"
+    },
+    {
+      "node_id": "terminal_y2",
+      "label": "Y2",
+      "kind": "WiringTerminal",
+      "source_page": 6,
+      "function": "Cooling stage 2"
+    },
+    {
+      "node_id": "wireless_room_sensor",
+      "label": "Honeywell Wireless Room Sensor",
+      "kind": "RoomSensor",
+      "source_page": 13,
+      "name": "Honeywell Wireless Room Sensor",
+      "capabilities": [
+        "temperature",
+        "humidity",
+        "occupancy"
+      ]
+    },
+    {
+      "node_id": "t9_heat_range",
+      "label": "t9_heat_range",
+      "kind": "OperatingRange",
+      "source_page": 16,
+      "mode": "heat",
+      "min_f": 40,
+      "max_f": 90
+    },
+    {
+      "node_id": "t9_cool_range",
+      "label": "t9_cool_range",
+      "kind": "OperatingRange",
+      "source_page": 16,
+      "mode": "cool",
+      "min_f": 50,
+      "max_f": 99
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "uwp",
+      "relation": "MOUNTS_ON",
+      "source_page": 10
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "forced_air_heating",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "central_cooling",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "heat_pump",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "electric_baseboard",
+      "relation": "NOT_COMPATIBLE_WITH",
+      "source_page": 3,
+      "reason": "Line voltage 120-240V; T9 is a 24V AC low-voltage thermostat"
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "millivolt",
+      "relation": "NOT_COMPATIBLE_WITH",
+      "source_page": 3,
+      "reason": "Millivolt systems are not supported by the T9"
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "t9_power",
+      "relation": "HAS_ELECTRICAL_SPEC",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "c_wire_adapter",
+      "relation": "NEEDS_ADAPTER_IF_MISSING",
+      "source_page": 3,
+      "condition": "No C-Wire present at thermostat"
+    },
+    {
+      "source_id": "c_wire_adapter",
+      "target_id": "zoning_panel",
+      "relation": "COMPLEX_ON",
+      "source_page": 7,
+      "note": "Professional installer recommended on zoned systems"
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_a",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_c",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": true
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_e",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_g",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_k",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_o_b",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_r",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_rc",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_rh",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_u",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_w",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_w2",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_y",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "terminal_y2",
+      "relation": "REQUIRES",
+      "source_page": 6,
+      "required": false
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "wireless_room_sensor",
+      "relation": "CONNECTS_TO",
+      "source_page": 13,
+      "max_count": 20,
+      "max_range_ft": 200
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "t9_heat_range",
+      "relation": "HAS_OPERATING_RANGE",
+      "source_page": 16
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "t9_cool_range",
+      "relation": "HAS_OPERATING_RANGE",
+      "source_page": 16
+    }
+  ]
+}

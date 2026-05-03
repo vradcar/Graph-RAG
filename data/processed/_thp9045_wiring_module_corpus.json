@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "node_id": "t9_rcht9610wf",
+      "label": "Honeywell Home T9 Wi-Fi Smart Thermostat",
+      "kind": "Thermostat",
+      "source_page": 1,
+      "name": "Honeywell Home T9 Wi-Fi Smart Thermostat",
+      "model_number": "RCHT9610WF",
+      "status": "current",
+      "product_family": "T-Series",
+      "wifi": true
+    },
+    {
+      "node_id": "uwp",
+      "label": "UWP Wallplate",
+      "kind": "Wallplate",
+      "source_page": 2,
+      "name": "UWP Wallplate"
+    },
+    {
+      "node_id": "forced_air_heating",
+      "label": "Forced Air Heating System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Forced Air Heating System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "central_cooling",
+      "label": "Central Cooling System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Central Cooling System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "heat_pump",
+      "label": "Heat Pump System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Heat Pump System",
+      "voltage_class": "low_voltage_24v"
+    },
+    {
+      "node_id": "electric_baseboard",
+      "label": "Electric Baseboard Heat",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Electric Baseboard Heat",
+      "voltage_class": "line_voltage"
+    },
+    {
+      "node_id": "millivolt",
+      "label": "Millivolt System",
+      "kind": "HVACSystemType",
+      "source_page": 3,
+      "name": "Millivolt System",
+      "voltage_class": "millivolt"
+    },
+    {
+      "node_id": "t9_power",
+      "label": "t9_power",
+      "kind": "ElectricalSpec",
+      "source_page": 3,
+      "voltage_v": 24.0,
+      "frequency_hz": 60.0,
+      "current_a": 0.2
+    },
+    {
+      "node_id": "c_wire_adapter",
+      "label": "C-Wire Adapter",
+      "kind": "Adapter",
+      "source_page": 3,
+      "name": "C-Wire Adapter",
+      "included": true
+    },
+    {
+      "node_id": "zoning_panel",
+      "label": "Zoning Panel Installation",
+      "kind": "ZoningPanel",
+      "source_page": 7,
+      "name": "Zoning Panel Installation"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "uwp",
+      "relation": "MOUNTS_ON",
+      "source_page": 10
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "forced_air_heating",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "central_cooling",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "heat_pump",
+      "relation": "COMPATIBLE_WITH",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "electric_baseboard",
+      "relation": "NOT_COMPATIBLE_WITH",
+      "source_page": 3,
+      "reason": "Line voltage 120-240V; T9 is a 24V AC low-voltage thermostat"
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "millivolt",
+      "relation": "NOT_COMPATIBLE_WITH",
+      "source_page": 3,
+      "reason": "Millivolt systems are not supported by the T9"
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "t9_power",
+      "relation": "HAS_ELECTRICAL_SPEC",
+      "source_page": 3
+    },
+    {
+      "source_id": "t9_rcht9610wf",
+      "target_id": "c_wire_adapter",
+      "relation": "NEEDS_ADAPTER_IF_MISSING",
+      "source_page": 3,
+      "condition": "No C-Wire present at thermostat"
+    },
+    {
+      "source_id": "c_wire_adapter",
+      "target_id": "zoning_panel",
+      "relation": "COMPLEX_ON",
+      "source_page": 7,
+      "note": "Professional installer recommended on zoned systems"
+    }
+  ]
+}

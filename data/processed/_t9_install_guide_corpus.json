@@ -1,0 +1,362 @@
+{
+  "nodes": [
+    {
+      "node_id": "rcht9610wf",
+      "label": "T9 Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "honeywell-home-thermostat",
+      "label": "Honeywell Home Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "24vac-60hz-0-2a",
+      "label": "24V~@60Hz, 0.2A",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire",
+      "label": "C-Wire (common wire)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire-adapter",
+      "label": "THP9045",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "heating-system",
+      "label": "Heating system",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "cooling-system",
+      "label": "Cooling system",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-system",
+      "label": "Heat pump system",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "electric-baseboard-heat",
+      "label": "Electric baseboard heat (120-240V)",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "s-terminals",
+      "label": "S terminals (indoor and outdoor sensors)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "android-ios-device",
+      "label": "Android or iOS smartphone, tablet, or device",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "honeywell-thermostat",
+      "label": "Honeywell Home Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "zoning-panel",
+      "label": "Zoning Panel",
+      "kind": "ZoningPanel",
+      "properties": {}
+    },
+    {
+      "node_id": "heating-cooling-system",
+      "label": "Heating and Cooling System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-c",
+      "label": "C terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-g",
+      "label": "G terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-r",
+      "label": "R terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-w",
+      "label": "W terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-y",
+      "label": "Y terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "thermostat",
+      "label": "Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "uwp-wallplate",
+      "label": "UWP wallplate",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "screws",
+      "label": "Screws",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "wall-anchors",
+      "label": "Wall Anchors",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "rc-terminal",
+      "label": "Rc Terminal",
+      "kind": "WiringTerminal",
+      "properties": {}
+    },
+    {
+      "node_id": "1-r-wire-config",
+      "label": "1 R-Wire Configuration (R, RC, RH)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "wireless-room-sensor",
+      "label": "Wireless Room Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "millivolt-systems",
+      "label": "millivolt-systems",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "line-voltage-system",
+      "label": "line-voltage-system",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "2-r-wire-config",
+      "label": "2-r-wire-config",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "200-foot-range",
+      "label": "200-foot-range",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "up-to-20-sensors-capacity",
+      "label": "up-to-20-sensors-capacity",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "heat-pump",
+      "label": "heat-pump",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "heat-temp-range",
+      "label": "heat-temp-range",
+      "kind": "Unknown"
+    },
+    {
+      "node_id": "cool-temp-range",
+      "label": "cool-temp-range",
+      "kind": "Unknown"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "c-wire-adapter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "24vac-60hz-0-2a",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "c-wire-adapter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "heating-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "cooling-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "heat-pump-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "electric-baseboard-heat",
+      "relation": "NOT_COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "millivolt-systems",
+      "relation": "NOT_COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "s-terminals",
+      "relation": "NOT_COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "honeywell-home-thermostat",
+      "target_id": "android-ios-device",
+      "relation": "REQUIRES"
+    },
+    {
+      "source_id": "honeywell-thermostat",
+      "target_id": "line-voltage-system",
+      "relation": "NOT_COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "c-wire-adapter",
+      "target_id": "zoning-panel",
+      "relation": "COMPLEX_ON"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "screws",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "wall-anchors",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "1-r-wire-config",
+      "target_id": "terminal-r",
+      "relation": "CONNECTS_TO"
+    },
+    {
+      "source_id": "2-r-wire-config",
+      "target_id": "rc-terminal",
+      "relation": "CONNECTS_TO"
+    },
+    {
+      "source_id": "2-r-wire-config",
+      "target_id": "terminal-r",
+      "relation": "CONNECTS_TO"
+    },
+    {
+      "source_id": "terminal-r",
+      "target_id": "uwp-wallplate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "rc-terminal",
+      "target_id": "uwp-wallplate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "uwp-wallplate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "heating-cooling-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "200-foot-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "up-to-20-sensors-capacity",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "heat-temp-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "cool-temp-range",
+      "relation": "HAS_SPEC"
+    }
+  ]
+}
