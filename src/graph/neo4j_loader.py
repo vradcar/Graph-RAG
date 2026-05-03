@@ -76,7 +76,8 @@ def create_constraints(driver: Driver) -> None:
     labels = [
         "Thermostat", "HVACSystemType", "WiringTerminal", "RoomSensor",
         "Adapter", "ElectricalSpec", "OperatingRange", "ZoningPanel",
-        "Wallplate", "Product", "Accessory", "Document",
+        "Wallplate", "Product", "Accessory", "WiringConfig", "Spec",
+        # "Document" removed — Document uniqueness is on doc_id, not node_id (see below)
     ]
     with driver.session() as sess:
         for label in labels:
