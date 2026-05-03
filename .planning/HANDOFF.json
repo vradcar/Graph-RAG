@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-05-03T02:17:34.865Z",
+  "phase": "01",
+  "phase_name": "schema-provenance-foundation",
+  "phase_dir": ".planning/phases/01-schema-provenance-foundation",
+  "plan": 3,
+  "task": "complete",
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": "01-01", "name": "Schema dataclasses + unit tests", "status": "done", "commit": "494afa3"},
+    {"id": "01-02", "name": "Provenance layer + neo4j_loader routing", "status": "done", "commit": "3c7cf02"},
+    {"id": "01-03", "name": "T9 re-ingest with provenance + baseline", "status": "done", "commit": "867e494"},
+    {"id": "code-review", "name": "Code review Phase 01 (standard depth)", "status": "done", "commit": "6875e79"},
+    {"id": "cr-fixes", "name": "Auto-fix 9 Critical+Warning findings", "status": "done", "commit": "6875e79"}
+  ],
+  "remaining_tasks": [
+    {"id": "phase-02", "name": "corpus-curation-extractor-hardening", "status": "not_started"}
+  ],
+  "blockers": [],
+  "human_actions_pending": [
+    {
+      "action": "Obtain the 3 target PDFs: T6 Pro, THP9045 C-Wire Adapter, T10 Pro. Place in data/raw/",
+      "context": "Phase 02 DISCOVER-01/02/03 requires these files. Source URLs need to be found from Honeywell/Resideo product pages.",
+      "blocking": true
+    },
+    {
+      "action": "Set up a separate test Neo4j database (NEO4J_TEST_URI env var) for integration test isolation",
+      "context": "Decision from Phase 01 (01-03): integration tests must not pollute the production baseline. Current conftest.py reads NEO4J_URI which points to the same DB.",
+      "blocking": false
+    },
+    {
+      "action": "Run integration tests against live Neo4j to confirm the 9 code-review fixes don't break existing test suite",
+      "context": "All 9 fixes were applied without running tests (no live Neo4j available in this session). python -m pytest tests/test_provenance.py -v",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    {"decision": "Backfill via --reset re-ingest, not Cypher migration", "rationale": "D-02 confirmed in 01-03", "phase": "01"},
+    {"decision": "Canonical doc_id slug is 't9_install_guide'", "rationale": "D-10 confirmed; Phase 02 manifest must preserve this value", "phase": "01"},
+    {"decision": "Test isolation: use NEO4J_TEST_URI separate from prod", "rationale": "Avoid polluting T9 baseline during integration test runs", "phase": "01"},
+    {"decision": "_clean_props extracted to src/graph/utils.py", "rationale": "CR code review WR-05 — removed duplication risk between provenance.py and neo4j_loader.py", "phase": "01"}
+  ],
+  "uncommitted_files": [
+    ".planning/phases/01-schema-provenance-foundation/01-RESEARCH.md",
+    ".planning/phases/01-schema-provenance-foundation/01-REVIEW.md",
+    ".planning/phases/01-schema-provenance-foundation/01-REVIEW-FIX.md"
+  ],
+  "next_action": "Run /gsd-plan-phase 2 to plan Phase 02 (corpus-curation-extractor-hardening). Before planning, ensure the 3 target PDFs are in data/raw/.",
+  "context_notes": "Phase 01 is fully complete including code review and all fixes. The src/graph layer (schema, provenance, neo4j_loader, utils) is clean. 9 fix commits were applied atomically this session. Phase 02 is the next milestone phase — it adds PDF parsing, entity extraction, and T9 non-regression checks."
+}
