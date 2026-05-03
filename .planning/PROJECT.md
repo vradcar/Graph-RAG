@@ -13,6 +13,8 @@
 
 **Out of scope (other tracks T2–T5):** evaluation framework, demo UX polish, deployment/Docker, report/deck/video.
 
+**Integration mindset (cross-cutting — applied while writing code, not as a separate phase):** Other tracks (T2 eval, T3 demo/UI, T4 deployment, T5 report) depend on T1's pipeline. Code in this milestone should be written so downstream tracks can integrate without rework — favor importable Python APIs over shell-only entry points, return structured data (entities, edges, source_doc) from query results, keep ingest deterministic and idempotent, and avoid breaking existing CLI signatures. This is a how-we-write-code principle, not a checklist.
+
 ## What This Is
 
 A Graph-based Retrieval-Augmented Generation (GraphRAG) prototype for Honeywell's HVAC product data. It extracts entities and relationships from product documentation into a Neo4j knowledge graph, then answers natural language queries by traversing the graph and generating structured answers via an LLM (Groq).

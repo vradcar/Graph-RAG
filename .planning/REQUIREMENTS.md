@@ -81,31 +81,31 @@ The original v1.0 milestone shipped graph schema, ingestion, query pipeline, and
 
 ## Traceability
 
-Filled in by the roadmapper — every v2.0 REQ-ID maps to exactly one phase.
+Every v2.0 REQ-ID maps to exactly one phase.
 
 | REQ-ID | Phase |
 |--------|-------|
-| DISCOVER-01 | — |
-| DISCOVER-02 | — |
-| DISCOVER-03 | — |
-| SCHEMA-01 | — |
-| SCHEMA-02 | — |
-| SCHEMA-03 | — |
-| SCHEMA-04 | — |
-| SCHEMA-05 | — |
-| INGEST-01 | — |
-| INGEST-02 | — |
-| INGEST-03 | — |
-| INGEST-04 | — |
-| INGEST-05 | — |
-| BATCH-01 | — |
-| BATCH-02 | — |
-| BATCH-03 | — |
-| BATCH-04 | — |
-| QUALITY-01 | — |
-| QUALITY-02 | — |
-| QUALITY-03 | — |
-| QUALITY-04 | — |
+| DISCOVER-01 | Phase 2 |
+| DISCOVER-02 | Phase 2 |
+| DISCOVER-03 | Phase 2 |
+| SCHEMA-01 | Phase 1 |
+| SCHEMA-02 | Phase 1 |
+| SCHEMA-03 | Phase 1 |
+| SCHEMA-04 | Phase 1 |
+| SCHEMA-05 | Phase 1 |
+| INGEST-01 | Phase 2 |
+| INGEST-02 | Phase 2 |
+| INGEST-03 | Phase 2 |
+| INGEST-04 | Phase 2 |
+| INGEST-05 | Phase 2 |
+| BATCH-01 | Phase 3 |
+| BATCH-02 | Phase 3 |
+| BATCH-03 | Phase 3 |
+| BATCH-04 | Phase 3 |
+| QUALITY-01 | Phase 4 |
+| QUALITY-02 | Phase 4 |
+| QUALITY-03 | Phase 4 |
+| QUALITY-04 | Phase 4 |
 
 ---
-*Last updated: 2026-05-02 — milestone v2.0 T1-Sai initialized*
+*Last updated: 2026-05-02 — milestone v2.0 T1-Sai traceability filled by roadmapper*
