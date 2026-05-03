@@ -6,18 +6,27 @@ import pytest
 
 from src.ingest.manifest import get_doc
 
-_NEW_DOC_IDS = ["t6_pro_install", "thp9045_wiring_module", "t10_pro_user_guide"]
+# T9 is listed first so it's in Neo4j before the new PDFs are loaded.
+# Shared nodes (wiring configs, HVAC system types, product cross-refs) then
+# accumulate source_docs entries from both T9 and the new docs, forming the
+# SC-2 cross-doc bridges that test_cross_doc_bridges.py asserts.
+_ALL_CORPUS_IDS = [
+    "t9_install_guide",
+    "t6_pro_install",
+    "thp9045_wiring_module",
+    "t10_pro_user_guide",
+]
 _PROCESSED = Path("data/processed")
 
 
 @pytest.fixture(scope="session")
 def corpus_ingested(neo4j_driver):
-    """Session-scoped: ingest all 3 new PDFs into Neo4j once. Shared by SC-2 and SC-3 tests."""
+    """Session-scoped: ingest T9 + 3 new PDFs into Neo4j. Shared by SC-2 and SC-3 tests."""
     if not os.getenv("GROQ_API_KEY"):
         pytest.skip("GROQ_API_KEY not set -- corpus ingest requires live LLM")
     _PROCESSED.mkdir(parents=True, exist_ok=True)
     ingested = []
-    for doc_id in _NEW_DOC_IDS:
+    for doc_id in _ALL_CORPUS_IDS:
         doc = get_doc(doc_id)
         pdf_path = Path("data/raw") / doc["filename"]
         if not pdf_path.exists():

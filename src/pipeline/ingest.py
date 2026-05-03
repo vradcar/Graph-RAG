@@ -26,6 +26,7 @@ Usage:
 import argparse
 import json
 import logging
+import os
 from pathlib import Path
 
 from src.graph.extract import (
@@ -92,8 +93,46 @@ def main() -> None:
             doc = get_doc(args.doc_id)
             pages_filter = tuple(doc["pages"]) if doc.get("pages") else None
 
-        rich_graph = extract_from_pdf(input_path, replacements_path, pages=pages_filter)
-        graph_items = graph_items_to_legacy_format(rich_graph)
+        # Use the hardened LLM pipeline when --doc-id is provided and an API key is set.
+        # Falls back to the legacy T9-specific pdfplumber extractors otherwise.
+        use_llm = bool(args.doc_id and (os.getenv("GROQ_API_KEY") or os.getenv("OPENAI_API_KEY")))
+
+        if use_llm:
+            from src.ingest.pdf_parser import extract_page_content
+            from src.ingest.entity_extractor import build_client, extract_from_page
+            from src.ingest.normalizer import normalize_and_deduplicate, normalize_node_id
+
+            provider = "groq" if os.getenv("GROQ_API_KEY") else "openai"
+            model = os.getenv(
+                "LLM_MODEL",
+                "llama-3.1-70b-versatile" if provider == "groq" else "gpt-4o-mini",
+            )
+            client = build_client(provider)
+            raw_pages = extract_page_content(str(input_path), pages=pages_filter)
+            all_nodes: list = []
+            all_edges: list = []
+            for page in raw_pages:
+                result = extract_from_page(client, model, page, doc_id=args.doc_id)
+                all_nodes.extend(n.model_dump() for n in result.nodes)
+                all_edges.extend(e.model_dump() for e in result.edges)
+            norm_nodes = normalize_and_deduplicate(all_nodes)
+            seen: set = set()
+            norm_edges: list = []
+            for e in all_edges:
+                src = normalize_node_id(e["source_id"])
+                tgt = normalize_node_id(e["target_id"])
+                key = (src, tgt, e["relation"])
+                if key not in seen:
+                    seen.add(key)
+                    norm_edges.append({**e, "source_id": src, "target_id": tgt})
+            graph_items = {"nodes": norm_nodes, "edges": norm_edges}
+            log.info(
+                "LLM path: %d nodes, %d edges extracted from %s (doc_id=%s)",
+                len(norm_nodes), len(norm_edges), input_path.name, args.doc_id,
+            )
+        else:
+            rich_graph = extract_from_pdf(input_path, replacements_path, pages=pages_filter)
+            graph_items = graph_items_to_legacy_format(rich_graph)
 
         # Optionally save the rich Week 2 format alongside the legacy output.
         if args.rich_output:
