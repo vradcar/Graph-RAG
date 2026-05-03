@@ -173,16 +173,23 @@ def merge_edge_with_provenance(
     # Sanitise relation type — caller validates, but we sanitise as defence-in-depth.
     safe_rel = "".join(ch if ch.isalnum() else "_" for ch in relation).upper()
 
-    tx.run(
+    result = tx.run(
         f"""
         MATCH (a {{node_id: $source_id}})
         MATCH (b {{node_id: $target_id}})
         MERGE (a)-[r:{safe_rel} {{source_doc: $doc_id}}]->(b)
         ON CREATE SET r += $props, r.created = timestamp()
         ON MATCH  SET r += $props, r.updated = timestamp()
+        RETURN count(r) AS written
         """,
         source_id=source_id,
         target_id=target_id,
         props=props,
         doc_id=doc_id,
     )
+    row = result.single()
+    if row is None or row["written"] == 0:
+        raise ValueError(
+            f"merge_edge_with_provenance: endpoint node not found "
+            f"(source_id={source_id!r}, target_id={target_id!r})"
+        )
