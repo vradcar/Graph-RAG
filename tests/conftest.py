@@ -11,15 +11,15 @@ def neo4j_driver():
     password = os.getenv("NEO4J_PASSWORD")
     if not password:
         pytest.skip("NEO4J_PASSWORD not set", allow_module_level=False)
+    from neo4j import GraphDatabase
+    from neo4j.exceptions import ServiceUnavailable, AuthError
     try:
-        from neo4j import GraphDatabase
-        from neo4j.exceptions import ServiceUnavailable
         driver = GraphDatabase.driver(uri, auth=(user, password))
         driver.verify_connectivity()
         yield driver
         driver.close()
-    except Exception:
-        pytest.skip("Neo4j not reachable", allow_module_level=False)
+    except (ServiceUnavailable, AuthError, OSError):
+        pytest.skip("Neo4j not reachable")
 
 
 @pytest.fixture(scope="function")
