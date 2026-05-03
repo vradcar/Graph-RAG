@@ -521,6 +521,10 @@ def extract_from_pdf(
         ) from exc
 
     if pages is not None:
+        if len(pages) != 2:
+            raise ValueError(
+                f"pages must be a 2-element (start, end) tuple; got {pages!r}"
+            )
         start, end = pages
         log.info("Page filter applied: %s-%s", start, end)
 

@@ -60,6 +60,10 @@ def extract_page_content(
                 zip(pdf_plumber.pages, pdf_mupdf), start=1
             ):
                 if pages is not None:
+                    if len(pages) != 2:
+                        raise ValueError(
+                            f"pages must be a 2-element (start, end) tuple; got {pages!r}"
+                        )
                     start, end = pages
                     if page_num < start or page_num > end:
                         continue
