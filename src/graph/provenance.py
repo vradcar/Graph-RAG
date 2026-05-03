@@ -26,28 +26,14 @@ Design notes:
 
 from __future__ import annotations
 
-import json
 import logging
 from typing import Any, Dict
 
 from neo4j import ManagedTransaction
 
+from src.graph.utils import clean_props as _clean_props
+
 log = logging.getLogger("provenance")
-
-
-def _clean_props(d: Dict[str, Any]) -> Dict[str, Any]:
-    """Flatten props to Neo4j-safe scalar / primitive-list values."""
-    out: Dict[str, Any] = {}
-    for k, v in d.items():
-        if v is None:
-            continue
-        if isinstance(v, (str, int, float, bool)):
-            out[k] = v
-        elif isinstance(v, list) and all(isinstance(x, (str, int, float, bool)) for x in v):
-            out[k] = v
-        else:
-            out[k] = json.dumps(v)
-    return out
 
 
 def merge_document(tx: ManagedTransaction, doc: Dict[str, Any]) -> None:

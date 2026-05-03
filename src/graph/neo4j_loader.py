@@ -43,6 +43,7 @@ from neo4j import GraphDatabase, Driver
 
 from src.graph.provenance import merge_document, merge_node_with_provenance, merge_edge_with_provenance
 from src.graph.schema import VALID_KINDS, VALID_RELATIONS
+from src.graph.utils import clean_props as _clean_props
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 log = logging.getLogger("neo4j_loader")
@@ -94,23 +95,6 @@ def create_constraints(driver: Driver) -> None:
     log.info("Created/verified unique-id constraints on %d labels + Document.doc_id", len(labels))
 
 
-def _clean_props(d: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Neo4j properties cannot be nested dicts or None. Lists of primitives are
-    fine. Convert anything Neo4j won't accept into a JSON string so the data
-    survives the round trip.
-    """
-    out: Dict[str, Any] = {}
-    for k, v in d.items():
-        if v is None:
-            continue
-        if isinstance(v, (str, int, float, bool)):
-            out[k] = v
-        elif isinstance(v, list) and all(isinstance(x, (str, int, float, bool)) for x in v):
-            out[k] = v
-        else:
-            out[k] = json.dumps(v)
-    return out
 
 
 def upsert_document(driver: Driver, doc_metadata: Dict[str, Any]) -> None:
