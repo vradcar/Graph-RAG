@@ -1,0 +1,15 @@
+{
+  "doc_id": "t9_install_guide",
+  "node_total": 8,
+  "edge_total": 13,
+  "nodes_by_kind": {
+    "Product": 3,
+    "Accessory": 4,
+    "Document": 1
+  },
+  "edges_by_relation": {
+    "MENTIONED_IN": 7,
+    "COMPATIBLE_WITH": 5,
+    "REPLACES": 1
+  }
+}
