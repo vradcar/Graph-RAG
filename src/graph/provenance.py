@@ -116,7 +116,7 @@ def merge_node_with_provenance(
     # it reaches here.  We still sanitise as defence-in-depth.
     safe_label = "".join(ch for ch in label if ch.isalnum()) or "Entity"
 
-    tx.run(
+    result = tx.run(
         f"""
         MERGE (n:{safe_label} {{node_id: $node_id}})
         ON CREATE SET
@@ -131,11 +131,18 @@ def merge_node_with_provenance(
         MATCH (d:Document {{doc_id: $doc_id}})
         MERGE (n)-[m:MENTIONED_IN]->(d)
         ON CREATE SET m.first_mentioned = timestamp()
+        RETURN count(m) AS mi_count
         """,
         node_id=node_id,
         props=props,
         doc_id=doc_id,
     )
+    row = result.single()
+    if row is None or row["mi_count"] == 0:
+        raise ValueError(
+            f"merge_node_with_provenance: :Document {{doc_id: {doc_id!r}}} not found. "
+            "Call merge_document in a committed transaction before ingesting nodes."
+        )
 
 
 def merge_edge_with_provenance(
