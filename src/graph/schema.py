@@ -1,9 +1,16 @@
 from dataclasses import dataclass, field
 from typing import Dict, Any, Literal, Optional, get_args
 
-NODE_KIND = Literal["Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Document"]
+NODE_KIND = Literal[
+    "Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Document",
+    "Thermostat", "Wallplate", "Adapter", "ZoningPanel",
+    "WiringTerminal", "RoomSensor", "OperatingRange", "ElectricalSpec",
+]
 ALLOWED_RELATIONS = Literal[
-    "COMPATIBLE_WITH", "REPLACES", "SUPPORTS_WIRING", "HAS_SPEC", "MENTIONED_IN"
+    "COMPATIBLE_WITH", "REPLACES", "REPLACED_BY", "SUPPORTS_WIRING", "HAS_SPEC",
+    "MENTIONED_IN", "NOT_COMPATIBLE_WITH", "HAS_ELECTRICAL_SPEC",
+    "NEEDS_ADAPTER_IF_MISSING", "COMPLEX_ON", "REQUIRES", "CONNECTS_TO",
+    "HAS_OPERATING_RANGE", "MOUNTS_ON",
 ]
 VALID_KINDS: set[str] = set(get_args(NODE_KIND))
 VALID_RELATIONS: set[str] = set(get_args(ALLOWED_RELATIONS))

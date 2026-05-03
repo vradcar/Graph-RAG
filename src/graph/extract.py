@@ -469,12 +469,15 @@ def ingest_replacements(
 
 
 def _validate(graph: Dict) -> List[str]:
+    from src.graph.schema import VALID_KINDS, VALID_RELATIONS
     errs: List[str] = []
     node_ids = {n["id"] for n in graph["nodes"]}
     for n in graph["nodes"]:
         for k in ("id", "type", "source_page"):
             if k not in n:
                 errs.append(f"Node missing {k}: {n}")
+        if n.get("type") not in VALID_KINDS:
+            errs.append(f"Node type {n.get('type')!r} not in VALID_KINDS: {n}")
     for e in graph["edges"]:
         for k in ("source", "target", "type", "source_page"):
             if k not in e:
@@ -483,6 +486,8 @@ def _validate(graph: Dict) -> List[str]:
             errs.append(f"Edge source {e['source']} not in nodes")
         if e["target"] not in node_ids:
             errs.append(f"Edge target {e['target']} not in nodes")
+        if e.get("type") not in VALID_RELATIONS:
+            errs.append(f"Edge type {e.get('type')!r} not in VALID_RELATIONS: {e}")
     return errs
 
 
