@@ -1,140 +1,208 @@
 {
   "nodes": [
     {
-      "node_id": "rcht9610wf",
-      "label": "Honeywell Home T9 Wi-Fi Smart Thermostat",
-      "kind": "Thermostat",
-      "source_page": 1,
-      "name": "Honeywell Home T9 Wi-Fi Smart Thermostat",
-      "model_number": "RCHT9610WF",
-      "status": "current",
-      "product_family": "T-Series",
-      "wifi": true
+      "node_id": "thp9045a1023",
+      "label": "THP9045A1023 Wiring Module",
+      "kind": "Accessory",
+      "properties": {}
     },
     {
-      "node_id": "uwp-wallplate",
-      "label": "UWP Wallplate",
-      "kind": "Wallplate",
-      "source_page": 2,
-      "name": "UWP Wallplate"
+      "node_id": "thx9321r",
+      "label": "THX9321R",
+      "kind": "Product",
+      "properties": {}
     },
     {
-      "node_id": "forced-air-heating",
-      "label": "Forced Air Heating System",
+      "node_id": "th8320up1003",
+      "label": "TH8320UP1003",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "t5060f7088",
+      "label": "T5060F7088",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire-required",
+      "label": "C-wire Required",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "4-wire-k-terminal-setup",
+      "label": "4-wire K-terminal Setup",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "24vac",
+      "label": "24VAC",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-conventional",
+      "label": "1H/1C Conventional Application",
       "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Forced Air Heating System",
-      "voltage_class": "low_voltage_24v"
+      "properties": {}
     },
     {
-      "node_id": "central-cooling",
-      "label": "Central Cooling System",
+      "node_id": "2h-1c-conventional",
+      "label": "2H/1C Conventional Application",
       "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Central Cooling System",
-      "voltage_class": "low_voltage_24v"
+      "properties": {}
     },
     {
       "node_id": "heat-pump",
-      "label": "Heat Pump System",
+      "label": "Heat Pump Application",
       "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Heat Pump System",
-      "voltage_class": "low_voltage_24v"
+      "properties": {}
     },
     {
-      "node_id": "t9-power",
-      "label": "t9_power",
-      "kind": "ElectricalSpec",
-      "source_page": 3,
-      "voltage_v": 24.0,
-      "frequency_hz": 60.0,
-      "current_a": 0.2
+      "node_id": "k-terminal-wiring",
+      "label": "K Terminal Wiring",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "c-wire-adapter",
-      "label": "THP9045",
-      "kind": "Adapter",
-      "source_page": 3,
-      "name": "C-Wire Adapter",
-      "included": true
+      "node_id": "conventional",
+      "label": "Conventional System",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "zoning-panel",
-      "label": "Zoning Panel Installation",
-      "kind": "ZoningPanel",
-      "source_page": 7,
-      "name": "Zoning Panel Installation"
+      "node_id": "2h-2c-conventional",
+      "label": "2H/2C Conventional Application",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "electric-baseboard",
-      "label": "electric-baseboard",
-      "kind": "Unknown"
+      "node_id": "1h-1c-2-transformers",
+      "label": "1H/1C System with 2 Transformers",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "millivolt",
-      "label": "millivolt",
-      "kind": "Unknown"
+      "node_id": "k-wire-setup",
+      "label": "K Wire Connection (Wiresaver)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2h-1c-heat-pump",
+      "label": "2H/1C Heat Pump Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "3h-2c-heat-pump",
+      "label": "3H/2C Heat Pump Application",
+      "kind": "HVACSystemType",
+      "properties": {}
     }
   ],
   "edges": [
     {
-      "source_id": "rcht9610wf",
-      "target_id": "uwp-wallplate",
-      "relation": "MOUNTS_ON",
-      "source_page": 10
+      "source_id": "thx9321r",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "forced-air-heating",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "source_id": "th8320up1003",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "central-cooling",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "source_id": "t5060f7088",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
+      "source_id": "thp9045a1023",
+      "target_id": "c-wire-required",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "4-wire-k-terminal-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "24vac",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "1h-1c-conventional",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "2h-1c-conventional",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
       "target_id": "heat-pump",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "electric-baseboard",
-      "relation": "NOT_COMPATIBLE_WITH",
-      "source_page": 3,
-      "reason": "Line voltage 120-240V; T9 is a 24V AC low-voltage thermostat"
+      "source_id": "thp9045a1023",
+      "target_id": "k-terminal-wiring",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "millivolt",
-      "relation": "NOT_COMPATIBLE_WITH",
-      "source_page": 3,
-      "reason": "Millivolt systems are not supported by the T9"
+      "source_id": "thx9321r",
+      "target_id": "k-terminal-wiring",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "t9-power",
-      "relation": "HAS_ELECTRICAL_SPEC",
-      "source_page": 3
+      "source_id": "thx9321r",
+      "target_id": "thp9045a1023",
+      "relation": "CONNECTS_TO"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "c-wire-adapter",
-      "relation": "NEEDS_ADAPTER_IF_MISSING",
-      "source_page": 3,
-      "condition": "No C-Wire present at thermostat"
+      "source_id": "thp9045a1023",
+      "target_id": "conventional",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "c-wire-adapter",
-      "target_id": "zoning-panel",
-      "relation": "COMPLEX_ON",
-      "source_page": 7,
-      "note": "Professional installer recommended on zoned systems"
+      "source_id": "thp9045a1023",
+      "target_id": "2h-2c-conventional",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "1h-1c-2-transformers",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "k-wire-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thx9321r",
+      "target_id": "k-wire-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "2h-1c-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "3h-2c-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "thx9321r",
+      "relation": "CONNECTS_TO"
     }
   ]
 }

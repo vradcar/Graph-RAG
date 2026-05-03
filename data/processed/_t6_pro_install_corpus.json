@@ -1,386 +1,1416 @@
 {
   "nodes": [
     {
-      "node_id": "rcht9610wf",
-      "label": "Honeywell Home T9 Wi-Fi Smart Thermostat",
-      "kind": "Thermostat",
-      "source_page": 1,
-      "name": "Honeywell Home T9 Wi-Fi Smart Thermostat",
-      "model_number": "RCHT9610WF",
-      "status": "current",
-      "product_family": "T-Series",
-      "wifi": true
+      "node_id": "th6320u2008",
+      "label": "T6 Pro Programmable Thermostat (TH6320U2008)",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "th6320u",
+      "label": "TH6320U",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "th6220u",
+      "label": "TH6220U",
+      "kind": "Product",
+      "properties": {}
     },
     {
       "node_id": "uwp-wallplate",
-      "label": "UWP Wallplate",
-      "kind": "Wallplate",
-      "source_page": 2,
-      "name": "UWP Wallplate"
+      "label": "UWP",
+      "kind": "Accessory",
+      "properties": {}
     },
     {
-      "node_id": "forced-air-heating",
-      "label": "Forced Air Heating System",
-      "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Forced Air Heating System",
-      "voltage_class": "low_voltage_24v"
+      "node_id": "wired-indoor-outdoor-sensor",
+      "label": "Wired Indoor or Outdoor Sensor",
+      "kind": "Accessory",
+      "properties": {}
     },
     {
-      "node_id": "central-cooling",
-      "label": "Central Cooling System",
+      "node_id": "aa-batteries",
+      "label": "AA Batteries",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire",
+      "label": "C-wire (Common)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1-wire-system",
+      "label": "1 Wire System (R Slider Tab Up)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2-wire-system",
+      "label": "2 Wire System (R Slider Tab Down)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "24vac-power",
+      "label": "24VAC Power",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-1-transformer",
+      "label": "1H/1C System (1 transformer)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-only",
+      "label": "Heat-only System",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-only-series-20",
+      "label": "Heat-only System (Series 20)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-only-power-open-zone-valve",
+      "label": "Heat-only System (power open zone valve)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-2-transformers",
+      "label": "1H/1C System (2 transformers)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-only-with-fan",
+      "label": "Heat-only System with Fan",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "cool-only",
+      "label": "Cool-only System",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2h-2c-1-transformer",
+      "label": "2H/2C System (1 transformer)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "forced-air",
+      "label": "Forced Air System",
       "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Central Cooling System",
-      "voltage_class": "low_voltage_24v"
+      "properties": {}
+    },
+    {
+      "node_id": "hydronics",
+      "label": "Hydronics System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "18-22-gauge-wire",
+      "label": "18- to 22-gauge thermostat wire",
+      "kind": "Spec",
+      "properties": {}
     },
     {
       "node_id": "heat-pump",
       "label": "Heat Pump System",
       "kind": "HVACSystemType",
-      "source_page": 3,
-      "name": "Heat Pump System",
-      "voltage_class": "low_voltage_24v"
+      "properties": {}
     },
     {
-      "node_id": "t9-power",
-      "label": "t9_power",
-      "kind": "ElectricalSpec",
-      "source_page": 3,
-      "voltage_v": 24.0,
-      "frequency_hz": 60.0,
-      "current_a": 0.2
+      "node_id": "dual-fuel-system",
+      "label": "Dual Fuel System",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "c-wire-adapter",
-      "label": "THP9045",
-      "kind": "Adapter",
-      "source_page": 3,
-      "name": "C-Wire Adapter",
-      "included": true
+      "node_id": "1h-1c-heat-pump-system",
+      "label": "1H/1C Heat Pump System",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "zoning-panel",
-      "label": "Zoning Panel Installation",
-      "kind": "ZoningPanel",
-      "source_page": 7,
-      "name": "Zoning Panel Installation"
+      "node_id": "2h-1c-heat-pump-system",
+      "label": "2H/1C Heat Pump System",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "terminal-a",
-      "label": "A",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Auxiliary / L1 output"
+      "node_id": "2h-2c-heat-pump-system",
+      "label": "2H/2C Heat Pump System",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "terminal-c",
-      "label": "C",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Common wire, 24V AC return (required)"
+      "node_id": "3h-2c-heat-pump-system",
+      "label": "3H/2C Heat Pump System",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "terminal-e",
-      "label": "E",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Emergency heat (heat pump)"
+      "node_id": "18-22-awg-wire",
+      "label": "18- to 22-gauge thermostat wire",
+      "kind": "Spec",
+      "properties": {}
     },
     {
-      "node_id": "terminal-g",
-      "label": "G",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Fan relay"
+      "node_id": "th6210u",
+      "label": "TH6210U Thermostat",
+      "kind": "Product",
+      "properties": {}
     },
     {
-      "node_id": "terminal-k",
-      "label": "K",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Combined fan / auxiliary"
+      "node_id": "wired-outdoor-sensor",
+      "label": "Wired Outdoor Sensor",
+      "kind": "Accessory",
+      "properties": {}
     },
     {
-      "node_id": "terminal-o-b",
-      "label": "O/B",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Heat pump reversing valve"
+      "node_id": "conventional-forced-air-heat",
+      "label": "Conventional Forced Air Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "terminal-r",
-      "label": "R",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "24V AC power (single transformer)"
+      "node_id": "radiant-heat",
+      "label": "Radiant Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "terminal-rc",
-      "label": "Rc",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "24V AC cooling transformer"
+      "node_id": "standard-efficiency-gas-forced-air",
+      "label": "Standard Efficiency Gas Forced Air",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "terminal-rh",
-      "label": "Rh",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "24V AC heating transformer"
+      "node_id": "high-efficiency-gas-forced-air",
+      "label": "High Efficiency Gas Forced Air",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "terminal-u",
-      "label": "U",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Configurable universal terminal"
+      "node_id": "oil-forced-air",
+      "label": "Oil Forced Air",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "electric-forced-air",
+      "label": "Electric Forced Air",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "hot-water-fan-coil",
+      "label": "Hot Water Fan Coil",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "air-to-air-heat-pump",
+      "label": "Air to Air Heat Pump",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "geothermal-heat-pump",
+      "label": "Geothermal Heat Pump",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "hot-water-radiant-heat",
+      "label": "Hot Water Radiant Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "steam",
+      "label": "Steam Heating",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "o-b-reversing-valve",
+      "label": "O/B Reversing Valve",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1-compressor-stage",
+      "label": "1 Compressor Stage",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2-compressor-stages",
+      "label": "2 Compressor Stages",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "indoor-temperature-sensor",
+      "label": "Indoor Temperature Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "multi-stage-heating",
+      "label": "Multi-stage Heating",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "multi-stage-cooling",
+      "label": "Multi-stage Cooling",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "emergency-heat",
+      "label": "Emergency Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "thermostat-specifications-page-12",
+      "label": "Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-temperature-range-40-90f",
+      "label": "Heat: 40 \u00b0F to 90 \u00b0F (4.5 \u00b0C to 32.0 \u00b0C)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "thermostat",
+      "label": "Thermostat",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "aa-alkaline-batteries",
+      "label": "AA Alkaline Batteries",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-system",
+      "label": "Heat Pump System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "furnace",
+      "label": "Furnace",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
       "node_id": "terminal-w",
-      "label": "W",
+      "label": "W Terminal",
       "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Heating stage 1"
+      "properties": {}
     },
     {
-      "node_id": "terminal-w2",
-      "label": "W2",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Auxiliary / second-stage heat"
+      "node_id": "heat-temp-range-spec",
+      "label": "Heat Temperature Range: 40\u00b0F to 90\u00b0F",
+      "kind": "Spec",
+      "properties": {}
     },
     {
-      "node_id": "terminal-y",
-      "label": "Y",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Cooling stage 1"
+      "node_id": "conventional-forced-air-and-hydronic",
+      "label": "Syst\u00e8mes conventionnels : air forc\u00e9 et hydronique",
+      "kind": "HVACSystemType",
+      "properties": {}
     },
     {
-      "node_id": "terminal-y2",
-      "label": "Y2",
-      "kind": "WiringTerminal",
-      "source_page": 6,
-      "function": "Cooling stage 2"
+      "node_id": "1-stage-heat-1-stage-cool-1-transformer",
+      "label": "Syst\u00e8me \u00e0 1 \u00e9tage de chauffage/1 \u00e9tage de refroidissement (1 transformateur)",
+      "kind": "WiringConfig",
+      "properties": {}
     },
     {
-      "node_id": "wireless-room-sensor",
-      "label": "Honeywell Wireless Room Sensor",
+      "node_id": "heat-pump-1h-1c",
+      "label": "Syst\u00e8me de thermopompe \u00e0 1 \u00e9tage de chauffage/1 \u00e9tage de refroidissement",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "wiring-r-rc-y-c-ob-g",
+      "label": "R, Rc, Y, C, O/B, G (W unused)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-2h-1c",
+      "label": "Syst\u00e8me de thermopompe \u00e0 2 \u00e9tages de chauffage/1 \u00e9tage de refroidissement",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+      "label": "R, Rc, Y, C, O/B, G, Aux, E, L (W unused)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-2h-2c",
+      "label": "Syst\u00e8me de thermopompe \u00e0 2 \u00e9tages de chauffage/2 \u00e9tages de refroidissement (TH6320U uniquement)",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+      "label": "R, Rc, Y, C, O/B, G, Y2, L (W unused)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-3h-2c",
+      "label": "Syst\u00e8me de thermopompe \u00e0 3 \u00e9tages de chauffage/2 \u00e9tages de refroidissement (TH6320U uniquement)",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+      "label": "R, Rc, Y, C, O/B, G, Aux, E, Y2, L (W unused)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+      "label": "R, Rc, Y, C, O/B, G, Aux, E, Y2, L, S (W unused)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "thermostat-wire-18-22-awg",
+      "label": "Fil de thermostat de calibre 18 \u00e0 22",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "outdoor-sensor",
+      "label": "Outdoor Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "conventional-forced-air",
+      "label": "Conventional Forced Air",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "cooling-only",
+      "label": "Cooling Only",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "1-stage-compressor",
+      "label": "1-Stage Compressor",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "fossil-fuel-system",
+      "label": "Combustible fossile (Fossil Fuel)",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "external-fossil-fuel-kit",
+      "label": "N\u00e9cessaire de combustible fossile externe (External Fossil Fuel Kit)",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "wired-sensor",
+      "label": "Capteur c\u00e2bl\u00e9 (Wired Sensor)",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "deadband-0f",
+      "label": "Zone morte : 0 \u00b0F (-18 \u00b0C)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "rectangular-cover-plate",
+      "label": "Placa de cubierta rectangular",
+      "kind": "Wallplate",
+      "properties": {}
+    },
+    {
+      "node_id": "red-wall-anchors",
+      "label": "Anclajes rojos",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "yellow-wall-anchors",
+      "label": "Anclajes amarillos",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "screw-no8-1-1-2",
+      "label": "Tornillos N.\u00ba 8 de 1-1/2 pulg.",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "screw-no6-1-1-2",
+      "label": "Tornillos N.\u00ba 6 de 1-1/2 pulg.",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "t6-pro",
+      "label": "T6 Pro",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "1-transformer-system",
+      "label": "Sistema de 1 transformador (puente R/Rc arriba)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2-transformer-system",
+      "label": "Sistema de 2 transformadores (puente R/Rc abajo)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "u-terminals",
+      "label": "Terminales U",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1-heat-1-cool-1-transformer",
+      "label": "1 etapa de calefacci\u00f3n/1 etapa de refrigeraci\u00f3n (1 transformador)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-only-electric-zone-valve",
+      "label": "Sistema de calefacci\u00f3n \u00fanicamente (V\u00e1lvula de zona accionada por electricidad)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1-heat-1-cool-2-transformers",
+      "label": "1 etapa de calefacci\u00f3n/1 etapa de refrigeraci\u00f3n (2 transformadores)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2-heat-2-cool-1-transformer",
+      "label": "2 etapas de calefacci\u00f3n/2 etapas de refrigeraci\u00f3n (1 transformador)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-heat-pump-wiring",
+      "label": "1 Heat / 1 Cool Heat Pump Wiring",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "cooling-only-system",
+      "label": "Cooling Only System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "1-stage-compressor-heat-cool",
+      "label": "1 Stage Compression (Heat/Cool)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1-stage-compressor-heat-pump",
+      "label": "1 Stage Compression (Heat Pump)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "aux-e-independent-wiring",
+      "label": "Aux y E independientes",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "gas-oil-forced-air",
+      "label": "Aire forzado por gas/aceite",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "emergency-heat-system",
+      "label": "Calefacci\u00f3n de emergencia",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "wired-sensor-accessory",
+      "label": "Sensor cableado",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "compressor-lockout-range-spec",
+      "label": "Rango de bloqueo del compresor (5 \u00b0F a 60 \u00b0F)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "wired-indoor-sensor",
+      "label": "Wired Indoor Sensor",
       "kind": "RoomSensor",
-      "source_page": 13,
-      "name": "Honeywell Wireless Room Sensor",
-      "capabilities": [
-        "temperature",
-        "humidity",
-        "occupancy"
-      ]
+      "properties": {}
     },
     {
-      "node_id": "t9-heat-range",
-      "label": "t9_heat_range",
-      "kind": "OperatingRange",
-      "source_page": 16,
-      "mode": "heat",
-      "min_f": 40,
-      "max_f": 90
+      "node_id": "10k-sensor",
+      "label": "10k Sensor",
+      "kind": "RoomSensor",
+      "properties": {}
     },
     {
-      "node_id": "t9-cool-range",
-      "label": "t9_cool_range",
-      "kind": "OperatingRange",
-      "source_page": 16,
-      "mode": "cool",
-      "min_f": 50,
-      "max_f": 99
+      "node_id": "20k-sensor",
+      "label": "20k Sensor",
+      "kind": "RoomSensor",
+      "properties": {}
     },
     {
-      "node_id": "electric-baseboard",
-      "label": "electric-baseboard",
-      "kind": "Unknown"
+      "node_id": "t6-pro-smart-thermostat",
+      "label": "T6 Pro Smart Thermostat",
+      "kind": "Product",
+      "properties": {}
     },
     {
-      "node_id": "millivolt",
-      "label": "millivolt",
-      "kind": "Unknown"
+      "node_id": "heating-temp-range",
+      "label": "Calefacci\u00f3n: 4.5 \u00b0C a 32.0 \u00b0C (40 \u00b0F a 90 \u00b0F)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "cooling-temp-range",
+      "label": "Refrigeraci\u00f3n: 10.0 \u00b0C a 37.0 \u00b0C (50 \u00b0F a 99 \u00b0F)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "operating-temp-range",
+      "label": "Temperatura ambiente de funcionamiento: 2.8 \u00b0C a 38.9 \u00b0C (37 \u00b0F a 102 \u00b0F)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "operating-humidity-range",
+      "label": "Humedad relativa de funcionamiento: 5% al 90% (sin condensaci\u00f3n)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "physical-dimensions-spec",
+      "label": "103.5 mm x 103.5 mm x 29 mm (4-1/16\u201d H x 4-1/16\u201d W x 1-5/32\u201d D)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "electrical-voltage-spec",
+      "label": "20-30 V CA, 0.02-1.0 A",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "w-w2-e-y-y2-g-ob-la-wiring",
+      "label": "Terminales: W, W2, E, Y, Y2, G, O/B, L/A",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "conventional-system",
+      "label": "Sistema convencional",
+      "kind": "HVACSystemType",
+      "properties": {}
     }
   ],
   "edges": [
     {
-      "source_id": "rcht9610wf",
+      "source_id": "th6320u2008",
       "target_id": "uwp-wallplate",
-      "relation": "MOUNTS_ON",
-      "source_page": 10
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "forced-air-heating",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "source_id": "th6320u",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "central-cooling",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "source_id": "th6320u",
+      "target_id": "wired-indoor-outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
+      "source_id": "th6320u",
+      "target_id": "aa-batteries",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1-wire-system",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "2-wire-system",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "24vac-power",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "wired-indoor-outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "aa-batteries",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "24vac-power",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1h-1c-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-only",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-only-series-20",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-only-power-open-zone-valve",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1h-1c-2-transformers",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-only-with-fan",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "cool-only",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "2h-2c-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "2h-2c-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "hydronics",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "18-22-gauge-wire",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6320u",
       "target_id": "heat-pump",
-      "relation": "COMPATIBLE_WITH",
-      "source_page": 3
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "electric-baseboard",
-      "relation": "NOT_COMPATIBLE_WITH",
-      "source_page": 3,
-      "reason": "Line voltage 120-240V; T9 is a 24V AC low-voltage thermostat"
+      "source_id": "th6320u",
+      "target_id": "1h-1c-heat-pump-system",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "millivolt",
-      "relation": "NOT_COMPATIBLE_WITH",
-      "source_page": 3,
-      "reason": "Millivolt systems are not supported by the T9"
+      "source_id": "th6320u",
+      "target_id": "2h-1c-heat-pump-system",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "t9-power",
-      "relation": "HAS_ELECTRICAL_SPEC",
-      "source_page": 3
+      "source_id": "th6320u",
+      "target_id": "2h-2c-heat-pump-system",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "c-wire-adapter",
-      "relation": "NEEDS_ADAPTER_IF_MISSING",
-      "source_page": 3,
-      "condition": "No C-Wire present at thermostat"
+      "source_id": "th6320u",
+      "target_id": "3h-2c-heat-pump-system",
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "c-wire-adapter",
-      "target_id": "zoning-panel",
-      "relation": "COMPLEX_ON",
-      "source_page": 7,
-      "note": "Professional installer recommended on zoned systems"
+      "source_id": "th6320u",
+      "target_id": "dual-fuel-system",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-a",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6220u",
+      "target_id": "dual-fuel-system",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-c",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": true
+      "source_id": "th6320u",
+      "target_id": "18-22-awg-wire",
+      "relation": "HAS_SPEC"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-e",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-g",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6220u",
+      "target_id": "outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-k",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "wired-outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-o-b",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6220u",
+      "target_id": "wired-outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-r",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "conventional-forced-air-heat",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-rc",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "radiant-heat",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-rh",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "cool-only",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-u",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u",
+      "target_id": "standard-efficiency-gas-forced-air",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
+      "source_id": "th6320u",
+      "target_id": "high-efficiency-gas-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "oil-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "electric-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "hot-water-fan-coil",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "air-to-air-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "geothermal-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "hot-water-radiant-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "steam",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "o-b-reversing-valve",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "2-compressor-stages",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "1-compressor-stage",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "1-compressor-stage",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "gas-oil-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "electric-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "gas-oil-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "external-fossil-fuel-kit",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "external-fossil-fuel-kit",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wired-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "wired-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "indoor-temperature-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "indoor-temperature-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "multi-stage-heating",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "multi-stage-cooling",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "emergency-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "multi-stage-heating",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "multi-stage-cooling",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "emergency-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat-specifications-page-12",
+      "target_id": "heat-temperature-range-40-90f",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "aa-alkaline-batteries",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "heat-pump-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "furnace",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
       "target_id": "terminal-w",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "relation": "SUPPORTS_WIRING"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-w2",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "thermostat",
+      "target_id": "heat-temp-range-spec",
+      "relation": "HAS_SPEC"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-y",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "th6320u2008",
+      "target_id": "aa-batteries",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "terminal-y2",
-      "relation": "REQUIRES",
-      "source_page": 6,
-      "required": false
+      "source_id": "uwp-wallplate",
+      "target_id": "rectangular-cover-plate",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "wireless-room-sensor",
-      "relation": "CONNECTS_TO",
-      "source_page": 13,
-      "max_count": 20,
-      "max_range_ft": 200
+      "source_id": "th6320u",
+      "target_id": "heat-pump-system",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "t9-heat-range",
-      "relation": "HAS_OPERATING_RANGE",
-      "source_page": 16
+      "source_id": "th6320u",
+      "target_id": "conventional-forced-air-and-hydronic",
+      "relation": "COMPATIBLE_WITH"
     },
     {
-      "source_id": "rcht9610wf",
-      "target_id": "t9-cool-range",
-      "relation": "HAS_OPERATING_RANGE",
-      "source_page": 16
+      "source_id": "th6220u",
+      "target_id": "conventional-forced-air-and-hydronic",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1-stage-heat-1-stage-cool-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "1-stage-heat-1-stage-cool-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "heat-only",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "heat-only-series-20",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "heat-only-with-fan",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "cool-only",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "radiant-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-pump-1h-1c",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wiring-r-rc-y-c-ob-g",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-pump-2h-1c",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-pump-2h-2c",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-pump-3h-2c",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "thermostat-wire-18-22-awg",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "conventional-forced-air",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "cooling-only",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "1-stage-compressor",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "1-stage-compressor",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "fossil-fuel-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "fossil-fuel-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "deadband-0f",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wired-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "wired-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "10k-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "10k-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "20k-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "20k-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "uwp-wallplate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "uwp-wallplate",
+      "target_id": "rectangular-cover-plate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "uwp-wallplate",
+      "target_id": "red-wall-anchors",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "uwp-wallplate",
+      "target_id": "yellow-wall-anchors",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1-transformer-system",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "2-transformer-system",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "t6-pro",
+      "target_id": "u-terminals",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1-heat-1-cool-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "heat-only-electric-zone-valve",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1-heat-1-cool-2-transformers",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "2-heat-2-cool-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "2-heat-2-cool-1-transformer",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "1h-1c-heat-pump-wiring",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "cooling-only-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "conventional-forced-air-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "cooling-only-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "conventional-forced-air-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "radiant-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "cooling-only-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6210u",
+      "target_id": "1-stage-compressor-heat-cool",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "1-stage-compressor-heat-pump",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "aux-e-independent-wiring",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "heat-pump-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "emergency-heat-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "wired-sensor-accessory",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "wired-sensor-accessory",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th6320u",
+      "target_id": "compressor-lockout-range-spec",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "th6220u",
+      "target_id": "compressor-lockout-range-spec",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "heating-temp-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "cooling-temp-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "operating-temp-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "operating-humidity-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "physical-dimensions-spec",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "electrical-voltage-spec",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "w-w2-e-y-y2-g-ob-la-wiring",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "heat-pump-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t6-pro-smart-thermostat",
+      "target_id": "conventional-system",
+      "relation": "COMPATIBLE_WITH"
     }
   ]
 }
