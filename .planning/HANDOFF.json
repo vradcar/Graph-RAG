@@ -1,53 +1,50 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-03T02:28:41.660Z",
-  "phase": "01",
-  "phase_name": "schema-provenance-foundation",
-  "phase_dir": ".planning/phases/01-schema-provenance-foundation",
-  "plan": 3,
-  "task": "complete",
-  "total_tasks": 3,
+  "timestamp": "2026-05-03T21:51:25.842Z",
+  "phase": "02",
+  "phase_name": "corpus-curation-extractor-hardening",
+  "phase_dir": ".planning/phases/02-corpus-curation-extractor-hardening",
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
   "status": "paused",
   "completed_tasks": [
-    {"id": "01-01", "name": "Schema dataclasses + unit tests", "status": "done", "commit": "494afa3"},
-    {"id": "01-02", "name": "Provenance layer + neo4j_loader routing", "status": "done", "commit": "3c7cf02"},
-    {"id": "01-03", "name": "T9 re-ingest with provenance + baseline", "status": "done", "commit": "867e494"},
-    {"id": "code-review", "name": "Code review Phase 01 (standard depth)", "status": "done", "commit": "6875e79"},
-    {"id": "cr-fixes", "name": "Auto-fix 9 Critical+Warning findings", "status": "done", "commit": "6875e79"}
+    {"id": 1, "name": "Baseline existing corpus extraction quality", "status": "done"},
+    {"id": 2, "name": "Verify gemini-3-flash-preview model availability", "status": "done"},
+    {"id": 3, "name": "Re-extract all 4 manifest docs with Gemini Flash 3", "status": "done"},
+    {"id": 4, "name": "Verify quality of new extractions vs baseline", "status": "done"}
   ],
   "remaining_tasks": [
-    {"id": "phase-02", "name": "corpus-curation-extractor-hardening", "status": "not_started"}
+    {"id": 5, "name": "Decide whether to commit re-extracted corpora or roll back", "status": "not_started"},
+    {"id": 6, "name": "Address Unknown-stub artifact (T6: 50, T10: 32) from cross-page entity references", "status": "not_started"},
+    {"id": 7, "name": "Reload Neo4j graph from regenerated corpus JSONs (downstream consumers)", "status": "not_started"}
   ],
   "blockers": [],
   "human_actions_pending": [
-    {
-      "action": "Set up a separate test Neo4j database (NEO4J_TEST_URI env var) for integration test isolation",
-      "context": "Decision from Phase 01 (01-03): integration tests must not pollute the production baseline. Current conftest.py reads NEO4J_URI which points to the same DB.",
-      "blocking": false
-    },
-    {
-      "action": "Run integration tests against live Neo4j to confirm the 9 code-review fixes don't break existing test suite",
-      "context": "All 9 fixes were applied without running tests (no live Neo4j available in this session). python -m pytest tests/test_provenance.py -v",
-      "blocking": false
-    }
+    {"action": "Confirm intent to keep regenerated corpus JSONs", "context": "data/processed/_*_corpus.json have been overwritten. Originals backed up to data/processed/_pre_gemini_backup/.", "blocking": false}
   ],
   "decisions": [
-    {"decision": "Backfill via --reset re-ingest, not Cypher migration", "rationale": "D-02 confirmed in 01-03", "phase": "01"},
-    {"decision": "Canonical doc_id slug is 't9_install_guide'", "rationale": "D-10 confirmed; Phase 02 manifest must preserve this value", "phase": "01"},
-    {"decision": "Test isolation: use NEO4J_TEST_URI separate from prod", "rationale": "Avoid polluting T9 baseline during integration test runs", "phase": "01"},
-    {"decision": "_clean_props extracted to src/graph/utils.py", "rationale": "CR code review WR-05 — removed duplication risk between provenance.py and neo4j_loader.py", "phase": "01"}
+    {"decision": "Use gemini-3-flash-preview as the extraction model", "rationale": "User directive; available on the project's Gemini API key after credit top-up", "phase": "02"},
+    {"decision": "Run extractions with --force-extract to bypass cache", "rationale": "Existing cached corpora were low quality (T6/T10 cross-contamination, schema drift)", "phase": "02"},
+    {"decision": "Backup pre-Gemini corpora to data/processed/_pre_gemini_backup/", "rationale": "Reversible operation in case new extractions regress", "phase": "02"}
   ],
   "uncommitted_files": [
-    ".planning/phases/01-schema-provenance-foundation/01-RESEARCH.md",
-    ".planning/phases/01-schema-provenance-foundation/01-REVIEW.md",
-    ".planning/phases/01-schema-provenance-foundation/01-REVIEW-FIX.md"
+    ".env.example",
+    ".planning/REQUIREMENTS.md",
+    ".planning/phases/02-corpus-curation-extractor-hardening/02-HUMAN-UAT.md",
+    ".planning/phases/02-corpus-curation-extractor-hardening/02-REVIEW.md",
+    "data/processed/_t9_install_guide_corpus.json",
+    "data/processed/_t6_pro_install_corpus.json",
+    "data/processed/_thp9045_wiring_module_corpus.json",
+    "data/processed/_t10_pro_user_guide_corpus.json",
+    "data/processed/_pre_gemini_backup/ (untracked backup of pre-extraction state)"
   ],
-  "corpus": {
-    "t9": {"file": "data/raw/t9-thermostat.pdf", "doc_id": "t9_install_guide", "status": "ingested"},
-    "t6_pro": {"file": "data/raw/t6-pro-thermostat.pdf", "models": ["TH6320U2008", "TH6220U2000", "TH6210U2001"], "status": "ready"},
-    "thp9045": {"file": "data/raw/thp9045-wiring-module.pdf", "models": ["THP9045A1023"], "status": "ready"},
-    "t10_pro": {"file": "data/raw/t10-pro-thermostat.pdf", "models": ["THX321WFS3001W", "THX321WF3003W", "THX321WFS2001W", "THX321WF2003W", "THX321WF2001W"], "status": "ready"}
+  "extraction_results": {
+    "t9_install_guide": {"before": "34n/32e", "after": "39n/30e"},
+    "t6_pro_install": {"before": "27n/26e", "after": "160n/212e"},
+    "thp9045_wiring_module": {"before": "10n/9e", "after": "17n/20e"},
+    "t10_pro_user_guide": {"before": "27n/26e (identical to T6 — bug)", "after": "82n/92e (now distinct)"}
   },
-  "next_action": "Run /gsd-plan-phase 2 — PDFs are in data/raw/, corpus is ready.",
-  "context_notes": "Phase 01 is fully complete including code review and all fixes. The src/graph layer (schema, provenance, neo4j_loader, utils) is clean. 9 fix commits were applied atomically. All 4 corpus PDFs are now in data/raw/. Phase 02 can begin immediately — no pre-requisites outstanding."
+  "next_action": "Inspect Unknown-stub entities in t6/t10 corpora to decide whether to fix per-page extraction or accept the artifact; then commit regenerated corpora.",
+  "context_notes": "User asked for re-extraction with Gemini Flash 3 because phase 02 cached corpora were low quality. First attempt blocked on 429 RESOURCE_EXHAUSTED (depleted prepayment credits). After top-up, all 4 docs re-extracted successfully via --inferencer gemini --force-extract. Quality dramatically improved: T6/T10 no longer identical, real product SKUs as node IDs (rcht9610wf, th6320u2008, thx321wfs3001w, thp9045a1023), canonical relations dominate (COMPATIBLE_WITH/HAS_SPEC/SUPPORTS_WIRING). Remaining concern: per-page extraction produces dangling edges that get patched with Unknown-kind stub nodes (T6: 50, T10: 32) — structural pipeline limitation in src/pipeline/ingest.py, not a Gemini regression."
 }
