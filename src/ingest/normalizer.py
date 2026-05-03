@@ -124,3 +124,38 @@ def normalize_and_deduplicate(nodes: list[dict]) -> list[dict]:
     if excluded_count:
         print(f"  Excluded {excluded_count} incompatible system nodes")
     return deduplicate_nodes(filtered)
+
+
+def normalize_edge(edge: dict) -> dict:
+    """
+    Return a copy of an edge dict with normalized source_id and target_id.
+
+    Input dict shape: {"source_id": str, "target_id": str, "relation": str}
+    """
+    return {
+        **edge,
+        "source_id": normalize_node_id(edge["source_id"]),
+        "target_id": normalize_node_id(edge["target_id"]),
+    }
+
+
+def deduplicate_edges(edges: list[dict]) -> list[dict]:
+    """Remove duplicate edges by (source_id, target_id, relation), keeping first occurrence."""
+    seen: set[tuple] = set()
+    result = []
+    for edge in edges:
+        key = (edge.get("source_id", ""), edge.get("target_id", ""), edge.get("relation", ""))
+        if key not in seen:
+            seen.add(key)
+            result.append(edge)
+    return result
+
+
+def normalize_and_deduplicate_edges(edges: list[dict]) -> list[dict]:
+    """Normalize source/target IDs on all edges, filter edges touching excluded nodes, deduplicate."""
+    normalized = [normalize_edge(e) for e in edges]
+    filtered = [
+        e for e in normalized
+        if e["source_id"] not in EXCLUDED_NODES and e["target_id"] not in EXCLUDED_NODES
+    ]
+    return deduplicate_edges(filtered)

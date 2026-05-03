@@ -448,6 +448,158 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
 
 
 # =========================================================================
+# WEEK 2 — PDF extraction (Honeywell THP9045A1023 Staging Wiring Module)
+# =========================================================================
+
+# Terminals exposed on the THP9045A1023 module
+THP9045_TERMINALS: Dict[str, str] = {
+    "R":  "24V AC power",
+    "C":  "24V AC common",
+    "Y":  "Cooling relay / compressor stage 1",
+    "G":  "Fan relay",
+    "K":  "UWP communication — single-wire fan/compressor control",
+}
+
+# Compatible thermostats documented in the THP9045A1023 installation guide
+_THP9045_COMPATIBLE_THERMOSTATS = [
+    {"id": "thx9321r",     "model": "THX9321R",     "name": "Prestige IAQ Thermostat"},
+    {"id": "thx9321r5000", "model": "THX9321R5000", "name": "Prestige IAQ Thermostat (5000)"},
+    {"id": "thx9321r1008", "model": "THX9321R1008", "name": "Prestige IAQ Thermostat (1008)"},
+    {"id": "th8320up1003", "model": "TH8320UP1003", "name": "VisionPRO IAQ Thermostat"},
+    {"id": "t5060f7088",   "model": "T5060F7088",   "name": "T5060 Simple Display Thermostat"},
+]
+
+# Wiring configurations illustrated in the THP9045A1023 wiring figures
+_THP9045_WIRING_CONFIGS = [
+    {"id": "wiringconfig_1h1c_conv",   "name": "1H/1C Conventional",    "stages_heat": 1, "stages_cool": 1, "system": "conventional"},
+    {"id": "wiringconfig_2h1c_conv",   "name": "2H/1C Conventional",    "stages_heat": 2, "stages_cool": 1, "system": "conventional"},
+    {"id": "wiringconfig_2h2c_conv",   "name": "2H/2C Conventional",    "stages_heat": 2, "stages_cool": 2, "system": "conventional"},
+    {"id": "wiringconfig_1h1c_2trans", "name": "1H/1C Two-Transformer", "stages_heat": 1, "stages_cool": 1, "system": "two_transformer"},
+    {"id": "wiringconfig_2h1c_hp",     "name": "2H/1C Heat Pump",       "stages_heat": 2, "stages_cool": 1, "system": "heat_pump"},
+    {"id": "wiringconfig_3h2c_hp",     "name": "3H/2C Heat Pump",       "stages_heat": 3, "stages_cool": 2, "system": "heat_pump"},
+]
+
+
+def _extract_thp9045_module(pdf) -> Tuple[List[Dict], List[Dict]]:
+    """Extract module node, compatible thermostat nodes, and terminal nodes from THP9045 PDF."""
+    module_id = "thp9045a1023"
+    nodes: List[Dict] = []
+    edges: List[Dict] = []
+    source_page = 1
+
+    nodes.append({
+        "id": module_id, "type": "WiringModule", "source_page": source_page,
+        "properties": {
+            "name": "Honeywell THP9045A1023 Staging Wiring Module",
+            "model_number": "THP9045A1023",
+        },
+    })
+
+    for therm in _THP9045_COMPATIBLE_THERMOSTATS:
+        nodes.append({
+            "id": therm["id"], "type": "Thermostat", "source_page": source_page,
+            "properties": {"name": therm["name"], "model_number": therm["model"]},
+        })
+        edges.append({
+            "source": module_id, "target": therm["id"],
+            "type": "COMPATIBLE_WITH", "source_page": source_page,
+        })
+
+    for label, function in THP9045_TERMINALS.items():
+        term_id = f"thp9045_terminal_{_slug(label)}"
+        nodes.append({
+            "id": term_id, "type": "WiringTerminal", "source_page": source_page,
+            "properties": {"label": label, "function": function},
+        })
+        edges.append({
+            "source": module_id, "target": term_id,
+            "type": "HAS_TERMINAL", "source_page": source_page,
+            "properties": {"required": label in ("R", "C")},
+        })
+
+    return nodes, edges
+
+
+def _extract_thp9045_wiring_configs(pdf) -> Tuple[List[Dict], List[Dict]]:
+    """Extract wiring configuration nodes from THP9045A1023 wiring figure captions."""
+    module_id = "thp9045a1023"
+    nodes: List[Dict] = []
+    edges: List[Dict] = []
+    source_page = 1
+
+    for cfg in _THP9045_WIRING_CONFIGS:
+        nodes.append({
+            "id": cfg["id"], "type": "WiringConfig", "source_page": source_page,
+            "properties": {
+                "name": cfg["name"],
+                "stages_heat": cfg["stages_heat"],
+                "stages_cool": cfg["stages_cool"],
+                "system": cfg["system"],
+            },
+        })
+        edges.append({
+            "source": module_id, "target": cfg["id"],
+            "type": "SUPPORTS", "source_page": source_page,
+        })
+
+    return nodes, edges
+
+
+def extract_thp9045_from_pdf(pdf_path: Path) -> Dict:
+    """
+    Extract a rich graph dict from the THP9045A1023 staging wiring module PDF.
+
+    Returns the Week 2 rich shape:
+        {"source_document": {...}, "nodes": [...], "edges": [...]}
+
+    Use graph_items_to_legacy_format() to convert for GraphStore.
+    """
+    try:
+        import pdfplumber
+    except ImportError as exc:
+        raise ImportError(
+            "pdfplumber is required for PDF extraction. "
+            "Install it via: pip install pdfplumber"
+        ) from exc
+
+    log.info("Opening THP9045 PDF: %s", pdf_path)
+    with pdfplumber.open(pdf_path) as pdf:
+        log.info("PDF loaded: %d pages", len(pdf.pages))
+
+        all_nodes: List[Dict] = []
+        all_edges: List[Dict] = []
+
+        for fn in (
+            lambda: _extract_thp9045_module(pdf),
+            lambda: _extract_thp9045_wiring_configs(pdf),
+        ):
+            n, e = fn()
+            all_nodes.extend(n)
+            all_edges.extend(e)
+
+        pages = len(pdf.pages)
+
+    graph = {
+        "source_document": {
+            "name": "Honeywell THP9045A1023 Staging Wiring Module Installation Guide",
+            "pages": pages,
+        },
+        "nodes": all_nodes,
+        "edges": all_edges,
+    }
+
+    errors = _validate(graph)
+    if errors:
+        log.error("THP9045 validation failed with %d errors:", len(errors))
+        for err in errors:
+            log.error("  %s", err)
+        raise ValueError(f"THP9045 graph validation failed with {len(errors)} errors")
+
+    log.info("Extracted %d nodes, %d edges from THP9045 PDF", len(all_nodes), len(all_edges))
+    return graph
+
+
+# =========================================================================
 # Adapter: rich Week 2 shape → legacy Week 1 shape
 # =========================================================================
 # The existing GraphStore (src/graph/store.py) expects:

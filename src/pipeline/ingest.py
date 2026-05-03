@@ -26,14 +26,77 @@ Usage:
 import argparse
 import json
 import logging
+from collections import defaultdict
 from pathlib import Path
+from typing import Any, Dict
 
 from src.graph.extract import (
     extract_from_pdf,
+    extract_thp9045_from_pdf,
     graph_items_to_legacy_format,
     load_product_records,
     product_records_to_graph_items,
 )
+
+
+def run_ingest(
+    pdf_path: str,
+    dry_run: bool = False,
+    replacements_path: str | None = None,
+) -> Dict[str, Any]:
+    """
+    Programmatic entry point for ingesting a PDF into the knowledge graph.
+
+    Extracts entities and relationships from *pdf_path*, optionally writes them
+    to Neo4j, and returns a summary dict with the keys:
+        pages_processed  — number of PDF pages visited
+        nodes_written    — nodes upserted to Neo4j (0 when dry_run=True)
+        edges_written    — edges upserted to Neo4j (0 when dry_run=True)
+        node_counts      — {kind: count} breakdown of extracted nodes
+
+    Raises:
+        FileNotFoundError: if pdf_path does not exist
+        RuntimeError:      if Neo4j is unreachable and dry_run=False
+    """
+    from src.ingest.pdf_parser import extract_page_content
+
+    path = Path(pdf_path)
+    pages = extract_page_content(str(path))
+
+    rep_path = Path(replacements_path) if replacements_path else None
+    if "thp9045" in path.name.lower():
+        rich_graph = extract_thp9045_from_pdf(path)
+    else:
+        rich_graph = extract_from_pdf(path, rep_path)
+    graph_items = graph_items_to_legacy_format(rich_graph)
+
+    nodes = graph_items.get("nodes", [])
+    edges = graph_items.get("edges", [])
+
+    node_counts: Dict[str, int] = defaultdict(int)
+    for node in nodes:
+        node_counts[node.get("kind", "Unknown")] += 1
+
+    nodes_written = 0
+    edges_written = 0
+
+    if not dry_run:
+        from src.graph.neo4j_loader import get_driver, create_constraints, load_nodes, load_edges
+
+        driver = get_driver()
+        try:
+            create_constraints(driver)
+            nodes_written = load_nodes(driver, nodes)
+            edges_written = load_edges(driver, edges)
+        finally:
+            driver.close()
+
+    return {
+        "pages_processed": len(pages),
+        "nodes_written": nodes_written,
+        "edges_written": edges_written,
+        "node_counts": dict(node_counts),
+    }
 
 
 def main() -> None:
@@ -81,7 +144,10 @@ def main() -> None:
         if replacements_path and not replacements_path.exists():
             raise SystemExit(f"Replacements file not found: {replacements_path}")
 
-        rich_graph = extract_from_pdf(input_path, replacements_path)
+        if "thp9045" in input_path.name.lower():
+            rich_graph = extract_thp9045_from_pdf(input_path)
+        else:
+            rich_graph = extract_from_pdf(input_path, replacements_path)
         graph_items = graph_items_to_legacy_format(rich_graph)
 
         # Optionally save the rich Week 2 format alongside the legacy output.

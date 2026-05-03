@@ -63,7 +63,7 @@ def test_double_run_idempotency():
     settings = load_settings()
     neo4j_uri = settings["graph"]["neo4j_uri"]
     neo4j_user = settings["graph"]["neo4j_user"]
-    neo4j_password = os.getenv("NEO4J_PASSWORD", settings["graph"]["neo4j_password"])
+    neo4j_password = os.getenv("NEO4J_PASSWORD", "")
 
     def count_nodes_and_edges(store: Neo4jGraphStore) -> tuple[int, int]:
         with store._driver.session() as session:
