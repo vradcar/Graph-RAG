@@ -112,14 +112,9 @@ def normalize_node_id(raw: str) -> str:
         "T9 Wi-Fi Thermostat" → "rcht9610wf"  (via alias)
         "2 Wire Heat Only" → "2-wire-heat-only"
     """
-    normalized = (
-        raw.strip()
-        .lower()
-        .replace(" ", "-")
-        .replace("/", "-")
-        .replace("_", "-")
-        .replace("--", "-")
-    )
+    normalized = raw.strip().lower()
+    normalized = re.sub(r"[ /_.]+", "-", normalized)  # collapse any run of separators
+    normalized = normalized.strip("-")
     return NODE_ID_ALIASES.get(normalized, normalized)
 
 
