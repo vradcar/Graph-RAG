@@ -389,7 +389,11 @@ def _validate(graph: Dict) -> List[str]:
     return errs
 
 
-def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -> Dict:
+def extract_from_pdf(
+    pdf_path: Path,
+    replacements_path: Optional[Path] = None,
+    pages: Optional[Tuple[int, int]] = None,
+) -> Dict:
     """
     Extract a rich graph dict from the T9 installation guide PDF.
 
@@ -398,6 +402,13 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
 
     Use graph_items_to_legacy_format() to convert the result into the Week 1
     shape that GraphStore accepts directly.
+
+    Args:
+        pdf_path: Path to the PDF file.
+        replacements_path: Optional path to a replacements JSON file.
+        pages: Optional (start, end) 1-indexed inclusive page range filter.
+               When provided, per-page extractors are skipped for pages outside
+               the range. None (default) preserves existing behavior.
     """
     try:
         import pdfplumber
@@ -407,6 +418,10 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
             "Install it via: pip install pdfplumber"
         ) from exc
 
+    if pages is not None:
+        start, end = pages
+        log.info("Page filter applied: %s-%s", start, end)
+
     log.info("Opening PDF: %s", pdf_path)
     with pdfplumber.open(pdf_path) as pdf:
         log.info("PDF loaded: %d pages", len(pdf.pages))
@@ -414,24 +429,42 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
         all_nodes: List[Dict] = []
         all_edges: List[Dict] = []
 
-        for fn in (
-            lambda: _build_thermostat_nodes(replacements_path),
-            lambda: _extract_compatibility_and_power(pdf),
-            lambda: _extract_wiring_terminals(pdf),
-            lambda: _extract_room_sensor(pdf),
-            lambda: _extract_operating_ranges(pdf),
-        ):
+        # _build_thermostat_nodes is not page-specific — always runs.
+        n, e = _build_thermostat_nodes(replacements_path)
+        all_nodes.extend(n)
+        all_edges.extend(e)
+
+        # Page-specific extractors: each targets a fixed page number.
+        # When a pages filter is set, skip extractors whose target page is
+        # outside [start, end] inclusive.
+        page_specific_extractors = [
+            (3, lambda: _extract_compatibility_and_power(pdf)),
+            (6, lambda: _extract_wiring_terminals(pdf)),
+            (13, lambda: _extract_room_sensor(pdf)),
+            (16, lambda: _extract_operating_ranges(pdf)),
+        ]
+        for target_page, fn in page_specific_extractors:
+            if pages is not None:
+                start, end = pages
+                if target_page < start or target_page > end:
+                    log.info("Skipping extractor for page %d (outside filter %d-%d)",
+                             target_page, start, end)
+                    continue
             n, e = fn()
             all_nodes.extend(n)
             all_edges.extend(e)
 
-        pages = len(pdf.pages)
+        total_pages = len(pdf.pages)
+
+    source_doc: Dict = {
+        "name": "Honeywell Home T9 Wi-Fi Thermostat Installation Guide",
+        "pages": total_pages,
+    }
+    if pages is not None:
+        source_doc["pages_filter"] = list(pages)
 
     graph = {
-        "source_document": {
-            "name": "Honeywell Home T9 Wi-Fi Thermostat Installation Guide",
-            "pages": pages,
-        },
+        "source_document": source_doc,
         "nodes": all_nodes,
         "edges": all_edges,
     }

@@ -59,6 +59,11 @@ def main() -> None:
         help="Optional path to also write the Week 2 rich-format graph (PDF mode only)",
     )
     parser.add_argument(
+        "--doc-id",
+        default=None,
+        help="Manifest doc-id key (PDF mode). Loads the entry's `pages` filter if set.",
+    )
+    parser.add_argument(
         "--verbose",
         action="store_true",
         help="Enable INFO-level logging",
@@ -81,7 +86,13 @@ def main() -> None:
         if replacements_path and not replacements_path.exists():
             raise SystemExit(f"Replacements file not found: {replacements_path}")
 
-        rich_graph = extract_from_pdf(input_path, replacements_path)
+        pages_filter = None
+        if args.doc_id:
+            from src.ingest.manifest import get_doc
+            doc = get_doc(args.doc_id)
+            pages_filter = tuple(doc["pages"]) if doc.get("pages") else None
+
+        rich_graph = extract_from_pdf(input_path, replacements_path, pages=pages_filter)
         graph_items = graph_items_to_legacy_format(rich_graph)
 
         # Optionally save the rich Week 2 format alongside the legacy output.
@@ -91,6 +102,26 @@ def main() -> None:
             with rich_path.open("w", encoding="utf-8") as f:
                 json.dump(rich_graph, f, indent=2)
             print(f"Saved rich graph to {rich_path}")
+
+        # Replacements manifest → Neo4j as REPLACES edges (INGEST-04).
+        # Runs only when --replacements is provided and Neo4j is reachable.
+        if args.replacements:
+            replacements_path_r = Path(args.replacements)
+            if replacements_path_r.exists():
+                try:
+                    import os
+                    from neo4j import GraphDatabase
+                    uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+                    user_n = os.getenv("NEO4J_USER", "neo4j")
+                    pwd = os.getenv("NEO4J_PASSWORD", "neo4j")
+                    from src.graph.extract import ingest_replacements
+                    with GraphDatabase.driver(uri, auth=(user_n, pwd)) as driver:
+                        counts = ingest_replacements(replacements_path_r, driver)
+                    print(f"Ingested replacements: {counts}")
+                except Exception as exc:
+                    # Do not fail the pipeline if Neo4j is unreachable — replacements
+                    # ingest is best-effort relative to the JSON output above.
+                    print(f"WARN: replacements Neo4j ingest skipped: {exc}")
 
     elif suffix == ".json":
         records = load_product_records(str(input_path))
@@ -107,10 +138,8 @@ def main() -> None:
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(graph_items, file, indent=2)
 
-    print(
-        f"Saved graph items to {output_path} "
-        f"({len(graph_items['nodes'])} nodes, {len(graph_items['edges'])} edges)"
-    )
+    print(f"Saved graph items to {output_path} (doc_id={args.doc_id or '<none>'}, "
+          f"{len(graph_items['nodes'])} nodes, {len(graph_items['edges'])} edges)")
 
 
 if __name__ == "__main__":
