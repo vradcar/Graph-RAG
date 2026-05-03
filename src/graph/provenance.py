@@ -19,7 +19,9 @@ Design notes:
   the :Document node (Pitfall 5 in RESEARCH.md).
 - source_doc is keyed inside the MERGE pattern for edges so the same fact extracted
   from two different PDFs creates two parallel evidence edges (SCHEMA-04).
-- coll.distinct guard on source_docs prevents unbounded growth on re-ingest (Pitfall 3).
+- Pure-Cypher dedup guard on source_docs prevents unbounded growth on re-ingest (Pitfall 3).
+  coll.distinct() (APOC) is NOT used — replaced with CASE WHEN expression for Community Edition
+  compatibility.
 """
 
 from __future__ import annotations
@@ -84,7 +86,7 @@ def merge_node_with_provenance(
     node: Dict[str, Any],
     doc_id: str,
 ) -> None:
-    """MERGE node by id; accumulate source_docs via coll.distinct; MERGE MENTIONED_IN to :Document.
+    """MERGE node by id; accumulate source_docs (dedup via CASE WHEN); MERGE MENTIONED_IN to :Document.
 
     ``node`` dict shape:
         {
@@ -121,7 +123,7 @@ def merge_node_with_provenance(
             n.first_seen  = timestamp()
         ON MATCH SET
             n += $props,
-            n.source_docs = coll.distinct(coalesce(n.source_docs, []) + $doc_id),
+            n.source_docs = CASE WHEN $doc_id IN coalesce(n.source_docs, []) THEN n.source_docs ELSE coalesce(n.source_docs, []) + [$doc_id] END,
             n.last_seen   = timestamp()
         WITH n
         MATCH (d:Document {{doc_id: $doc_id}})
