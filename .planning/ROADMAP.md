@@ -26,7 +26,10 @@
   2. Loading the same fact from two different PDFs produces two parallel evidence-bearing edges in Neo4j, each carrying a distinct source_doc property.
   3. A node mentioned in N PDFs exists exactly once in Neo4j and has a source_docs[] array of length N populated via ON CREATE / ON MATCH semantics.
   4. Every edge written by neo4j_loader.py has a non-null source_doc property, verifiable via Cypher `MATCH ()-[r]->() WHERE r.source_doc IS NULL RETURN count(r)` returning 0.
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 01-01-PLAN.md — Schema additions (Document, MENTIONED_IN) + failing test scaffolding
+- [ ] 01-02-PLAN.md — provenance.py helpers + neo4j_loader.py refactor + --doc-id CLI
+- [ ] 01-03-PLAN.md — T9 backfill re-ingest + audit verification (checkpoint)
 
 ### Phase 2: Corpus Curation & Extractor Hardening
 **Goal**: A curated 3-PDF Honeywell corpus is checked in and ingests cleanly through hardened parser/extractor/normalizer code with zero T9 regression.
@@ -66,10 +69,10 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Schema & Provenance Foundation | 0/0 | Not started | - |
+| 1. Schema & Provenance Foundation | 0/3 | Planned | - |
 | 2. Corpus Curation & Extractor Hardening | 0/0 | Not started | - |
 | 3. Batch Ingestion Tooling | 0/0 | Not started | - |
 | 4. Multi-Document Quality Verification | 0/0 | Not started | - |
 
 ---
-*Last updated: 2026-05-02 — milestone v2.0 T1-Sai roadmap created*
+*Last updated: 2026-05-02 — Phase 1 planned (3 plans across 3 waves)*
