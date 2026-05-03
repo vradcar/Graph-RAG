@@ -191,12 +191,12 @@ def _extract_compatibility_and_power(pdf) -> Tuple[List[Dict], List[Dict]]:
     })
 
     nodes.append({
-        "id": "zoning_panel", "type": "ZoningPanel", "source_page": 7,
+        "id": "zoning_panel", "type": "ZoningPanel", "source_page": 3,
         "properties": {"name": "Zoning Panel Installation"},
     })
     edges.append({
         "source": "c_wire_adapter", "target": "zoning_panel",
-        "type": "COMPLEX_ON", "source_page": 7,
+        "type": "COMPLEX_ON", "source_page": 3,
         "properties": {"note": "Professional installer recommended on zoned systems"},
     })
 
