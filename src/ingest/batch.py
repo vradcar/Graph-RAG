@@ -108,16 +108,13 @@ def _extract_to_graph_items(
     with contextlib.redirect_stdout(io.StringIO()):
         from src.pipeline.ingest import main as _ingest_main
         import argparse as _ap
-        _orig_parse = _ap.ArgumentParser.parse_args
+        from unittest.mock import patch
 
         def _stub_parse(self, *a, **kw):  # noqa: ANN001
             return ns
 
-        _ap.ArgumentParser.parse_args = _stub_parse
-        try:
+        with patch.object(_ap.ArgumentParser, "parse_args", _stub_parse):
             _ingest_main()
-        finally:
-            _ap.ArgumentParser.parse_args = _orig_parse
 
     # Read back the produced JSON
     with cache_path.open("r", encoding="utf-8") as fh:
