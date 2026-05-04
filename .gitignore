@@ -8,3 +8,7 @@ data/eval/results.json
 reports/extraction_rejections.log
 # Commit the cached corpus extractions so tests run free of LLM tokens.
 !data/processed/_*_corpus.json
+
+# Phase 3 batch ingestion outputs
+reports/batch/
+reports/ingest_failures.log
