@@ -310,7 +310,6 @@ def run_batch(args: Any) -> list[dict]:
     Raises:
         SystemExit: when Neo4j connection fails (exit code 3 — caught in main()).
     """
-    from neo4j import GraphDatabase
     from src.graph.neo4j_loader import create_constraints
 
     report_dir = Path(args.report_dir if args.report_dir else "reports/batch")
