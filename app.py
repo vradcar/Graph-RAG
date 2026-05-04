@@ -34,8 +34,24 @@ def _friendly_error_message(exc: Exception) -> str:
     return "Something went wrong. Check the terminal for details."
 
 
+_STAGE_BADGES = {
+    "fast_path": ("🟢 Stage 1: Fast path (regex + keyword graph retrieval)", "success"),
+    "llm_understanding": ("🟡 Stage 2: LLM query understanding → graph traversal", "info"),
+    "vector_fallback": ("🟠 Stage 3: Vector fallback (bag-of-words over Neo4j nodes)", "warning"),
+    "none": ("⚪ No stage produced triples — pipeline returned not_found", "error"),
+}
+
+
+def _render_pipeline_stage(answer) -> None:
+    """Render which retrieval stage produced the answer."""
+    stage = getattr(answer, "pipeline_stage", "") or "none"
+    label, level = _STAGE_BADGES.get(stage, (f"Stage: {stage}", "info"))
+    getattr(st, level)(label)
+
+
 def _render_answer(answer) -> None:
     """Render a QueryAnswer object into the Streamlit main area."""
+    _render_pipeline_stage(answer)
     if answer.not_found:
         # D-11: show the model's suggestion via st.info; no evidence expander
         st.info(answer.suggestion or "No relevant information found in the knowledge graph.")

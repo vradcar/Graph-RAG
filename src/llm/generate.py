@@ -24,6 +24,7 @@ class QueryAnswer(BaseModel):
     evidence: List[EvidenceTriple] = Field(description="Graph triples used to construct the answer")
     not_found: bool = Field(default=False, description="True if no relevant graph data was found")
     suggestion: str = Field(default="", description="If not_found=True, suggest a related question")
+    pipeline_stage: str = Field(default="", description="Which retrieval stage produced the triples: fast_path | llm_understanding | vector_fallback | none")
 
 
 ANSWER_SYSTEM_PROMPT = (

@@ -146,8 +146,12 @@ def run_query_structured(question: str, depth: int = 2, provider: str | None = N
         print("WARNING: Falling back to deterministic non-LLM answer mode", file=sys.stderr)
 
     with Neo4jGraphStore(uri=neo4j_uri, user=neo4j_user, password=neo4j_password) as store:
+        stage = "none"
+
         # Stage 1: regex/keyword fast path
         triples = list(graph_retrieve(store, question, depth=depth))
+        if triples:
+            stage = "fast_path"
 
         # Stage 2: LLM query understanding (only if fast path was empty)
         extra_terms: List[str] = []
@@ -161,13 +165,18 @@ def run_query_structured(question: str, depth: int = 2, provider: str | None = N
                     if triple not in seen:
                         seen.add(triple)
                         triples.append(triple)
+            if triples:
+                stage = "llm_understanding"
 
         # Stage 3: vector fallback
         if not triples:
             triples = _vector_fallback(question, store, depth=depth, extra_terms=extra_terms)
+            if triples:
+                stage = "vector_fallback"
 
         # Stage 4: LLM answer generation
         answer = generate_answer(client, model, question, triples)
+        answer.pipeline_stage = stage
 
     return answer
 
