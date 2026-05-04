@@ -4,14 +4,14 @@ milestone: v2.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 01 complete — all 3 plans done; 01-03 human checkpoint approved
-last_updated: "2026-05-03T06:52:19.798Z"
-last_activity: 2026-05-03
+last_updated: "2026-05-04T02:58:04.683Z"
+last_activity: 2026-05-04 -- Phase 03 execution started
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  total_plans: 11
+  completed_plans: 9
+  percent: 82
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-02)
 
 **Core value:** Relationship-aware answers about HVAC product compatibility and replacements via a Neo4j knowledge graph — answers a flat RAG system would miss
-**Current focus:** Phase 02 — corpus-curation-extractor-hardening
+**Current focus:** Phase 03 — batch-ingestion-tooling
 
 ## Current Position
 
-Phase: 02 (corpus-curation-extractor-hardening) — EXECUTING
-Plan: 2 of 5
-Status: Ready to execute
-Last activity: 2026-05-03
+Phase: 03 (batch-ingestion-tooling) — EXECUTING
+Plan: 1 of 3
+Status: Executing Phase 03
+Last activity: 2026-05-04 -- Phase 03 execution started
 
 ## Accumulated Context
 
@@ -61,6 +61,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260415-48x | Add OpenAI API provider alongside Groq with config switch | 2026-04-15 | d5163dd | [260415-48x-add-openai-api-provider-alongside-groq-w](./quick/260415-48x-add-openai-api-provider-alongside-groq-w/) |
+| 260503-ox5 | Filter Unknown-kind stub nodes and dangling edges from corpora at load time | 2026-05-03 | 9a64315 | [260503-ox5-filter-unknown-kind-stub-nodes-and-dangl](./quick/260503-ox5-filter-unknown-kind-stub-nodes-and-dangl/) |
 
 ## Deferred Items
 

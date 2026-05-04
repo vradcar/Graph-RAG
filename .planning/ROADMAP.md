@@ -57,7 +57,10 @@
   2. Each PDF run produces a structured per-doc report (entity count by kind, edge count by relation, extraction warnings, runtime, pass/fail) viewable on stdout and persisted to disk.
   3. Failures are written to reports/ingest_failures.log as structured entries (doc_id, stage, error class, snippet) suitable for debug-driven fixes.
   4. Running batch ingest twice in succession yields identical Neo4j graph state — verified by node/edge counts and no duplicate source_doc-keyed edges — via scoped delete by source_doc before re-MERGE.
-**Plans**: TBD
+**Plans**: 3 plans
+- [x] 03-01-PLAN.md — Wave 1: scoped_delete_doc helper + report builder + JSONL failure log + unit tests
+- [ ] 03-02-PLAN.md — Wave 2: batch_ingest.py CLI + dry-run path + per-doc reports + integration tests
+- [ ] 03-03-PLAN.md — Wave 3: non-dry-run path + scoped-delete-before-load + BATCH-04 idempotency tests
 
 ### Phase 4: Multi-Document Quality Verification
 **Goal**: A curated cross-document query set demonstrates that the graph surfaces multi-PDF knowledge with citations, and beats flat RAG on questions only a graph can answer.
