@@ -63,6 +63,7 @@ None yet.
 | 260415-48x | Add OpenAI API provider alongside Groq with config switch | 2026-04-15 | d5163dd | [260415-48x-add-openai-api-provider-alongside-groq-w](./quick/260415-48x-add-openai-api-provider-alongside-groq-w/) |
 | 260503-ox5 | Filter Unknown-kind stub nodes and dangling edges from corpora at load time | 2026-05-03 | 9a64315 | [260503-ox5-filter-unknown-kind-stub-nodes-and-dangl](./quick/260503-ox5-filter-unknown-kind-stub-nodes-and-dangl/) |
 | 260504-hk3 | Spin up a quick UI to test and demonstrate every feature implemented in milestone 2.0 | 2026-05-04 | 207d733 | [260504-hk3-spin-up-a-quick-ui-to-test-and-demonstra](./quick/260504-hk3-spin-up-a-quick-ui-to-test-and-demonstra/) |
+| 260504-hrj | Add free-form multi-hop multi-doc question input to the UI so users can ask their own cross-document questions | 2026-05-04 | 6f65162 | [260504-hrj-add-free-form-multi-hop-multi-doc-questi](./quick/260504-hrj-add-free-form-multi-hop-multi-doc-questi/) |
 
 ## Deferred Items
 
