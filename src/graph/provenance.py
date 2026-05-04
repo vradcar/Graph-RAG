@@ -179,3 +179,79 @@ def merge_edge_with_provenance(
             f"merge_edge_with_provenance: endpoint node not found "
             f"(source_id={source_id!r}, target_id={target_id!r})"
         )
+
+
+def scoped_delete_doc(tx: ManagedTransaction, doc_id: str) -> Dict[str, int]:
+    """Remove every contribution of ``doc_id`` while leaving other docs intact.
+
+    Implements BATCH-04 (idempotent re-runs) by deleting only the rows this doc
+    contributed and orphan-cleaning nodes whose ``source_docs[]`` becomes empty.
+    The 5 steps run in a single tx and roll back together on failure.
+
+    Steps:
+        1. Drop business edges with ``r.source_doc = $doc_id``.
+        2. Drop ``MENTIONED_IN`` edges from each entity to the :Document
+           — direction matches ``merge_node_with_provenance`` L118
+           ``(entity)-[:MENTIONED_IN]->(:Document)``.
+        3. Prune ``$doc_id`` from every node's ``source_docs[]`` array.
+        4. Detach-delete nodes whose ``source_docs`` is now empty
+           (excluding :Document — owned by step 5).
+        5. Detach-delete the :Document node itself.
+
+    Returns a counts dict for the per-doc batch report::
+
+        {"edges": int, "mentioned_in": int, "nodes_pruned": int,
+         "orphans": int, "document": int}
+
+    Notes:
+        * Must be invoked inside ``session.execute_write`` so all 5 steps
+          share one transaction — partial failure rolls back per Neo4j 5.x
+          semantics.
+        * Assumes Phase 1 invariant A2: every non-MENTIONED_IN edge carries
+          ``r.source_doc``. Edges with ``source_doc IS NULL`` would survive
+          scoped delete and break BATCH-04 idempotency — see the pre-flight
+          assertion in Plan 03-03 Task 2 verify block.
+    """
+    edge_q = (
+        "MATCH ()-[r {source_doc: $doc_id}]->() "
+        "WITH r, count(r) AS c "
+        "DELETE r "
+        "RETURN c"
+    )
+    ment_q = (
+        "MATCH (e)-[m:MENTIONED_IN]->(:Document {doc_id: $doc_id}) "
+        "WITH m, count(m) AS c "
+        "DELETE m "
+        "RETURN c"
+    )
+    prune_q = (
+        "MATCH (n) WHERE $doc_id IN coalesce(n.source_docs, []) "
+        "SET n.source_docs = [x IN n.source_docs WHERE x <> $doc_id] "
+        "RETURN count(n) AS c"
+    )
+    orph_q = (
+        "MATCH (n) WHERE n.source_docs IS NOT NULL "
+        "AND size(n.source_docs) = 0 "
+        "AND NOT n:Document "
+        "WITH n, count(n) AS c "
+        "DETACH DELETE n "
+        "RETURN c"
+    )
+    doc_q = (
+        "MATCH (d:Document {doc_id: $doc_id}) "
+        "WITH d, count(d) AS c "
+        "DETACH DELETE d "
+        "RETURN c"
+    )
+
+    out: Dict[str, int] = {}
+    for name, q in (
+        ("edges", edge_q),
+        ("mentioned_in", ment_q),
+        ("nodes_pruned", prune_q),
+        ("orphans", orph_q),
+        ("document", doc_q),
+    ):
+        rec = tx.run(q, doc_id=doc_id).single()
+        out[name] = (rec["c"] if rec else 0)
+    return out
