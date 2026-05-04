@@ -235,14 +235,14 @@ def _run_one_doc(
                     s.execute_write(scoped_delete_doc, doc["doc_id"])
                 scoped_delete_ran = True
 
-            # Step 2a: extraction only (always runs regardless of mode)
+            # Step 2a: extraction only (ingest_one_doc with dry_run=True → no Neo4j)
             stage = "extract"
-            cache_path = output_dir / f"_{doc['doc_id']}_corpus.json"
-            graph_items = _extract_to_graph_items(
+            graph_items, _, _, model = ingest_one_doc(
                 doc,
-                getattr(args, "inferencer", None),
-                getattr(args, "force", False),
-                cache_path,
+                dry_run=True,
+                inferencer=getattr(args, "inferencer", None),
+                force=getattr(args, "force", False),
+                output_dir=output_dir,
             )
 
             # Step 2b: Neo4j load (full-mode only)
