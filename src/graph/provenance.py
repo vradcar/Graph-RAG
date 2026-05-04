@@ -35,6 +35,9 @@ from src.graph.utils import clean_props as _clean_props
 
 log = logging.getLogger("provenance")
 
+VALID_LABELS = frozenset({"Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Entity"})
+VALID_RELATIONS = frozenset({"COMPATIBLE_WITH", "REPLACES", "HAS_SPEC", "REQUIRES", "RELATED_TO"})
+
 
 def merge_document(tx: ManagedTransaction, doc: Dict[str, Any]) -> None:
     """Upsert a :Document node.
@@ -98,9 +101,11 @@ def merge_node_with_provenance(
     # Ensure node_id is stored as a property too (keeps compat with existing schema).
     props["node_id"] = node_id
 
-    # label has already been validated / sanitised by the caller (neo4j_loader) before
-    # it reaches here.  We still sanitise as defence-in-depth.
-    safe_label = "".join(ch for ch in label if ch.isalnum()) or "Entity"
+    # Whitelist-validate the label — structural tokens must not be interpolated
+    # without strict validation (Cypher injection defence).
+    if label not in VALID_LABELS:
+        raise ValueError(f"Unknown node label {label!r}; allowed: {VALID_LABELS}")
+    safe_label = label  # already validated — no character-stripping needed
 
     # First-match: if a node with the same node_id already exists under any label,
     # reuse it (add source_docs + MENTIONED_IN) instead of creating a new-label clone.
@@ -185,8 +190,11 @@ def merge_edge_with_provenance(
     relation = edge.get("relation") or edge.get("type", "RELATED_TO")
     props = _clean_props(edge.get("properties") or {})
 
-    # Sanitise relation type — caller validates, but we sanitise as defence-in-depth.
-    safe_rel = "".join(ch if ch.isalnum() else "_" for ch in relation).upper()
+    # Whitelist-validate the relation type — structural tokens must not be interpolated
+    # without strict validation (Cypher injection defence).
+    if relation not in VALID_RELATIONS:
+        raise ValueError(f"Unknown relation {relation!r}; allowed: {VALID_RELATIONS}")
+    safe_rel = relation  # already validated — no character-stripping needed
 
     result = tx.run(
         f"""
