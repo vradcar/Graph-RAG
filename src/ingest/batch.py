@@ -2,7 +2,7 @@
 
 Public API:
     - iter_manifest_docs(manifest_path, doc_id_filter)  -> Iterator[dict]
-    - ingest_one_doc(doc, *, dry_run, inferencer, force, output_dir, driver, scoped_delete) -> tuple
+    - ingest_one_doc(doc, *, dry_run, inferencer, force, output_dir, driver) -> tuple
     - run_batch(args) -> list[dict]
 
 Wave 1 plan (03-02) shipped the dry-run path.
@@ -143,7 +143,6 @@ def ingest_one_doc(
     force: bool,
     output_dir: Path,
     driver: Any = None,
-    scoped_delete: bool = False,
 ) -> tuple[dict, str, list[dict], str | None]:
     """Extract one document and (optionally) load it into Neo4j.
 
@@ -155,10 +154,6 @@ def ingest_one_doc(
         force:        Bypass the extraction cache (maps to --force-extract).
         output_dir:   Directory for cache JSONs (data/processed/).
         driver:       neo4j.GraphDatabase driver instance (None in dry-run).
-        scoped_delete: Ignored here — scoped_delete is handled one level up in
-                       _run_one_doc for correct stage attribution. This parameter
-                       is kept for API compatibility but is never used inside
-                       this function when driver is not None.
 
     Returns:
         (graph_items, stage_completed, warnings_placeholder, model_name)
