@@ -42,9 +42,11 @@ def _edges_by_relation(driver) -> dict:
 
 
 def _duplicate_edge_count(driver) -> int:
+    """Count duplicate edges — excluding MENTIONED_IN (which is legitimately multi-valued per doc)."""
     with driver.session() as s:
         return s.run(
             "MATCH (a)-[r]->(b) "
+            "WHERE type(r) <> 'MENTIONED_IN' "
             "WITH a.node_id AS a, b.node_id AS b, type(r) AS t, r.source_doc AS sd, count(*) AS c "
             "WHERE c > 1 RETURN count(*) AS dups"
         ).single()["dups"]
@@ -215,8 +217,13 @@ def test_verify_connectivity_failure_exits_3(tmp_path):
         def close(self):
             pass
 
-    with patch("src.ingest.batch.GraphDatabase") as mock_gdb:
-        mock_gdb.driver.return_value = _FakeDriver()
+    class _FakeGraphDatabase:
+        @staticmethod
+        def driver(*a, **kw):
+            return _FakeDriver()
+
+    # Patch at the neo4j module level since batch.py imports GraphDatabase inside the function
+    with patch("neo4j.GraphDatabase", _FakeGraphDatabase):
         exit_code = main(["--report-dir", str(tmp_path / "reports")])
 
     assert exit_code == 3, f"Expected exit code 3 on connection failure, got {exit_code}"
@@ -224,18 +231,14 @@ def test_verify_connectivity_failure_exits_3(tmp_path):
 
 def test_loader_failure_marks_stage_neo4j_load(neo4j_driver, clean_db, tmp_path):
     """When the loader raises on a doc, stage_completed is 'neo4j_load', not 'extract'."""
-    # We'll let t9 fail by patching upsert_document to raise for that doc_id
-    original_upsert = None
+    # Patch upsert_document at the neo4j_loader module level (where batch.py imports from)
+    from src.graph.neo4j_loader import upsert_document as _real_upsert
 
     call_count = {"n": 0}
 
     def patched_upsert(driver, doc_meta):
         call_count["n"] += 1
-        if doc_meta.get("doc_id") == "t9_install_guide":
-            raise RuntimeError("simulated Neo4j loader failure")
-        # Import the real function for others
-        from src.graph.neo4j_loader import upsert_document as _real
-        _real(driver, doc_meta)
+        raise RuntimeError("simulated Neo4j loader failure")
 
     args = _make_args(
         doc_id="t9_install_guide",  # restrict to one doc
