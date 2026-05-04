@@ -1,20 +1,25 @@
-"""Failing tests for scripts/batch_ingest.py CLI (Task 2, TDD RED gate)."""
+"""Tests for scripts/batch_ingest.py CLI (Task 2)."""
 from __future__ import annotations
 
 import subprocess
 import sys
+from pathlib import Path
 import pytest
 
 pytestmark = pytest.mark.integration
 
 PYTHON = sys.executable
+WORKTREE = Path(__file__).parent.parent.parent  # repo root (worktree)
 
 
 def run_cli(*args: str, **kwargs) -> subprocess.CompletedProcess:
+    env = {**__import__("os").environ, "PYTHONPATH": str(WORKTREE)}
     return subprocess.run(
         [PYTHON, "scripts/batch_ingest.py", *args],
         capture_output=True,
         text=True,
+        cwd=str(WORKTREE),
+        env=env,
         **kwargs,
     )
 
@@ -52,7 +57,7 @@ class TestBatchIngestCLI:
         """build_arg_parser must be importable from the CLI module."""
         import importlib.util
         spec = importlib.util.spec_from_file_location(
-            "batch_ingest", "scripts/batch_ingest.py"
+            "batch_ingest", str(WORKTREE / "scripts/batch_ingest.py")
         )
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
@@ -64,7 +69,7 @@ class TestBatchIngestCLI:
         """print_summary prints column headers and a totals line."""
         import importlib.util
         spec = importlib.util.spec_from_file_location(
-            "batch_ingest", "scripts/batch_ingest.py"
+            "batch_ingest", str(WORKTREE / "scripts/batch_ingest.py")
         )
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
