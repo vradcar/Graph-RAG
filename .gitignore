@@ -12,3 +12,16 @@ reports/extraction_rejections.log
 # Phase 3 batch ingestion outputs
 reports/batch/
 reports/ingest_failures.log
+
+# OS / IDE / tooling artifacts
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# GSD planning artifacts (kept locally, not part of source release)
+.planning/
+.planning.bak.*/
+
+# Pre-migration backups
+data/processed/_pre_gemini_backup/
