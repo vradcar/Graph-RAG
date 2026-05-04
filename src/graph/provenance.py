@@ -251,15 +251,17 @@ def scoped_delete_doc(tx: ManagedTransaction, doc_id: str) -> Dict[str, int]:
     """
     edge_q = (
         "MATCH ()-[r {source_doc: $doc_id}]->() "
-        "WITH r, count(r) AS c "
+        "WITH collect(r) AS rels "
+        "UNWIND rels AS r "
         "DELETE r "
-        "RETURN c"
+        "RETURN size(rels) AS c"
     )
     ment_q = (
         "MATCH (e)-[m:MENTIONED_IN]->(:Document {doc_id: $doc_id}) "
-        "WITH m, count(m) AS c "
+        "WITH collect(m) AS rels "
+        "UNWIND rels AS m "
         "DELETE m "
-        "RETURN c"
+        "RETURN size(rels) AS c"
     )
     prune_q = (
         "MATCH (n) WHERE $doc_id IN coalesce(n.source_docs, []) "
@@ -270,15 +272,17 @@ def scoped_delete_doc(tx: ManagedTransaction, doc_id: str) -> Dict[str, int]:
         "MATCH (n) WHERE n.source_docs IS NOT NULL "
         "AND size(n.source_docs) = 0 "
         "AND NOT n:Document "
-        "WITH n, count(n) AS c "
+        "WITH collect(n) AS nodes "
+        "UNWIND nodes AS n "
         "DETACH DELETE n "
-        "RETURN c"
+        "RETURN size(nodes) AS c"
     )
     doc_q = (
         "MATCH (d:Document {doc_id: $doc_id}) "
-        "WITH d, count(d) AS c "
+        "WITH collect(d) AS docs "
+        "UNWIND docs AS d "
         "DETACH DELETE d "
-        "RETURN c"
+        "RETURN size(docs) AS c"
     )
 
     out: Dict[str, int] = {}
