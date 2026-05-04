@@ -54,7 +54,7 @@ def merge_document(tx: ManagedTransaction, doc: Dict[str, Any]) -> None:
             d.title         = $title,
             d.sku           = $sku,
             d.source_url    = $source_url,
-            d.ingested_at   = datetime($ingested_at),
+            d.ingested_at   = CASE WHEN $ingested_at IS NOT NULL THEN datetime($ingested_at) ELSE null END,
             d.first_ingested = datetime()
         ON MATCH SET
             d.title         = $title,
