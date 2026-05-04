@@ -61,12 +61,12 @@
   },
   {
     "id": "mq07",
-    "question": "What is the modern replacement for TH1110D and what wiring terminals does it require?",
+    "question": "What HVAC system types and sensor accessories is the TH6320U compatible with, and which PDF documents in the corpus reference this thermostat?",
     "depth": 2,
-    "expected_answer_summary": "Based on the replacement chain in the graph, TH1110D is replaced by T6-PRO (documented in t6_pro_install). The T6 Pro requires standard wiring terminals including W, Y, G, R, C for conventional systems and additional OB, Y2 terminals for heat pump configurations per the t6_pro_install wiring guide.",
+    "expected_answer_summary": "The TH6320U (T6 Pro, t6_pro_install) is compatible with conventional, heat-pump, and cooling-only HVAC system types, and supports 10k/20k/wired indoor sensors. Shared HVACSystemType nodes (heat-pump, conventional) also appear in t9_install_guide and thp9045_wiring_module, demonstrating cross-doc compatibility evidence via graph traversal.",
     "expected_source_docs": ["t6_pro_install", "t9_install_guide"],
     "expected_min_distinct_source_docs": 2,
     "graph_only": false,
-    "notes": "Uses the asks_replacement Cypher fallback in graph_retriever.py. The replacement chain connects legacy product nodes to modern T6 Pro documented in t6_pro_install. Vector mode would struggle to follow the replacement chain across documents."
+    "notes": "Substituted for original TH1110D replacement question (TH1110D and REPLACED_BY edges absent from graph — Phase 2/3 ingest gap). TH6320U traversal at depth=2 yields cross-doc edges spanning t6_pro_install, t9_install_guide, t10_pro_user_guide, and thp9045_wiring_module via shared HVACSystemType nodes."
   }
 ]

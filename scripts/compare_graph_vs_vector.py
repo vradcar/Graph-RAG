@@ -55,6 +55,53 @@ def load_queries(path: str) -> List[Dict]:
         return json.load(fh)
 
 
+def _cypher_fallback_retrieve(graph_store, question: str, depth: int) -> List[Tuple]:
+    """
+    Case-insensitive fallback graph retrieval via run_cypher when graph_retrieve
+    returns nothing (upstream has_node is case-sensitive; node_ids are lowercase slugs
+    but extract_candidate_entities emits uppercase tokens).
+
+    Uses the pre-approved run_cypher escape hatch. Not a new retriever class or module.
+    Only called when graph_retrieve returns an empty list.
+    """
+    from src.retrieval.graph_retriever import extract_candidate_entities
+
+    candidates = extract_candidate_entities(question)
+    if not candidates:
+        return []
+
+    triples: List[Tuple] = []
+    seen: Set[Tuple] = set()
+
+    for candidate in candidates:
+        # Case-insensitive exact match first, then prefix/substring match
+        rows = graph_store.run_cypher(
+            "MATCH (n) WHERE toLower(n.node_id) = toLower($c) "
+            "RETURN n.node_id AS nid LIMIT 1",
+            c=candidate,
+        )
+        if not rows:
+            slug = candidate.lower().replace("_", "-")
+            rows = graph_store.run_cypher(
+                "MATCH (n) WHERE n.node_id = $slug OR n.node_id STARTS WITH $slug "
+                "RETURN n.node_id AS nid LIMIT 1",
+                slug=slug,
+            )
+        for row in rows:
+            nid = row.get("nid")
+            if not nid:
+                continue
+            for triple in graph_store.neighbors_multi_hop(nid, depth=depth):
+                # Filter out triples where src or tgt resolved to None
+                # (Document nodes use doc_id, not node_id, so MENTIONED_IN
+                # targets return None from _return_id_expr — skip them here).
+                if triple[0] is not None and triple[2] is not None and triple not in seen:
+                    seen.add(triple)
+                    triples.append(triple)
+
+    return triples
+
+
 def enrich_triples_with_source_doc(graph_store, triples: List[Tuple]) -> List[Dict]:
     """
     For each unique (src, rel, tgt) triple, run one parametrized Cypher read to
@@ -80,9 +127,11 @@ def enrich_triples_with_source_doc(graph_store, triples: List[Tuple]) -> List[Di
 
     quads: List[Dict] = []
     for src, rel, tgt in unique_triples:
+        # Nodes are keyed by node_id (lowercase slugs). The plan originally
+        # documented s.id / t.id but the actual schema uses node_id exclusively.
         rows = graph_store.run_cypher(
             "MATCH (s)-[r]->(t) "
-            "WHERE s.id = $src AND t.id = $tgt AND type(r) = $rel "
+            "WHERE s.node_id = $src AND t.node_id = $tgt AND type(r) = $rel "
             "RETURN DISTINCT r.source_doc AS source_doc",
             src=src,
             tgt=tgt,
@@ -307,8 +356,15 @@ def run(
             qid = q["id"]
             logger.info("Processing query %s: %s", qid, q["question"][:60])
 
-            # Graph retrieval
+            # Graph retrieval — primary path, then case-insensitive fallback.
+            # graph_retrieve uses has_node which is case-sensitive; node_ids in
+            # this corpus are lowercase slugs but questions contain uppercase SKUs.
+            # The fallback resolves this without modifying graph_retriever.py.
             graph_triples = graph_retrieve(store, q["question"], depth=q.get("depth", 2))
+            if not graph_triples:
+                graph_triples = _cypher_fallback_retrieve(
+                    store, q["question"], depth=q.get("depth", 2)
+                )
             graph_quads = enrich_triples_with_source_doc(store, graph_triples)
 
             # Vector retrieval
