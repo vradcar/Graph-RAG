@@ -35,8 +35,15 @@ from src.graph.utils import clean_props as _clean_props
 
 log = logging.getLogger("provenance")
 
-VALID_LABELS = frozenset({"Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Entity"})
-VALID_RELATIONS = frozenset({"COMPATIBLE_WITH", "REPLACES", "HAS_SPEC", "REQUIRES", "RELATED_TO"})
+VALID_LABELS = frozenset({
+    "Product", "Accessory", "WiringConfig", "HVACSystemType", "Spec", "Entity",
+    "Thermostat", "WiringTerminal", "OperatingRange", "Wallplate", "RoomSensor",
+})
+VALID_RELATIONS = frozenset({
+    "COMPATIBLE_WITH", "REPLACES", "HAS_SPEC", "REQUIRES", "RELATED_TO",
+    "SUPPORTS_WIRING", "NOT_COMPATIBLE_WITH", "NEEDS_ADAPTER_IF_MISSING",
+    "CONNECTS_TO", "MOUNTS_ON",
+})
 
 
 def merge_document(tx: ManagedTransaction, doc: Dict[str, Any]) -> None:
