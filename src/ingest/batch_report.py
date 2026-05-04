@@ -65,14 +65,14 @@ def summarize_counts(graph_items: dict) -> dict:
 def _to_iso_z(value: Any) -> str:
     """Normalise a datetime (or ISO string) to UTC ISO-8601 ending in 'Z'."""
     if isinstance(value, str):
-        return value if value.endswith("Z") else value + "Z"
+        # Parse and normalise rather than blindly append 'Z' — a non-UTC offset
+        # or a naive string would produce a wrong timestamp otherwise.
+        value = _dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+        # Fall through to datetime branch
     if isinstance(value, _dt.datetime):
         if value.tzinfo is None:
-            value = value.replace(tzinfo=_dt.timezone.utc)
-        else:
-            value = value.astimezone(_dt.timezone.utc)
-        # isoformat() yields '...+00:00'; replace with 'Z' for Pattern 2 schema.
-        return value.isoformat().replace("+00:00", "Z")
+            raise ValueError(f"Naive datetime passed to _to_iso_z: {value!r}")
+        return value.astimezone(_dt.timezone.utc).isoformat().replace("+00:00", "Z")
     raise TypeError(f"Unsupported timestamp type: {type(value)!r}")
 
 
