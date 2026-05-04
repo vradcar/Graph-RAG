@@ -139,8 +139,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
         action="store_true",
         dest="reset",
         help=(
-            "[NOT YET IMPLEMENTED] Reset Neo4j database before ingestion. "
-            "Will be wired in Plan 03-03 if the grader requests it."
+            "Wipe all Neo4j data before ingestion, then load fresh. "
+            "Disables per-doc scoped delete inside the loop (one full wipe is sufficient)."
         ),
     )
 
@@ -234,15 +234,12 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         reports = run_batch(args)
-    except NotImplementedError as exc:
-        print(
-            "error: non-dry-run Neo4j path is not yet wired.\n"
-            "  Run with --dry-run to use the extraction-only path.\n"
-            f"  Full Neo4j support lands in Plan 03-03.\n"
-            f"  (detail: {exc})",
-            file=sys.stderr,
-        )
-        return 2
+    except SystemExit as exc:
+        # Neo4j connectivity failure — exit code 3
+        if "Neo4j connection failed" in str(exc):
+            print(f"error: {exc}", file=sys.stderr)
+            return 3
+        raise
 
     print_summary(reports)
 

@@ -102,27 +102,56 @@ def merge_node_with_provenance(
     # it reaches here.  We still sanitise as defence-in-depth.
     safe_label = "".join(ch for ch in label if ch.isalnum()) or "Entity"
 
-    result = tx.run(
-        f"""
-        MERGE (n:{safe_label} {{node_id: $node_id}})
-        ON CREATE SET
-            n += $props,
-            n.source_docs = [$doc_id],
-            n.first_seen  = timestamp()
-        ON MATCH SET
-            n += $props,
-            n.source_docs = CASE WHEN $doc_id IN coalesce(n.source_docs, []) THEN n.source_docs ELSE coalesce(n.source_docs, []) + [$doc_id] END,
-            n.last_seen   = timestamp()
-        WITH n
-        MATCH (d:Document {{doc_id: $doc_id}})
-        MERGE (n)-[m:MENTIONED_IN]->(d)
-        ON CREATE SET m.first_mentioned = timestamp()
-        RETURN count(m) AS mi_count
-        """,
+    # First-match: if a node with the same node_id already exists under any label,
+    # reuse it (add source_docs + MENTIONED_IN) instead of creating a new-label clone.
+    # This prevents cross-doc multi-label duplicates that break scoped-delete idempotency.
+    existing = tx.run(
+        "MATCH (n {node_id: $node_id}) RETURN n LIMIT 1",
         node_id=node_id,
-        props=props,
-        doc_id=doc_id,
-    )
+    ).single()
+
+    if existing is not None:
+        # Node exists (possibly under a different label) — update in-place
+        result = tx.run(
+            """
+            MATCH (n {node_id: $node_id})
+            WITH n LIMIT 1
+            SET n += $props,
+                n.source_docs = CASE WHEN $doc_id IN coalesce(n.source_docs, []) THEN n.source_docs ELSE coalesce(n.source_docs, []) + [$doc_id] END,
+                n.last_seen   = timestamp()
+            WITH n
+            MATCH (d:Document {doc_id: $doc_id})
+            MERGE (n)-[m:MENTIONED_IN]->(d)
+            ON CREATE SET m.first_mentioned = timestamp()
+            RETURN count(m) AS mi_count
+            """,
+            node_id=node_id,
+            props=props,
+            doc_id=doc_id,
+        )
+    else:
+        # Node does not exist — create with canonical label
+        result = tx.run(
+            f"""
+            MERGE (n:{safe_label} {{node_id: $node_id}})
+            ON CREATE SET
+                n += $props,
+                n.source_docs = [$doc_id],
+                n.first_seen  = timestamp()
+            ON MATCH SET
+                n += $props,
+                n.source_docs = CASE WHEN $doc_id IN coalesce(n.source_docs, []) THEN n.source_docs ELSE coalesce(n.source_docs, []) + [$doc_id] END,
+                n.last_seen   = timestamp()
+            WITH n
+            MATCH (d:Document {{doc_id: $doc_id}})
+            MERGE (n)-[m:MENTIONED_IN]->(d)
+            ON CREATE SET m.first_mentioned = timestamp()
+            RETURN count(m) AS mi_count
+            """,
+            node_id=node_id,
+            props=props,
+            doc_id=doc_id,
+        )
     row = result.single()
     if row is None or row["mi_count"] == 0:
         raise ValueError(

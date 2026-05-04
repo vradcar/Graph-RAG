@@ -5,20 +5,24 @@ Public API:
     - ingest_one_doc(doc, *, dry_run, inferencer, force, output_dir, driver, scoped_delete) -> tuple
     - run_batch(args) -> list[dict]
 
-Wave 1 plan (03-02) ships the dry-run path. Non-dry-run (real Neo4j MERGE +
-scoped delete) is wired in Plan 03-03; the branch currently raises
-NotImplementedError with a clear pointer.
+Wave 1 plan (03-02) shipped the dry-run path.
+Wave 3 plan (03-03) wires the full Neo4j path: driver lifecycle, scoped_delete_doc
+before each load, and the four neo4j_loader helpers (upsert_document, load_nodes,
+load_edges) per doc. --reset performs a full DB wipe before the loop.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter
 from typing import Any, Iterator
 
+from src.graph.neo4j_loader import create_constraints, upsert_document, load_nodes, load_edges
+from src.graph.provenance import scoped_delete_doc
 from src.ingest.batch_report import build_doc_report, capture_warnings
 from src.ingest.failure_log import log_failure
 from src.ingest.manifest import load_manifest
@@ -84,9 +88,6 @@ def _extract_to_graph_items(
     import argparse
     import contextlib
     import io
-    import os
-
-    from src.ingest.manifest import get_doc
 
     pdf_filename = doc.get("filename", "")
     pdf_path = Path("data/raw") / pdf_filename
@@ -106,10 +107,6 @@ def _extract_to_graph_items(
     # Redirect stdout to suppress the "Saved graph items to …" print
     with contextlib.redirect_stdout(io.StringIO()):
         from src.pipeline.ingest import main as _ingest_main
-        # ingest.main() reads sys.argv; replace argv temporarily and call
-        # the function with our Namespace-style workaround.
-        # We monkey-patch argparse.ArgumentParser.parse_args to return our ns
-        # for the duration of this call only.
         import argparse as _ap
         _orig_parse = _ap.ArgumentParser.parse_args
 
@@ -125,6 +122,16 @@ def _extract_to_graph_items(
     # Read back the produced JSON
     with cache_path.open("r", encoding="utf-8") as fh:
         return json.load(fh)
+
+
+# ---------------------------------------------------------------------------
+# Full-DB reset helper (--reset flag)
+# ---------------------------------------------------------------------------
+
+def _full_db_reset(driver: Any) -> None:
+    """Wipe all nodes and relationships. Used only when args.reset=True."""
+    with driver.session() as sess:
+        sess.run("MATCH (n) DETACH DELETE n")
 
 
 # ---------------------------------------------------------------------------
@@ -151,7 +158,10 @@ def ingest_one_doc(
         force:        Bypass the extraction cache (maps to --force-extract).
         output_dir:   Directory for cache JSONs (data/processed/).
         driver:       neo4j.GraphDatabase driver instance (None in dry-run).
-        scoped_delete: Run scoped_delete_doc before loading (Plan 03-03 wires).
+        scoped_delete: Ignored here — scoped_delete is handled one level up in
+                       _run_one_doc for correct stage attribution. This parameter
+                       is kept for API compatibility but is never used inside
+                       this function when driver is not None.
 
     Returns:
         (graph_items, stage_completed, warnings_placeholder, model_name)
@@ -161,8 +171,7 @@ def ingest_one_doc(
         overrides this return value.
 
     Raises:
-        Any exception from the extraction pipeline — NOT swallowed — so
-        ``run_batch``'s try/except boundary can capture it cleanly.
+        Any exception from the extraction or Neo4j load pipeline — NOT swallowed.
     """
     cache_path = output_dir / f"_{doc['doc_id']}_corpus.json"
 
@@ -171,12 +180,114 @@ def ingest_one_doc(
     if dry_run or driver is None:
         return graph_items, "extract", [], None
 
-    # Non-dry-run: wired in Plan 03-03
-    raise NotImplementedError(
-        "Non-dry-run Neo4j MERGE path is not yet wired.\n"
-        "Run with --dry-run to use the extraction-only path.\n"
-        "Full Neo4j support lands in Plan 03-03."
+    # Non-dry-run: compose loader helpers (mirrors neo4j_loader.main() L290-302)
+    doc_metadata = {
+        "doc_id": doc["doc_id"],
+        "title": doc.get("title") or doc["doc_id"],
+        "sku": doc.get("sku"),
+        "source_url": doc.get("source_url"),
+        "ingested_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+    upsert_document(driver, doc_metadata)
+    load_nodes(driver, graph_items["nodes"], doc["doc_id"])
+    load_edges(driver, graph_items["edges"], doc["doc_id"])
+
+    return graph_items, "neo4j_load", [], None
+
+
+# ---------------------------------------------------------------------------
+# Per-doc body helper (shared by dry-run and full-mode loops)
+# ---------------------------------------------------------------------------
+
+def _run_one_doc(
+    doc: dict,
+    *,
+    driver: Any,
+    do_scoped_delete: bool,
+    args: Any,
+    report_dir: Path,
+    output_dir: Path,
+    reports: list[dict],
+) -> None:
+    """Execute extraction (and optional Neo4j load) for a single doc.
+
+    Appends one report dict to ``reports``. Handles error capture and
+    stage attribution so the caller (run_batch) stays clean.
+    """
+
+    started = datetime.now(timezone.utc)
+
+    error: dict | None = None
+    graph_items: dict = {"nodes": [], "edges": []}
+    stage = "extract"
+    model: str | None = None
+    scoped_delete_ran = False
+
+    dry_run = getattr(args, "dry_run", False)
+
+    with capture_warnings() as warnings:
+        try:
+            # Step 1: optional scoped delete (non-dry-run only)
+            if do_scoped_delete and driver is not None:
+                stage = "scoped_delete"
+                with driver.session() as s:
+                    s.execute_write(scoped_delete_doc, doc["doc_id"])
+                scoped_delete_ran = True
+
+            # Step 2a: extraction only (always runs regardless of mode)
+            stage = "extract"
+            cache_path = output_dir / f"_{doc['doc_id']}_corpus.json"
+            graph_items = _extract_to_graph_items(
+                doc,
+                getattr(args, "inferencer", None),
+                getattr(args, "force", False),
+                cache_path,
+            )
+
+            # Step 2b: Neo4j load (full-mode only)
+            if not dry_run and driver is not None:
+                stage = "neo4j_load"
+                doc_metadata = {
+                    "doc_id": doc["doc_id"],
+                    "title": doc.get("title") or doc["doc_id"],
+                    "sku": doc.get("sku"),
+                    "source_url": doc.get("source_url"),
+                    "ingested_at": datetime.now(timezone.utc).isoformat(),
+                }
+                upsert_document(driver, doc_metadata)
+                load_nodes(driver, graph_items["nodes"], doc["doc_id"])
+                load_edges(driver, graph_items["edges"], doc["doc_id"])
+
+        except Exception as exc:
+            log_failure(doc["doc_id"], stage, exc)
+            error = {
+                "class": type(exc).__name__,
+                "message": str(exc),
+                "traceback_snippet": traceback.format_exc(limit=10),
+            }
+
+    finished = datetime.now(timezone.utc)
+
+    report = build_doc_report(
+        doc=doc,
+        graph_items=graph_items,
+        started_at=started,
+        finished_at=finished,
+        inferencer=getattr(args, "inferencer", None),
+        model=model,
+        dry_run=dry_run,
+        scoped_delete_ran=scoped_delete_ran,
+        warnings=list(warnings),
+        error=error,
+        stage_completed=stage,
     )
+
+    (report_dir / f"{doc['doc_id']}_report.json").write_text(
+        json.dumps(report, indent=2), encoding="utf-8"
+    )
+
+    reports.append(report)
 
 
 # ---------------------------------------------------------------------------
@@ -187,9 +298,9 @@ def run_batch(args: Any) -> list[dict]:
     """Orchestrate batch ingestion of all manifest documents.
 
     Iterates manifest docs (or the single doc when ``args.doc_id`` is set),
-    runs ``ingest_one_doc`` inside a per-doc ``try/except``, writes one JSON
-    report per doc, and returns the list of report dicts for the caller to
-    print a summary table.
+    runs extraction + optional Neo4j load inside a per-doc try/except,
+    writes one JSON report per doc, and returns the list of report dicts
+    for the caller to print a summary table.
 
     Args:
         args:  argparse.Namespace with attributes:
@@ -200,13 +311,10 @@ def run_batch(args: Any) -> list[dict]:
         list of per-doc report dicts (Pattern 2 schema from build_doc_report).
 
     Raises:
-        NotImplementedError: when ``dry_run`` is False (until Plan 03-03).
+        SystemExit: when Neo4j connection fails (exit code 3 — caught in main()).
     """
-    if not args.dry_run:
-        raise NotImplementedError(
-            "Non-dry-run (live Neo4j) path is not yet wired.\n"
-            "Run with --dry-run until Plan 03-03 lands."
-        )
+    from neo4j import GraphDatabase
+    from src.graph.neo4j_loader import create_constraints
 
     report_dir = Path(args.report_dir if args.report_dir else "reports/batch")
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -214,68 +322,59 @@ def run_batch(args: Any) -> list[dict]:
     output_dir = Path("data/processed")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    driver = None  # dry-run only in this plan
+    manifest_path = Path(args.manifest) if args.manifest else Path("data/raw/manifest.json")
 
     reports: list[dict] = []
 
-    for doc in iter_manifest_docs(
-        Path(args.manifest) if args.manifest else Path("data/raw/manifest.json"),
-        getattr(args, "doc_id", None),
-    ):
-        started = datetime.now(timezone.utc)
-        perf_start = perf_counter()
+    if args.dry_run:
+        # Dry-run path (Plan 03-02) — no driver needed
+        for doc in iter_manifest_docs(manifest_path, getattr(args, "doc_id", None)):
+            _run_one_doc(
+                doc,
+                driver=None,
+                do_scoped_delete=False,
+                args=args,
+                report_dir=report_dir,
+                output_dir=output_dir,
+                reports=reports,
+            )
+            if reports and reports[-1].get("status") == "fail" and getattr(args, "fail_fast", False):
+                break
+    else:
+        # Full-mode path (Plan 03-03) — real Neo4j driver
+        from neo4j import GraphDatabase
+        uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+        user = os.getenv("NEO4J_USER", "neo4j")
+        password = os.getenv("NEO4J_PASSWORD", "")
 
-        error: dict | None = None
-        graph_items: dict = {"nodes": [], "edges": []}
-        stage = "extract"
-        model: str | None = None
-
-        with capture_warnings() as warnings:
+        with GraphDatabase.driver(uri, auth=(user, password)) as driver:
             try:
-                graph_items, stage, _, model = ingest_one_doc(
-                    doc,
-                    dry_run=args.dry_run,
-                    inferencer=getattr(args, "inferencer", None),
-                    force=getattr(args, "force", False),
-                    output_dir=output_dir,
-                    driver=driver,
-                    scoped_delete=not getattr(args, "no_scoped_delete", False),
-                )
+                driver.verify_connectivity()
             except Exception as exc:
-                graph_items = {"nodes": [], "edges": []}
-                stage = "extract"
-                model = None
-                log_failure(doc["doc_id"], stage, exc)
-                error = {
-                    "class": type(exc).__name__,
-                    "message": str(exc),
-                    "traceback_snippet": traceback.format_exc(limit=10),
-                }
+                raise SystemExit(f"Neo4j connection failed: {exc}") from exc
 
-        finished = datetime.now(timezone.utc)
-        perf_end = perf_counter()
+            create_constraints(driver)
 
-        report = build_doc_report(
-            doc=doc,
-            graph_items=graph_items,
-            started_at=started,
-            finished_at=finished,
-            inferencer=getattr(args, "inferencer", None),
-            model=model,
-            dry_run=args.dry_run,
-            scoped_delete_ran=False,
-            warnings=list(warnings),
-            error=error,
-            stage_completed=stage,
-        )
+            if getattr(args, "reset", False):
+                _full_db_reset(driver)
 
-        (report_dir / f"{doc['doc_id']}_report.json").write_text(
-            json.dumps(report, indent=2), encoding="utf-8"
-        )
+            # Scoped delete runs per-doc by default; disabled by --no-scoped-delete or --reset
+            do_scoped_delete = (
+                not getattr(args, "no_scoped_delete", False)
+                and not getattr(args, "reset", False)
+            )
 
-        reports.append(report)
-
-        if error and getattr(args, "fail_fast", False):
-            break
+            for doc in iter_manifest_docs(manifest_path, getattr(args, "doc_id", None)):
+                _run_one_doc(
+                    doc,
+                    driver=driver,
+                    do_scoped_delete=do_scoped_delete,
+                    args=args,
+                    report_dir=report_dir,
+                    output_dir=output_dir,
+                    reports=reports,
+                )
+                if reports and reports[-1].get("status") == "fail" and getattr(args, "fail_fast", False):
+                    break
 
     return reports
