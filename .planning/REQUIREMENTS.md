@@ -12,7 +12,7 @@
 
 - [ ] **DISCOVER-01**: Curate a 3-PDF Honeywell HVAC corpus (T6 Pro, THP9045 C-Wire Adapter, T10 Pro) chosen for entity overlap with the existing T9 graph
 - [ ] **DISCOVER-02**: Each PDF in the corpus is checked into `data/raw/` with a documented source URL (manifest file with title, SKU, URL, retrieval date)
-- [ ] **DISCOVER-03**: Each PDF is verified to contain at least one entity that exists in or directly connects to the T9 subgraph (else it adds no multi-doc value)
+- [x] **DISCOVER-03**: Each PDF is verified to contain at least one entity that exists in or directly connects to the T9 subgraph (else it adds no multi-doc value)
 
 ### Schema & Provenance (SCHEMA)
 
@@ -24,11 +24,11 @@
 
 ### Ingestion Hardening (INGEST)
 
-- [ ] **INGEST-01**: `pdf_parser.py` handles all 3 new PDFs end-to-end without unhandled exceptions; layout/table failures log structured warnings rather than crashing
+- [x] **INGEST-01**: `pdf_parser.py` handles all 3 new PDFs end-to-end without unhandled exceptions; layout/table failures log structured warnings rather than crashing
 - [ ] **INGEST-02**: `entity_extractor.py` extracts only schema-valid entity kinds and relations across the new PDFs (closed-world enum enforced; invalid LLM outputs rejected with logged reason)
 - [ ] **INGEST-03**: `normalizer.py` performs deterministic cross-document entity resolution: SKU regex (`(RCHT|TH[XP]?|RTH|HZ|THM|THP)\d{3,4}…`) + ALIAS registry resolves common Honeywell product/accessory naming variants to canonical IDs
-- [ ] **INGEST-04**: Bug-fix loop: any extractor failure observed during corpus ingestion is filed as a fix in pdf_parser/entity_extractor/normalizer with a regression test guarding against it
-- [ ] **INGEST-05**: T9 baseline does not regress — re-running the original T9 ingest after hardening produces the same node/edge counts as v1.0 (or strictly more, never fewer or different kinds)
+- [x] **INGEST-04**: Bug-fix loop: any extractor failure observed during corpus ingestion is filed as a fix in pdf_parser/entity_extractor/normalizer with a regression test guarding against it
+- [x] **INGEST-05**: T9 baseline does not regress — re-running the original T9 ingest after hardening produces the same node/edge counts as v1.0 (or strictly more, never fewer or different kinds)
 
 ### Batch Tooling (BATCH)
 
@@ -39,10 +39,10 @@
 
 ### Quality Verification (QUALITY)
 
-- [ ] **QUALITY-01**: Curated multi-document query set (≥6 questions) where the correct answer requires traversing edges that span at least 2 PDFs (e.g. "What thermostats does the THP9045 support?")
-- [ ] **QUALITY-02**: Each multi-doc query returns a knowledge-grounded answer where the graph context surfaces edges from ≥2 distinct `source_doc` values
-- [ ] **QUALITY-03**: Citation surface — for any answer, the user can trace which PDF(s) the supporting edges came from (via `source_doc` and/or `MENTIONED_IN`)
-- [ ] **QUALITY-04**: A flat-RAG-style baseline (vector mode in existing pipeline) is run against the same multi-doc query set; graph mode wins or ties on the curated set, and at least 2 queries are demonstrable graph-only wins
+- [x] **QUALITY-01**: Curated multi-document query set (≥6 questions) where the correct answer requires traversing edges that span at least 2 PDFs (e.g. "What thermostats does the THP9045 support?")
+- [x] **QUALITY-02**: Each multi-doc query returns a knowledge-grounded answer where the graph context surfaces edges from ≥2 distinct `source_doc` values
+- [x] **QUALITY-03**: Citation surface — for any answer, the user can trace which PDF(s) the supporting edges came from (via `source_doc` and/or `MENTIONED_IN`)
+- [x] **QUALITY-04**: A flat-RAG-style baseline (vector mode in existing pipeline) is run against the same multi-doc query set; graph mode wins or ties on the curated set, and at least 2 queries are demonstrable graph-only wins
 
 ---
 

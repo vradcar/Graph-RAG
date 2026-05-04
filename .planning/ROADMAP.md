@@ -13,7 +13,7 @@
 - [x] **Phase 1: Schema & Provenance Foundation** - Additive schema for Document nodes, MENTIONED_IN, source_doc edge property, and per-document MERGE/dedup semantics
 - [x] **Phase 2: Corpus Curation & Extractor Hardening** - Onboard T6 Pro, THP9045, T10 Pro PDFs; harden parser/extractor/normalizer with no T9 regression (completed 2026-05-03)
 - [ ] **Phase 3: Batch Ingestion Tooling** - scripts/batch_ingest.py with dry-run, per-doc reports, structured failure log, and idempotent re-runs
-- [ ] **Phase 4: Multi-Document Quality Verification** - Curated cross-doc query set with citations and graph-vs-vector comparison demonstrating graph-only wins
+- [x] **Phase 4: Multi-Document Quality Verification** - Curated cross-doc query set with citations and graph-vs-vector comparison demonstrating graph-only wins (completed 2026-05-04)
 
 ## Phase Details
 
@@ -71,7 +71,9 @@
   2. Running each multi-doc query through the existing pipeline returns a knowledge-grounded answer whose graph context contains edges from >=2 distinct source_doc values.
   3. For every answer, the user can trace which PDF(s) supplied each supporting edge — surfaced via source_doc and/or MENTIONED_IN in the graph context output.
   4. Running the same query set in vector mode produces a comparison artifact in which graph mode wins or ties on every query, with at least 2 queries documented as graph-only wins (vector mode cannot answer).
-**Plans**: TBD
+**Plans**: 2 plans
+- [x] 04-01-PLAN.md — Wave 1: curated multi-doc query set + per-PDF chunk fixture + schema test
+- [x] 04-02-PLAN.md — Wave 2: graph-vs-vector comparison runner + results JSON + comparison.md (human checkpoint)
 
 ## Progress
 
@@ -80,7 +82,7 @@
 | 1. Schema & Provenance Foundation | 3/3 | Complete | 2026-05-02 |
 | 2. Corpus Curation & Extractor Hardening | 5/5 | Complete   | 2026-05-03 |
 | 3. Batch Ingestion Tooling | 2/3 | In progress | - |
-| 4. Multi-Document Quality Verification | 0/0 | Not started | - |
+| 4. Multi-Document Quality Verification | 2/2 | Complete    | 2026-05-04 |
 
 ---
 *Last updated: 2026-05-03 — Phase 3 wave 2 complete (03-02 merged); wave 3 (03-03) remaining*
