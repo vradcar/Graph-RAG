@@ -160,6 +160,31 @@ class Neo4jGraphStore:
             result = session.run(query, **params)
             return [record.data() for record in result]
 
+    def list_node_ids(self) -> List[str]:
+        """Return all node IDs in the graph. Cached on the instance after first call."""
+        if hasattr(self, "_node_id_cache"):
+            return self._node_id_cache
+        if not self._id_keys:
+            self._node_id_cache: List[str] = []
+            return self._node_id_cache
+
+        ids: List[str] = []
+        with self._driver.session() as session:
+            for key in self._id_keys:
+                result = session.run(
+                    f"MATCH (n) WHERE n.{key} IS NOT NULL RETURN DISTINCT n.{key} AS id"
+                )
+                ids.extend(r["id"] for r in result if r.get("id"))
+        # Deduplicate while preserving order.
+        seen = set()
+        unique = []
+        for nid in ids:
+            if nid not in seen:
+                seen.add(nid)
+                unique.append(nid)
+        self._node_id_cache = unique
+        return self._node_id_cache
+
     def close(self) -> None:
         self._driver.close()
 
