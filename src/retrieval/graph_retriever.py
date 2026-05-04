@@ -21,6 +21,43 @@ def _lookup(graph_store: GraphStore, entity: str, depth: int) -> List[Tuple[str,
     return []
 
 
+def resolve_entities_against_graph(graph_store, candidates: List[str]) -> List[str]:
+    """Match LLM-extracted candidate entity strings against actual graph node IDs.
+
+    Strategy: exact match first, then case-insensitive substring match. Returns
+    canonical node IDs (deduplicated, in input order).
+    """
+    if not candidates:
+        return []
+    if not hasattr(graph_store, "list_node_ids"):
+        return [c for c in candidates if graph_store.has_node(c)]
+
+    all_ids = graph_store.list_node_ids()
+    lower_index = {nid.lower(): nid for nid in all_ids}
+
+    resolved: List[str] = []
+    seen = set()
+    for candidate in candidates:
+        if not candidate:
+            continue
+        cand_lower = candidate.lower()
+        # exact (case-insensitive) match
+        if cand_lower in lower_index:
+            nid = lower_index[cand_lower]
+            if nid not in seen:
+                seen.add(nid)
+                resolved.append(nid)
+            continue
+        # substring match (candidate contained in or contains a node id)
+        for nid_lower, nid in lower_index.items():
+            if cand_lower in nid_lower or nid_lower in cand_lower:
+                if nid not in seen:
+                    seen.add(nid)
+                    resolved.append(nid)
+                break
+    return resolved
+
+
 def graph_retrieve(graph_store: GraphStore, question: str, depth: int = 1) -> List[Tuple[str, str, str]]:
     entities = extract_candidate_entities(question)
     context = []

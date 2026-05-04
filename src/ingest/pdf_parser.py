@@ -7,14 +7,26 @@ Uses a dual-extraction strategy:
 
 NEVER use pdfplumber.page.extract_text() for tables — it fuses columns.
 """
+import re
 from pathlib import Path
 from typing import Any
 
 import fitz          # pymupdf
 import pdfplumber
 
+# Strips inline footnote markers like `[1]`..`[11]` glued to T6 Pro prose.
+_FOOTNOTE_MARKER_RE = re.compile(r"\[\d{1,2}\]")
 
-def extract_page_content(pdf_path: str) -> list[dict[str, Any]]:
+
+def _strip_footnote_markers(text: str) -> str:
+    """Remove inline `[N]` footnote markers (1-2 digits). Preserves surrounding whitespace."""
+    return _FOOTNOTE_MARKER_RE.sub("", text)
+
+
+def extract_page_content(
+    pdf_path: str,
+    pages: tuple[int, int] | None = None,
+) -> list[dict[str, Any]]:
     """
     Extract text and tables from every page of the given PDF.
 
@@ -27,6 +39,9 @@ def extract_page_content(pdf_path: str) -> list[dict[str, Any]]:
 
     Args:
         pdf_path: Path to the PDF file (e.g., "data/raw/t9-thermostat.pdf")
+        pages: Optional 1-indexed inclusive (start, end) page range to extract.
+               For example, pages=(1, 4) extracts only pages 1 through 4.
+               None (default) means all pages — preserving existing behavior.
 
     Raises:
         FileNotFoundError: If the PDF does not exist at pdf_path
@@ -36,7 +51,7 @@ def extract_page_content(pdf_path: str) -> list[dict[str, Any]]:
     if not path.exists():
         raise FileNotFoundError(f"PDF not found: {path}")
 
-    pages: list[dict[str, Any]] = []
+    result: list[dict[str, Any]] = []
 
     pdf_mupdf = fitz.open(str(path))
     try:
@@ -44,9 +59,18 @@ def extract_page_content(pdf_path: str) -> list[dict[str, Any]]:
             for page_num, (page_plumber, page_fitz) in enumerate(
                 zip(pdf_plumber.pages, pdf_mupdf), start=1
             ):
-                prose: str = page_fitz.get_text("text")
+                if pages is not None:
+                    if len(pages) != 2:
+                        raise ValueError(
+                            f"pages must be a 2-element (start, end) tuple; got {pages!r}"
+                        )
+                    start, end = pages
+                    if page_num < start or page_num > end:
+                        continue
+
+                prose: str = _strip_footnote_markers(page_fitz.get_text("text"))
                 tables: list[list[list[str | None]]] = page_plumber.extract_tables()
-                pages.append({
+                result.append({
                     "page_num": page_num,
                     "prose": prose,
                     "tables": tables,
@@ -54,7 +78,7 @@ def extract_page_content(pdf_path: str) -> list[dict[str, Any]]:
     finally:
         pdf_mupdf.close()
 
-    return pages
+    return result
 
 
 def format_page_for_llm(page: dict[str, Any]) -> str:

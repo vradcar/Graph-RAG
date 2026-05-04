@@ -4,6 +4,18 @@ Entity normalization and deduplication before Neo4j write.
 Converts LLM-extracted node_ids and labels to canonical forms to prevent
 graph fragmentation (e.g., "24VAC" vs "24 VAC" becoming two Spec nodes).
 """
+import re
+
+# SKU regex covering Honeywell HVAC product families across the v2.0 corpus.
+# Includes RCHT, TH/THX/THP, RTH, HZ, THM and the C7\d{3} sensor family (T10).
+# C7 prefix covers C7089, C7189 sensor part numbers (e.g. C7189R3002-2, C7089R3013).
+SKU_REGEX = re.compile(r"(RCHT|TH[XP]?|RTH|HZ|THM|THP|C7)\d{3,4}[A-Z0-9\-]*")
+
+
+def is_sku(raw: str) -> bool:
+    """Return True if the raw string looks like a Honeywell SKU per SKU_REGEX."""
+    return bool(SKU_REGEX.fullmatch(raw.strip()))
+
 
 # Known label aliases → canonical form
 # Extend this map as wiring table analysis reveals new synonyms
@@ -14,6 +26,8 @@ ALIAS_MAP: dict[str, str] = {
     "HEAT PUMP": "HEAT-PUMP",
     "HEAT ONLY": "HEAT-ONLY",
     "COOL ONLY": "COOL-ONLY",
+    "UWP MOUNTING SYSTEM": "UWP",
+    "C-WIRE ADAPTER": "THP9045",
 }
 
 # node_id aliases → canonical node_id
@@ -23,11 +37,51 @@ NODE_ID_ALIASES: dict[str, str] = {
     "t9-thermostat": "rcht9610wf",
     "t9-smart-thermostat": "rcht9610wf",
     "t9": "rcht9610wf",
+    "t9-rcht9610wf": "rcht9610wf",
     "uwp-wall-plate": "uwp-wallplate",
     "uwp": "uwp-wallplate",
     "wall-plate": "uwp-wallplate",
     "wallplate": "uwp-wallplate",
     "wireless-sensor": "wireless-room-sensor",
+
+    # --- UWP family (T6/T9 cross-doc bridge) ---
+    "uwp-mounting-system": "uwp-wallplate",
+
+    # --- THX9321R subbase family (THP9045 ↔ T9) ---
+    "thx9321r5000": "thx9321r",
+    "thx9321r1008": "thx9321r",
+    "thx9321r-subbase": "thx9321r",
+
+    # --- HVAC terminals (canonical slug: terminal-<letter>) ---
+    "r": "terminal-r",
+    "r-wire": "terminal-r",
+    "r-terminal": "terminal-r",
+    "24v-power-r": "terminal-r",
+    "c": "terminal-c",
+    "c-terminal": "terminal-c",
+    "common-c": "terminal-c",
+    "y": "terminal-y",
+    "y-terminal": "terminal-y",
+    "g": "terminal-g",
+    "g-terminal": "terminal-g",
+    "w": "terminal-w",
+    "w-terminal": "terminal-w",
+    "o-b": "terminal-o-b",
+    "o-or-b": "terminal-o-b",
+    "ob": "terminal-o-b",
+    "k": "terminal-k",
+    "aux": "terminal-aux",
+    "e": "terminal-e",
+    "l": "terminal-l",
+
+    # --- HVAC system type slugs ---
+    "1-heat-1-cool": "1h-1c",
+    "2-heat-1-cool": "2h-1c",
+    "2-heat-2-cool": "2h-2c",
+    "3-heat-2-cool": "3h-2c",
+    "heat-pump-1h-1c": "heat-pump-1h-1c",
+    "heat-pump-2h-1c": "heat-pump-2h-1c",
+    "heat-pump-3h-2c": "heat-pump-3h-2c",
 }
 
 # Nodes to exclude entirely — LLM hallucinates compatibility with these
@@ -59,14 +113,9 @@ def normalize_node_id(raw: str) -> str:
         "T9 Wi-Fi Thermostat" → "rcht9610wf"  (via alias)
         "2 Wire Heat Only" → "2-wire-heat-only"
     """
-    normalized = (
-        raw.strip()
-        .lower()
-        .replace(" ", "-")
-        .replace("/", "-")
-        .replace("_", "-")
-        .replace("--", "-")
-    )
+    normalized = raw.strip().lower()
+    normalized = re.sub(r"[ /_.]+", "-", normalized)  # collapse any run of separators
+    normalized = normalized.strip("-")
     return NODE_ID_ALIASES.get(normalized, normalized)
 
 
@@ -78,8 +127,8 @@ def normalize_label(raw: str) -> str:
         "24 VAC" → "24VAC"
         "conventional" → "conventional" (unchanged if not in alias map)
     """
-    normalized = raw.strip().upper().replace("  ", " ")
-    return ALIAS_MAP.get(normalized, raw.strip())
+    upper = raw.strip().upper().replace("  ", " ")
+    return ALIAS_MAP.get(upper, raw.strip())
 
 
 def normalize_node(node: dict) -> dict:

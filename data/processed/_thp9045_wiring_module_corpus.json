@@ -1,0 +1,208 @@
+{
+  "nodes": [
+    {
+      "node_id": "thp9045a1023",
+      "label": "THP9045A1023 Wiring Module",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "thx9321r",
+      "label": "THX9321R",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "th8320up1003",
+      "label": "TH8320UP1003",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "t5060f7088",
+      "label": "T5060F7088",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire-required",
+      "label": "C-wire Required",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "4-wire-k-terminal-setup",
+      "label": "4-wire K-terminal Setup",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "24vac",
+      "label": "24VAC",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-conventional",
+      "label": "1H/1C Conventional Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "2h-1c-conventional",
+      "label": "2H/1C Conventional Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump",
+      "label": "Heat Pump Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "k-terminal-wiring",
+      "label": "K Terminal Wiring",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "conventional",
+      "label": "Conventional System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "2h-2c-conventional",
+      "label": "2H/2C Conventional Application",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "1h-1c-2-transformers",
+      "label": "1H/1C System with 2 Transformers",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "k-wire-setup",
+      "label": "K Wire Connection (Wiresaver)",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "2h-1c-heat-pump",
+      "label": "2H/1C Heat Pump Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "3h-2c-heat-pump",
+      "label": "3H/2C Heat Pump Application",
+      "kind": "HVACSystemType",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "thx9321r",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "th8320up1003",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t5060f7088",
+      "target_id": "thp9045a1023",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "c-wire-required",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "4-wire-k-terminal-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "24vac",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "1h-1c-conventional",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "2h-1c-conventional",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "k-terminal-wiring",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thx9321r",
+      "target_id": "k-terminal-wiring",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thx9321r",
+      "target_id": "thp9045a1023",
+      "relation": "CONNECTS_TO"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "conventional",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "2h-2c-conventional",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "1h-1c-2-transformers",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "k-wire-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thx9321r",
+      "target_id": "k-wire-setup",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "2h-1c-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "3h-2c-heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thp9045a1023",
+      "target_id": "thx9321r",
+      "relation": "CONNECTS_TO"
+    }
+  ]
+}

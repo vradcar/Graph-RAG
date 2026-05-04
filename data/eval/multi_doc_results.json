@@ -1,0 +1,4903 @@
+[
+  {
+    "id": "mq01",
+    "question": "Which thermostats in the corpus are compatible with the THP9045A1023 C-wire adapter?",
+    "depth": 2,
+    "expected_source_docs": [
+      "thp9045_wiring_module",
+      "t9_install_guide",
+      "t6_pro_install"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "graph": {
+      "triple_count": 27,
+      "quads": [
+        {
+          "source": "thx9321r",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-terminal-wiring",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "CONNECTS_TO",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-wire-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "CONNECTS_TO",
+          "target": "thx9321r",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th8320up1003",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "t5060f7088",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire-required",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "4-wire-k-terminal-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "HAS_SPEC",
+          "target": "24vac",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "1h-1c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2h-1c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-plus",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-terminal-wiring",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-wire-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2h-1c-heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "3h-2c-heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "thp9045_wiring_module"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "thp9045_wiring_module:chunk-01",
+        "t9_install_guide:chunk-02",
+        "t9_install_guide:chunk-04",
+        "t9_install_guide:chunk-03",
+        "t9_install_guide:chunk-05"
+      ],
+      "expected_docs_covered": [
+        "t9_install_guide",
+        "thp9045_wiring_module"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq02",
+    "question": "What HVAC system types does the UWP-WALLPLATE support across the T9 and T6-PRO thermostat guides?",
+    "depth": 2,
+    "expected_source_docs": [
+      "t9_install_guide",
+      "t6_pro_install"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "graph": {
+      "triple_count": 171,
+      "quads": [
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "c-wire-adapter",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "screws",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wall-anchors",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-alkaline-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "furnace",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "heat-temp-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dehumidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uv-bulb",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidification-system",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "window-protection-setting-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "dehum-setting-range-25-80-rh",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner-pre-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner-post-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier-tank-water-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier-pad",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dehumidifier-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator-core",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "flow-through-humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam-humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air-heating",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "dehum-min-40-rh-pre-oct-2019",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-compressor-stages",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "o-b-reversing-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "3h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-power-open-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-electric-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "aux-e-independent-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-awg-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-gauge-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "thermostat-wire-18-22-awg",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "deadband-0f",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "geothermal-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-to-air-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-fan-coil",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "high-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "standard-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hydronics",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-1h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-3h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-compressor-stage",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "COMPATIBLE_WITH",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "red-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "yellow-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "r-rc-slider-tab",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "heat-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "cool-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t6-pro",
+          "relation": "SUPPORTS_WIRING",
+          "target": "u-terminals",
+          "source_doc": "t6_pro_install"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "t9_install_guide:chunk-02",
+        "t6_pro_install:chunk-01",
+        "t9_install_guide:chunk-01",
+        "t9_install_guide:chunk-03",
+        "t9_install_guide:chunk-08"
+      ],
+      "expected_docs_covered": [
+        "t6_pro_install",
+        "t9_install_guide"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq03",
+    "question": "What HVAC system types does the RCHT9610WF share with the THX321WFS3001W thermostat?",
+    "depth": 2,
+    "expected_source_docs": [
+      "t9_install_guide",
+      "t10_pro_user_guide"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "graph": {
+      "triple_count": 39,
+      "quads": [
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t10-pro-smart-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-plus-pro-smart-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-smart",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-plus-pro-smart",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "t10-plus",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "COMPATIBLE_WITH",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "red-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "yellow-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "REQUIRES",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "c-wire",
+          "relation": "CONNECTS_TO",
+          "target": "terminal-c",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "r-rc-slider-tab",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "heat-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "cool-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide",
+        "thp9045_wiring_module"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "t9_install_guide:chunk-02",
+        "t9_install_guide:chunk-03",
+        "t9_install_guide:chunk-08",
+        "t9_install_guide:chunk-04",
+        "t6_pro_install:chunk-01"
+      ],
+      "expected_docs_covered": [
+        "t9_install_guide"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq04",
+    "question": "Does the THP9045A1023 C-wire adapter work with the RCHT9610WF thermostat?",
+    "depth": 2,
+    "expected_source_docs": [
+      "thp9045_wiring_module",
+      "t9_install_guide"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "graph": {
+      "triple_count": 59,
+      "quads": [
+        {
+          "source": "thx9321r",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-terminal-wiring",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "CONNECTS_TO",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thx9321r",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-wire-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "CONNECTS_TO",
+          "target": "thx9321r",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th8320up1003",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "t5060f7088",
+          "relation": "COMPATIBLE_WITH",
+          "target": "thp9045a1023",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire-required",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "4-wire-k-terminal-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "HAS_SPEC",
+          "target": "24vac",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "1h-1c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2h-1c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-plus",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-terminal-wiring",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-conventional",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "k-wire-setup",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2h-1c-heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "3h-2c-heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t10-pro-smart-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-plus-pro-smart-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-smart",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-plus-pro-smart",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "COMPATIBLE_WITH",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "red-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "yellow-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "REQUIRES",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "c-wire",
+          "relation": "CONNECTS_TO",
+          "target": "terminal-c",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "r-rc-slider-tab",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "heat-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "cool-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide",
+        "thp9045_wiring_module"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "t9_install_guide:chunk-02",
+        "t9_install_guide:chunk-04",
+        "t9_install_guide:chunk-08",
+        "thp9045_wiring_module:chunk-01",
+        "t9_install_guide:chunk-03"
+      ],
+      "expected_docs_covered": [
+        "t9_install_guide",
+        "thp9045_wiring_module"
+      ]
+    },
+    "verdict": "tie",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq05",
+    "question": "Which accessories are compatible with the UWP-WALLPLATE and are also mentioned in more than one thermostat document?",
+    "depth": 2,
+    "expected_source_docs": [
+      "t9_install_guide",
+      "t6_pro_install",
+      "t10_pro_user_guide"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "graph": {
+      "triple_count": 170,
+      "quads": [
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "c-wire-adapter",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "screws",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wall-anchors",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-alkaline-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "furnace",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "heat-temp-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dehumidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uv-bulb",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidification-system",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "window-protection-setting-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "dehum-setting-range-25-80-rh",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner-pre-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electronic-air-cleaner-post-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier-tank-water-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "humidifier-pad",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dehumidifier-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator-core",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ventilator-filter",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "flow-through-humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam-humidifier",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air-heating",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "HAS_SPEC",
+          "target": "dehum-min-40-rh-pre-oct-2019",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-compressor-stages",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "o-b-reversing-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "3h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-power-open-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-electric-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "aux-e-independent-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-awg-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-gauge-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "thermostat-wire-18-22-awg",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "deadband-0f",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "geothermal-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-to-air-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-fan-coil",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "high-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "standard-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hydronics",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-1h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-3h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-compressor-stage",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "COMPATIBLE_WITH",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "red-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "yellow-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "r-rc-slider-tab",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "heat-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "cool-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "t9_install_guide:chunk-05",
+        "t10_pro_user_guide:chunk-08",
+        "t9_install_guide:chunk-03",
+        "t9_install_guide:chunk-04",
+        "t9_install_guide:chunk-08"
+      ],
+      "expected_docs_covered": [
+        "t10_pro_user_guide",
+        "t9_install_guide"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq06",
+    "question": "What wiring terminal configuration does the C-WIRE require, and which thermostat documents in the corpus mention it?",
+    "depth": 2,
+    "expected_source_docs": [
+      "t9_install_guide",
+      "t6_pro_install",
+      "t10_pro_user_guide"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "graph": {
+      "triple_count": 151,
+      "quads": [
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "HAS_SPEC",
+          "target": "24vac-60hz-0-2a",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "c-wire-adapter",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heating-system",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-system",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NOT_COMPATIBLE_WITH",
+          "target": "electric-baseboard-heat-120-240v",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NOT_COMPATIBLE_WITH",
+          "target": "s-terminals",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NOT_COMPATIBLE_WITH",
+          "target": "indoor-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NOT_COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "android-device",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "ios-device",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "c-wire-power-adapter",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "REQUIRES",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-terminals-a-r-c-rc-e-rh-g-w-k-w2-ob-y-u-y2",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NEEDS_ADAPTER_IF_MISSING",
+          "target": "c-wire-power-adapter",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "c-wire",
+          "relation": "CONNECTS_TO",
+          "target": "terminal-c",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-compressor-stages",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "o-b-reversing-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "3h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-power-open-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-electric-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "aux-e-independent-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-awg-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-gauge-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "thermostat-wire-18-22-awg",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "deadband-0f",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "geothermal-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-to-air-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-fan-coil",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "high-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "standard-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hydronics",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-1h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-3h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-compressor-stage",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-compressor-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-with-electric-aux-heat",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2-stage-furnace",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "2-stage-heat-pump-without-aux-heat",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-with-electric-heat-strips",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-with-gas-oil-furnace-backup-heat",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-indoor-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wireless-room-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "terminal-w",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "r-rc-slider-tab",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "heat-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "HAS_SPEC",
+          "target": "cool-setpoint-range",
+          "source_doc": "t10_pro_user_guide"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "thp9045_wiring_module:chunk-01",
+        "t9_install_guide:chunk-02",
+        "t9_install_guide:chunk-03",
+        "t9_install_guide:chunk-05",
+        "t9_install_guide:chunk-08"
+      ],
+      "expected_docs_covered": [
+        "t9_install_guide"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  },
+  {
+    "id": "mq07",
+    "question": "What HVAC system types and sensor accessories is the TH6320U compatible with, and which PDF documents in the corpus reference this thermostat?",
+    "depth": 2,
+    "expected_source_docs": [
+      "t6_pro_install",
+      "t9_install_guide"
+    ],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "graph": {
+      "triple_count": 145,
+      "quads": [
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-compressor-stages",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "o-b-reversing-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "3h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2h-2c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "cool-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-with-fan",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-2-transformers",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-power-open-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-series-20",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-wire-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-stage-heat-1-stage-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-r-rc-y-c-ob-g-aux-e-y2-l-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "wiring-dual-fuel-r-rc-y-c-ob-g-aux-e-y2-l-s-w-unused",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-transformer-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "heat-only-electric-zone-valve",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1-heat-1-cool-2-transformers",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "2-heat-2-cool-1-transformer",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "1h-1c-heat-pump-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "aux-e-independent-wiring",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "REQUIRES",
+          "target": "c-wire",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "c-wire",
+          "relation": "CONNECTS_TO",
+          "target": "terminal-c",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6220u",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t10-thermostat",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "SUPPORTS_WIRING",
+          "target": "c-wire",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-awg-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "18-22-gauge-wire",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "thermostat-wire-18-22-awg",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "deadband-0f",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "compressor-lockout-range-spec",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "HAS_SPEC",
+          "target": "24vac-power",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t6-pro-smart-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-cooling",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "multi-stage-heating",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "indoor-temperature-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "external-fossil-fuel-kit",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "gas-oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "steam",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "geothermal-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "air-to-air-heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hot-water-fan-coil",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "electric-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "oil-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "high-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "standard-efficiency-gas-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "radiant-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-heat",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-outdoor-sensor",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "honeywell-home-thermostat",
+          "relation": "NOT_COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "dual-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thp9045a1023",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "thp9045_wiring_module"
+        },
+        {
+          "source": "t10-plus",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "hydronics",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "aa-batteries",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-outdoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "t9-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t9_install_guide"
+        },
+        {
+          "source": "th6320u2008",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "COMPATIBLE_WITH",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "thermostat",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "rectangular-cover-plate",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "red-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "uwp-wallplate",
+          "relation": "MOUNTS_ON",
+          "target": "yellow-wall-anchors",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "rcht9610wf",
+          "relation": "MOUNTS_ON",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "t10-pro-wifi-thermostat",
+          "relation": "COMPATIBLE_WITH",
+          "target": "uwp-wallplate",
+          "source_doc": "t10_pro_user_guide"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-1h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-1c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-2h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "heat-pump-3h-2c",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "fossil-fuel-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-indoor-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "10k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "20k-sensor",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6210u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "cooling-only-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "emergency-heat-system",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "wired-sensor-accessory",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6320u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        },
+        {
+          "source": "th6220u",
+          "relation": "COMPATIBLE_WITH",
+          "target": "conventional-forced-air-and-hydronic",
+          "source_doc": "t6_pro_install"
+        }
+      ],
+      "distinct_source_docs": [
+        "t10_pro_user_guide",
+        "t6_pro_install",
+        "t9_install_guide",
+        "thp9045_wiring_module"
+      ]
+    },
+    "vector": {
+      "hit_count": 5,
+      "doc_ids": [
+        "t9_install_guide:chunk-02",
+        "t9_install_guide:chunk-03",
+        "t10_pro_user_guide:chunk-01",
+        "t10_pro_user_guide:chunk-08",
+        "t9_install_guide:chunk-04"
+      ],
+      "expected_docs_covered": [
+        "t9_install_guide"
+      ]
+    },
+    "verdict": "graph",
+    "gap": null,
+    "llm_prose": null
+  }
+]

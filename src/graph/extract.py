@@ -191,12 +191,12 @@ def _extract_compatibility_and_power(pdf) -> Tuple[List[Dict], List[Dict]]:
     })
 
     nodes.append({
-        "id": "zoning_panel", "type": "ZoningPanel", "source_page": 7,
+        "id": "zoning_panel", "type": "ZoningPanel", "source_page": 3,
         "properties": {"name": "Zoning Panel Installation"},
     })
     edges.append({
         "source": "c_wire_adapter", "target": "zoning_panel",
-        "type": "COMPLEX_ON", "source_page": 7,
+        "type": "COMPLEX_ON", "source_page": 3,
         "properties": {"note": "Professional installer recommended on zoned systems"},
     })
 
@@ -371,13 +371,109 @@ def _build_thermostat_nodes(replacements_path: Optional[Path]) -> Tuple[List[Dic
     return nodes, edges
 
 
+def ingest_replacements(
+    json_path: Path,
+    driver: "Any",
+    doc_id: str = "replacements_manifest",
+) -> Dict[str, int]:
+    """
+    Ingest the curated replacements manifest into Neo4j as Product nodes
+    + REPLACES edges with provenance. Direction: (new_sku)-[:REPLACES]->(old_sku).
+
+    Returns counts: {"products": N, "replaces_edges": M, "skipped": K}.
+    Idempotent — uses MERGE via provenance helpers, safe to re-run.
+    """
+    from datetime import datetime, timezone
+    from src.graph.provenance import (
+        merge_document,
+        merge_node_with_provenance,
+        merge_edge_with_provenance,
+    )
+
+    if not json_path.exists():
+        log.warning("Replacements file not found: %s — skipping", json_path)
+        return {"products": 0, "replaces_edges": 0, "skipped": 0}
+
+    with json_path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    thermostats = data.get("thermostats", [])
+    replacements = data.get("replacements", [])
+    therms_by_id = {t["id"]: t for t in thermostats}
+
+    # 1) Document node — must commit before any node MERGE (Pitfall 5).
+    with driver.session() as session:
+        session.execute_write(
+            lambda tx: merge_document(tx, {
+                "doc_id": doc_id,
+                "title": "Replacements manifest",
+                "sku": None,
+                "source_url": str(json_path),
+                "ingested_at": datetime.now(timezone.utc).isoformat(),
+            })
+        )
+
+    # 2) Nodes + edges in separate transactions.
+    product_count = 0
+    edge_count = 0
+    skipped = 0
+    with driver.session() as session:
+        for therm in thermostats:
+            node = {
+                "node_id": therm["id"],
+                "label": therm.get("name") or therm.get("model_number") or therm["id"],
+                "kind": "Product",
+                "properties": {
+                    k: v for k, v in therm.items()
+                    if k not in ("id",) and v is not None
+                },
+            }
+            session.execute_write(
+                lambda tx, n=node: merge_node_with_provenance(tx, n, doc_id)
+            )
+            product_count += 1
+
+        for rep in replacements:
+            old_id = rep.get("from")
+            new_id = rep.get("to")
+            if not old_id or not new_id:
+                skipped += 1
+                continue
+            # Removed therms_by_id membership check — Neo4j MERGE handles missing
+            # nodes and this guard silently dropped valid cross-document replacement
+            # edges whose endpoints come from a different document's product catalog.
+            # Direction: (new)-[:REPLACES]->(old)
+            edge = {
+                "source_id": new_id,
+                "target_id": old_id,
+                "relation": "REPLACES",
+                "properties": {
+                    k: v for k, v in rep.items()
+                    if k not in ("from", "to") and v is not None
+                },
+            }
+            session.execute_write(
+                lambda tx, e=edge: merge_edge_with_provenance(tx, e, doc_id)
+            )
+            edge_count += 1
+
+    log.info(
+        "ingest_replacements: %d products, %d REPLACES edges, %d skipped (doc_id=%s)",
+        product_count, edge_count, skipped, doc_id,
+    )
+    return {"products": product_count, "replaces_edges": edge_count, "skipped": skipped}
+
+
 def _validate(graph: Dict) -> List[str]:
+    from src.graph.schema import VALID_KINDS, VALID_RELATIONS
     errs: List[str] = []
     node_ids = {n["id"] for n in graph["nodes"]}
     for n in graph["nodes"]:
         for k in ("id", "type", "source_page"):
             if k not in n:
                 errs.append(f"Node missing {k}: {n}")
+        if n.get("type") not in VALID_KINDS:
+            errs.append(f"Node type {n.get('type')!r} not in VALID_KINDS: {n}")
     for e in graph["edges"]:
         for k in ("source", "target", "type", "source_page"):
             if k not in e:
@@ -386,10 +482,16 @@ def _validate(graph: Dict) -> List[str]:
             errs.append(f"Edge source {e['source']} not in nodes")
         if e["target"] not in node_ids:
             errs.append(f"Edge target {e['target']} not in nodes")
+        if e.get("type") not in VALID_RELATIONS:
+            errs.append(f"Edge type {e.get('type')!r} not in VALID_RELATIONS: {e}")
     return errs
 
 
-def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -> Dict:
+def extract_from_pdf(
+    pdf_path: Path,
+    replacements_path: Optional[Path] = None,
+    pages: Optional[Tuple[int, int]] = None,
+) -> Dict:
     """
     Extract a rich graph dict from the T9 installation guide PDF.
 
@@ -398,6 +500,13 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
 
     Use graph_items_to_legacy_format() to convert the result into the Week 1
     shape that GraphStore accepts directly.
+
+    Args:
+        pdf_path: Path to the PDF file.
+        replacements_path: Optional path to a replacements JSON file.
+        pages: Optional (start, end) 1-indexed inclusive page range filter.
+               When provided, per-page extractors are skipped for pages outside
+               the range. None (default) preserves existing behavior.
     """
     try:
         import pdfplumber
@@ -407,6 +516,14 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
             "Install it via: pip install pdfplumber"
         ) from exc
 
+    if pages is not None:
+        if len(pages) != 2:
+            raise ValueError(
+                f"pages must be a 2-element (start, end) tuple; got {pages!r}"
+            )
+        start, end = pages
+        log.info("Page filter applied: %s-%s", start, end)
+
     log.info("Opening PDF: %s", pdf_path)
     with pdfplumber.open(pdf_path) as pdf:
         log.info("PDF loaded: %d pages", len(pdf.pages))
@@ -414,24 +531,42 @@ def extract_from_pdf(pdf_path: Path, replacements_path: Optional[Path] = None) -
         all_nodes: List[Dict] = []
         all_edges: List[Dict] = []
 
-        for fn in (
-            lambda: _build_thermostat_nodes(replacements_path),
-            lambda: _extract_compatibility_and_power(pdf),
-            lambda: _extract_wiring_terminals(pdf),
-            lambda: _extract_room_sensor(pdf),
-            lambda: _extract_operating_ranges(pdf),
-        ):
+        # _build_thermostat_nodes is not page-specific — always runs.
+        n, e = _build_thermostat_nodes(replacements_path)
+        all_nodes.extend(n)
+        all_edges.extend(e)
+
+        # Page-specific extractors: each targets a fixed page number.
+        # When a pages filter is set, skip extractors whose target page is
+        # outside [start, end] inclusive.
+        page_specific_extractors = [
+            (3, lambda: _extract_compatibility_and_power(pdf)),
+            (6, lambda: _extract_wiring_terminals(pdf)),
+            (13, lambda: _extract_room_sensor(pdf)),
+            (16, lambda: _extract_operating_ranges(pdf)),
+        ]
+        for target_page, fn in page_specific_extractors:
+            if pages is not None:
+                start, end = pages
+                if target_page < start or target_page > end:
+                    log.info("Skipping extractor for page %d (outside filter %d-%d)",
+                             target_page, start, end)
+                    continue
             n, e = fn()
             all_nodes.extend(n)
             all_edges.extend(e)
 
-        pages = len(pdf.pages)
+        total_pages = len(pdf.pages)
+
+    source_doc: Dict = {
+        "name": "Honeywell Home T9 Wi-Fi Thermostat Installation Guide",
+        "pages": total_pages,
+    }
+    if pages is not None:
+        source_doc["pages_filter"] = list(pages)
 
     graph = {
-        "source_document": {
-            "name": "Honeywell Home T9 Wi-Fi Thermostat Installation Guide",
-            "pages": pages,
-        },
+        "source_document": source_doc,
         "nodes": all_nodes,
         "edges": all_edges,
     }

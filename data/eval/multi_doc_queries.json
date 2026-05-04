@@ -1,0 +1,72 @@
+[
+  {
+    "id": "mq01",
+    "question": "Which thermostats in the corpus are compatible with the THP9045A1023 C-wire adapter?",
+    "depth": 2,
+    "expected_answer_summary": "The THP9045A1023 C-wire adapter is compatible with heat-pump and conventional HVAC system types documented in the thp9045_wiring_module guide, and these same system types are referenced in the T9 (RCHT9610WF), T6 Pro (TH6320U, TH6220U), and T10 Pro thermostat guides, establishing cross-doc compatibility edges.",
+    "expected_source_docs": ["thp9045_wiring_module", "t9_install_guide", "t6_pro_install"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "notes": "Vector mode cannot answer: it would need to cross-reference THP9045 compatibility facts from thp9045_wiring_module with thermostat models in t9_install_guide and t6_pro_install. Only the graph traversal connects THP9045A1023 -> heat-pump/conventional -> thermostats across doc boundaries."
+  },
+  {
+    "id": "mq02",
+    "question": "What HVAC system types does the UWP-WALLPLATE support across the T9 and T6-PRO thermostat guides?",
+    "depth": 2,
+    "expected_answer_summary": "The UWP-WALLPLATE is mentioned in t9_install_guide, t6_pro_install, and t10_pro_user_guide. The T9 guide documents heat-pump and conventional heating/cooling systems; the T6 Pro guide documents conventional-system, heat-pump-system, and fossil-fuel-system, all of which mount on the same UWP wall plate.",
+    "expected_source_docs": ["t9_install_guide", "t6_pro_install"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "notes": "This is graph-only: the cross-doc traversal (UWP-WALLPLATE MENTIONED_IN t9_install_guide + t6_pro_install) and the per-doc HVAC-system edges are only linkable via the graph. A vector search would retrieve each doc independently without bridging the shared wall plate entity."
+  },
+  {
+    "id": "mq03",
+    "question": "What HVAC system types does the RCHT9610WF share with the THX321WFS3001W thermostat?",
+    "depth": 2,
+    "expected_answer_summary": "Both the T9 (t9_install_guide) and T10 Pro (t10_pro_user_guide) support heat-pump and conventional HVAC system types. The heat-pump node is explicitly mentioned in both guides and links to compatible system configurations in each.",
+    "expected_source_docs": ["t9_install_guide", "t10_pro_user_guide"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "notes": "Graph can definitively answer via the shared heat-pump and conventional HVAC system nodes. Vector mode may partially answer from individual doc chunks but cannot prove the intersection without explicit graph traversal."
+  },
+  {
+    "id": "mq04",
+    "question": "Does the THP9045A1023 C-wire adapter work with the RCHT9610WF thermostat?",
+    "depth": 2,
+    "expected_answer_summary": "Yes. The THP9045A1023 is compatible with heat-pump and conventional systems (thp9045_wiring_module). The RCHT9610WF (T9 thermostat, t9_install_guide) supports C-wire and is used in heat-pump and conventional setups, confirming compatibility across the two documents.",
+    "expected_source_docs": ["thp9045_wiring_module", "t9_install_guide"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "notes": "Graph traversal can confirm this via shared HVACSystemType nodes (heat-pump, conventional) that bridge THP9045A1023 (thp9045_wiring_module) and RCHT9610WF (t9_install_guide). Vector mode may partially answer but lacks the explicit compatibility edge."
+  },
+  {
+    "id": "mq05",
+    "question": "Which accessories are compatible with the UWP-WALLPLATE and are also mentioned in more than one thermostat document?",
+    "depth": 2,
+    "expected_answer_summary": "The UWP-WALLPLATE is compatible with the RCHT9610WF (T9, mentioned in t9_install_guide and t10_pro_user_guide), the T10 Pro Wi-Fi thermostat (t10_pro_user_guide), and the T6 Pro models TH6320U and TH6220U (t6_pro_install). Accessories like yellow-wall-anchors and red-wall-anchors mount on UWP-WALLPLATE and appear in t6_pro_install.",
+    "expected_source_docs": ["t9_install_guide", "t6_pro_install", "t10_pro_user_guide"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": true,
+    "notes": "This is graph-only: finding accessories that appear in multiple docs requires joining MENTIONED_IN edges across t9_install_guide, t6_pro_install, and t10_pro_user_guide via the shared UWP-WALLPLATE node. Vector mode would retrieve individual mentions without computing the cross-doc intersection."
+  },
+  {
+    "id": "mq06",
+    "question": "What wiring terminal configuration does the C-WIRE require, and which thermostat documents in the corpus mention it?",
+    "depth": 2,
+    "expected_answer_summary": "The C-WIRE WiringConfig connects to terminal-C and is required by thermostats supporting 24VAC power. It is mentioned in t9_install_guide (RCHT9610WF uses C-wire for power), t6_pro_install (TH6320U and TH6220U support C-wire wiring), and t10_pro_user_guide (T10 thermostat also supports C-wire). This cross-doc presence demonstrates common wiring standards across the Honeywell thermostat line.",
+    "expected_source_docs": ["t9_install_guide", "t6_pro_install", "t10_pro_user_guide"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "notes": "Graph traversal via C-WIRE node's MENTIONED_IN edges covers 3 docs. Vector mode can retrieve c-wire information per document but not synthesize the cross-doc pattern without graph traversal."
+  },
+  {
+    "id": "mq07",
+    "question": "What HVAC system types and sensor accessories is the TH6320U compatible with, and which PDF documents in the corpus reference this thermostat?",
+    "depth": 2,
+    "expected_answer_summary": "The TH6320U (T6 Pro, t6_pro_install) is compatible with conventional, heat-pump, and cooling-only HVAC system types, and supports 10k/20k/wired indoor sensors. Shared HVACSystemType nodes (heat-pump, conventional) also appear in t9_install_guide and thp9045_wiring_module, demonstrating cross-doc compatibility evidence via graph traversal.",
+    "expected_source_docs": ["t6_pro_install", "t9_install_guide"],
+    "expected_min_distinct_source_docs": 2,
+    "graph_only": false,
+    "notes": "Substituted for original TH1110D replacement question (TH1110D and REPLACED_BY edges absent from graph — Phase 2/3 ingest gap). TH6320U traversal at depth=2 yields cross-doc edges spanning t6_pro_install, t9_install_guide, t10_pro_user_guide, and thp9045_wiring_module via shared HVACSystemType nodes."
+  }
+]

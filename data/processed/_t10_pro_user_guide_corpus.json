@@ -1,0 +1,566 @@
+{
+  "nodes": [
+    {
+      "node_id": "thx321wfs3001w",
+      "label": "T10+ Pro Smart Thermostat with Sensor included",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-pro-smart-thermostat",
+      "label": "T10 Pro Smart Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-plus-pro-smart-thermostat",
+      "label": "T10+ Pro Smart Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "wireless-indoor-sensor",
+      "label": "Wireless Indoor Temperature/Humidity/Motion Sensor",
+      "kind": "RoomSensor",
+      "properties": {}
+    },
+    {
+      "node_id": "max-20-wireless-sensors",
+      "label": "Up to 20 wireless sensors per thermostat",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "wireless-room-sensor",
+      "label": "Wireless Room Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "t10",
+      "label": "T10",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "apple-homekit",
+      "label": "Apple HomeKit",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-pro-smart",
+      "label": "T10 Pro Smart Thermostat",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-plus-pro-smart",
+      "label": "T10+ Pro Smart Thermostat",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "thermostat",
+      "label": "Thermostat",
+      "kind": "Thermostat",
+      "properties": {}
+    },
+    {
+      "node_id": "air-filter",
+      "label": "Air Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "electronic-air-cleaner",
+      "label": "Electronic Air Cleaner",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "humidifier",
+      "label": "Humidifier",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "dehumidifier",
+      "label": "Dehumidifier",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "ventilator",
+      "label": "Ventilator",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "uv-bulb",
+      "label": "UV Bulb Lights",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "wired-outdoor-sensor",
+      "label": "Wired Outdoor Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "humidification-system",
+      "label": "Humidification System",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "window-protection-setting-range",
+      "label": "Window Protection Setting Range",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-thermostat",
+      "label": "T10 Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-with-electric-aux-heat",
+      "label": "Heat Pump System with Electric Aux Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "2-stage-furnace",
+      "label": "2 Stage Furnace",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "2-stage-heat-pump-without-aux-heat",
+      "label": "2 Stage Heat Pump without Aux Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-with-electric-heat-strips",
+      "label": "Heat Pump with Electric Heat Strips",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump-with-gas-oil-furnace-backup-heat",
+      "label": "Heat Pump with Gas/Oil Furnace Backup Heat",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "indoor-sensor",
+      "label": "Indoor Sensor",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-plus",
+      "label": "T10+ Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "electronic-air-cleaner-pre-filter",
+      "label": "Electronic Air Cleaner Pre-Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "electronic-air-cleaner-post-filter",
+      "label": "Electronic Air Cleaner Post-Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "humidifier-tank-water-filter",
+      "label": "Humidifier Tank / Water Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "humidifier-pad",
+      "label": "Humidifier Pad",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "dehumidifier-filter",
+      "label": "Dehumidifier Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "ventilator-core",
+      "label": "Ventilator Core",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "ventilator-filter",
+      "label": "Ventilator Filter",
+      "kind": "Accessory",
+      "properties": {}
+    },
+    {
+      "node_id": "flow-through-humidifier",
+      "label": "Flow Through Humidifier",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "steam-humidifier",
+      "label": "Steam Humidifier",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "forced-air-heating",
+      "label": "Forced Air Heating",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "cooling",
+      "label": "Cooling Systems",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "dehum-setting-range-25-80-rh",
+      "label": "Dehumidification Setting Range: 25% RH to 80% RH",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "dehum-min-40-rh-pre-oct-2019",
+      "label": "Minimum Dehumidification Setting: 40% RH (Models prior to October 2019)",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "rcht9610wf",
+      "label": "T9 Smart Thermostat",
+      "kind": "Product",
+      "properties": {}
+    },
+    {
+      "node_id": "uwp-wallplate",
+      "label": "UWP Wallplate",
+      "kind": "Wallplate",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-pump",
+      "label": "HEAT-PUMP",
+      "kind": "HVACSystemType",
+      "properties": {}
+    },
+    {
+      "node_id": "c-wire",
+      "label": "C-wire",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "terminal-w",
+      "label": "W Terminal",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "r-rc-slider-tab",
+      "label": "R/Rc Slider Tab",
+      "kind": "WiringConfig",
+      "properties": {}
+    },
+    {
+      "node_id": "heat-setpoint-range",
+      "label": "Heat Setpoint Range",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "cool-setpoint-range",
+      "label": "Cool Setpoint Range",
+      "kind": "Spec",
+      "properties": {}
+    },
+    {
+      "node_id": "t10-pro-wifi-thermostat",
+      "label": "T10 PRO WiFi Thermostat",
+      "kind": "Product",
+      "properties": {}
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "t10-pro-smart-thermostat",
+      "target_id": "wireless-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-plus-pro-smart-thermostat",
+      "target_id": "wireless-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-pro-smart-thermostat",
+      "target_id": "max-20-wireless-sensors",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t10-plus-pro-smart-thermostat",
+      "target_id": "max-20-wireless-sensors",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t10-pro-smart-thermostat",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-plus-pro-smart-thermostat",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10",
+      "target_id": "apple-homekit",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-pro-smart",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-plus-pro-smart",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "air-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "electronic-air-cleaner",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "humidifier",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "dehumidifier",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "ventilator",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "uv-bulb",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "wired-outdoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "humidification-system",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "window-protection-setting-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "dehum-setting-range-25-80-rh",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "heat-pump-with-electric-aux-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "2-stage-furnace",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "2-stage-heat-pump-without-aux-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "heat-pump-with-electric-heat-strips",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "heat-pump-with-gas-oil-furnace-backup-heat",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-plus",
+      "target_id": "wireless-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-plus",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "electronic-air-cleaner-pre-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "electronic-air-cleaner-post-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "humidifier-tank-water-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "humidifier-pad",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "dehumidifier-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "ventilator-core",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "ventilator-filter",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "flow-through-humidifier",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "steam-humidifier",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "forced-air-heating",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "cooling",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "dehum-min-40-rh-pre-oct-2019",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "thermostat",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "wireless-indoor-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-thermostat",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "heat-pump",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "uwp-wallplate",
+      "relation": "MOUNTS_ON"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "c-wire",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "terminal-w",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "r-rc-slider-tab",
+      "relation": "SUPPORTS_WIRING"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "heat-setpoint-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "rcht9610wf",
+      "target_id": "cool-setpoint-range",
+      "relation": "HAS_SPEC"
+    },
+    {
+      "source_id": "t10-pro-wifi-thermostat",
+      "target_id": "uwp-wallplate",
+      "relation": "COMPATIBLE_WITH"
+    },
+    {
+      "source_id": "t10-pro-wifi-thermostat",
+      "target_id": "wireless-room-sensor",
+      "relation": "COMPATIBLE_WITH"
+    }
+  ]
+}
