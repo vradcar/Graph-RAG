@@ -60,7 +60,7 @@
 **Plans**: 3 plans
 - [x] 03-01-PLAN.md — Wave 1: scoped_delete_doc helper + report builder + JSONL failure log + unit tests
 - [x] 03-02-PLAN.md — Wave 2: batch_ingest.py CLI + dry-run path + per-doc reports + integration tests
-- [ ] 03-03-PLAN.md — Wave 3: non-dry-run path + scoped-delete-before-load + BATCH-04 idempotency tests
+- [x] 03-03-PLAN.md — Wave 3: non-dry-run path + scoped-delete-before-load + BATCH-04 idempotency tests
 
 ### Phase 4: Multi-Document Quality Verification
 **Goal**: A curated cross-document query set demonstrates that the graph surfaces multi-PDF knowledge with citations, and beats flat RAG on questions only a graph can answer.
