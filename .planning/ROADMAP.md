@@ -59,7 +59,7 @@
   4. Running batch ingest twice in succession yields identical Neo4j graph state — verified by node/edge counts and no duplicate source_doc-keyed edges — via scoped delete by source_doc before re-MERGE.
 **Plans**: 3 plans
 - [x] 03-01-PLAN.md — Wave 1: scoped_delete_doc helper + report builder + JSONL failure log + unit tests
-- [ ] 03-02-PLAN.md — Wave 2: batch_ingest.py CLI + dry-run path + per-doc reports + integration tests
+- [x] 03-02-PLAN.md — Wave 2: batch_ingest.py CLI + dry-run path + per-doc reports + integration tests
 - [ ] 03-03-PLAN.md — Wave 3: non-dry-run path + scoped-delete-before-load + BATCH-04 idempotency tests
 
 ### Phase 4: Multi-Document Quality Verification
@@ -79,8 +79,8 @@
 |-------|----------------|--------|-----------|
 | 1. Schema & Provenance Foundation | 3/3 | Complete | 2026-05-02 |
 | 2. Corpus Curation & Extractor Hardening | 5/5 | Complete   | 2026-05-03 |
-| 3. Batch Ingestion Tooling | 0/0 | Not started | - |
+| 3. Batch Ingestion Tooling | 2/3 | In progress | - |
 | 4. Multi-Document Quality Verification | 0/0 | Not started | - |
 
 ---
-*Last updated: 2026-05-02 — Phase 1 complete (3/3 plans done, all SCHEMA-* requirements verified)*
+*Last updated: 2026-05-03 — Phase 3 wave 2 complete (03-02 merged); wave 3 (03-03) remaining*
