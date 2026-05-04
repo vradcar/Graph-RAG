@@ -243,6 +243,9 @@ def main(argv: list[str] | None = None) -> int:
 
     print_summary(reports)
 
+    if not reports:
+        print("warning: no documents processed (manifest empty or all filtered out)", file=sys.stderr)
+        return 2
     exit_code = 0 if all(r.get("status") == "ok" for r in reports) else 1
     return exit_code
 
