@@ -58,6 +58,14 @@ def _normalize_triples(triples: list[tuple[str, str, str]]) -> list[tuple[str, s
 def _fallback_answer(question: str, triples: list[tuple[str, str, str]]) -> QueryAnswer:
     """Deterministic fallback answer when LLM call is unavailable."""
     triples = _normalize_triples(triples)
+    # Filter out triples with None/empty fields; coerce remaining to str so
+    # EvidenceTriple (pydantic) never receives a non-string value.
+    triples = [
+        (str(s), str(r), str(t))
+        for s, r, t in triples
+        if s is not None and r is not None and t is not None
+        and str(s).strip() and str(r).strip() and str(t).strip()
+    ]
     if not triples:
         return QueryAnswer(
             prose="",
@@ -142,7 +150,7 @@ def generate_answer(
         )
     except Exception as e:
         import sys
-        print(f"[generate] LLM answer generation failed: {e}", file=sys.stderr)
+        print(f"[generate] LLM answer generation failed: {type(e).__name__}: {e}", file=sys.stderr)
         return _fallback_answer(question, triples)
 
 
