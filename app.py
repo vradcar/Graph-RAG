@@ -406,7 +406,7 @@ with tab_compare:
                 return "background-color: #fff3cd; color: #856404;"
             return ""
 
-        styled = df.style.applymap(_color_verdict, subset=["verdict"])
+        styled = df.style.map(_color_verdict, subset=["verdict"])
         st.dataframe(styled, use_container_width=True, hide_index=True)
     else:
         st.warning(f"Could not parse comparison table from {comp_path}")

@@ -5,7 +5,10 @@ project:
 graph:
   backend: neo4j          # changed from networkx
   max_default_depth: 2
-  neo4j_uri: neo4j://127.0.0.1:7687
+  # Local fallback only — override via NEO4J_URI / NEO4J_USER env vars
+  # (Streamlit Community Cloud: set these in the Secrets dashboard)
+  # (docker-compose: set these in the environment: block)
+  neo4j_uri: bolt://localhost:7687
   neo4j_user: neo4j
   # neo4j_password: set NEO4J_PASSWORD env var instead
 

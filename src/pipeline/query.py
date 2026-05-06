@@ -127,8 +127,10 @@ def run_query_structured(question: str, depth: int = 2, provider: str | None = N
       4. LLM answer generation over the assembled triples.
     """
     settings = load_settings()
-    neo4j_uri = settings["graph"]["neo4j_uri"]
-    neo4j_user = settings["graph"]["neo4j_user"]
+    # Env vars take precedence over settings.yaml so that Streamlit Community
+    # Cloud secrets (and docker-compose overrides) work without editing the file.
+    neo4j_uri = os.getenv("NEO4J_URI") or settings["graph"]["neo4j_uri"]
+    neo4j_user = os.getenv("NEO4J_USER") or settings["graph"]["neo4j_user"]
     neo4j_password = os.getenv("NEO4J_PASSWORD")
     if not neo4j_password:
         print("ERROR: NEO4J_PASSWORD environment variable is required", file=sys.stderr)
