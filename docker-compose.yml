@@ -27,6 +27,7 @@ services:
   # GROQ_API_KEY must be exported in your shell before running docker compose up.
   # ---------------------------------------------------------------------------
   app:
+    image: ghcr.io/nidhii23/graph-rag:latest
     build: .
     ports:
       - "8501:8501"
@@ -49,6 +50,7 @@ services:
   # Reuses scripts/seed_aura.py which works against any Neo4j 5 backend.
   # ---------------------------------------------------------------------------
   seed:
+    image: ghcr.io/nidhii23/graph-rag:latest
     build: .
     profiles:
       - seed
