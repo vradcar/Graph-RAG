@@ -1,0 +1,91 @@
+id,question,expected,depth,method,hit_count,latency_ms,contains_expected,precision_at_k
+q01,What is the modern replacement for TH1110D?,T6-PRO,1,graph,0,836,False,0.0
+q01,What is the modern replacement for TH1110D?,T6-PRO,1,vector,3,0,True,0.667
+q01,What is the modern replacement for TH1110D?,T6-PRO,1,hybrid,3,24,True,0.667
+q02,Is TH1110D still an active product?,discontinued,1,graph,0,0,False,0.0
+q02,Is TH1110D still an active product?,discontinued,1,vector,2,0,False,0.0
+q02,Is TH1110D still an active product?,discontinued,1,hybrid,2,0,False,0.0
+q03,Which accessories are compatible with T6-PRO?,WALL-PLATE-A and REDLINK-GATEWAY,1,graph,0,208,False,0.0
+q03,Which accessories are compatible with T6-PRO?,WALL-PLATE-A and REDLINK-GATEWAY,1,vector,2,0,True,0.5
+q03,Which accessories are compatible with T6-PRO?,WALL-PLATE-A and REDLINK-GATEWAY,1,hybrid,2,12,True,0.5
+q04,Which accessories are compatible with TH1110D?,WALL-PLATE-A and WIRE-C-ADAPTER,1,graph,0,11,False,0.0
+q04,Which accessories are compatible with TH1110D?,WALL-PLATE-A and WIRE-C-ADAPTER,1,vector,2,0,True,0.5
+q04,Which accessories are compatible with TH1110D?,WALL-PLATE-A and WIRE-C-ADAPTER,1,hybrid,2,10,True,0.5
+q05,What system type does the SMK-100 belong to?,Fire Safety,1,graph,0,11,False,0.0
+q05,What system type does the SMK-100 belong to?,Fire Safety,1,vector,2,0,False,0.0
+q05,What system type does the SMK-100 belong to?,Fire Safety,1,hybrid,2,11,False,0.0
+q06,What accessories can I use with the replacement for TH1110D?,WALL-PLATE-A and REDLINK-GATEWAY,2,graph,0,29,False,0.0
+q06,What accessories can I use with the replacement for TH1110D?,WALL-PLATE-A and REDLINK-GATEWAY,2,vector,3,0,True,0.333
+q06,What accessories can I use with the replacement for TH1110D?,WALL-PLATE-A and REDLINK-GATEWAY,2,hybrid,3,31,True,0.333
+q07,What system type does the replacement for TH1110D belong to?,HVAC,2,graph,0,33,False,0.0
+q07,What system type does the replacement for TH1110D belong to?,HVAC,2,vector,3,0,True,0.333
+q07,What system type does the replacement for TH1110D belong to?,HVAC,2,hybrid,3,33,True,0.333
+q08,Which accessories are shared between TH1110D and its replacement?,WALL-PLATE-A,2,graph,0,51,False,0.0
+q08,Which accessories are shared between TH1110D and its replacement?,WALL-PLATE-A,2,vector,4,0,True,0.25
+q08,Which accessories are shared between TH1110D and its replacement?,WALL-PLATE-A,2,hybrid,4,31,True,0.25
+q09,Which thermostat is recommended for retrofit installations?,T6-PRO,1,graph,0,0,False,0.0
+q09,Which thermostat is recommended for retrofit installations?,T6-PRO,1,vector,3,0,True,0.667
+q09,Which thermostat is recommended for retrofit installations?,T6-PRO,1,hybrid,3,0,True,0.667
+q10,What compliance standards apply to the SMK-100 smoke detector?,UL 268 and NFPA 72,2,graph,0,0,False,0.0
+q10,What compliance standards apply to the SMK-100 smoke detector?,UL 268 and NFPA 72,2,vector,2,0,True,0.5
+q10,What compliance standards apply to the SMK-100 smoke detector?,UL 268 and NFPA 72,2,hybrid,2,0,True,0.5
+q11,Can WALL-PLATE-A be used with a discontinued thermostat?,yes,2,graph,0,0,False,0.0
+q11,Can WALL-PLATE-A be used with a discontinued thermostat?,yes,2,vector,2,0,False,0.0
+q11,Can WALL-PLATE-A be used with a discontinued thermostat?,yes,2,hybrid,2,0,False,0.0
+q12,Which active HVAC products support REDLINK-GATEWAY?,T6-PRO,2,graph,0,10,False,0.0
+q12,Which active HVAC products support REDLINK-GATEWAY?,T6-PRO,2,vector,1,0,True,1.0
+q12,Which active HVAC products support REDLINK-GATEWAY?,T6-PRO,2,hybrid,1,12,True,1.0
+q13,Which accessories are compatible with SMK-100?,BASE-LOW-PROFILE,1,graph,0,11,False,0.0
+q13,Which accessories are compatible with SMK-100?,BASE-LOW-PROFILE,1,vector,2,0,False,0.0
+q13,Which accessories are compatible with SMK-100?,BASE-LOW-PROFILE,1,hybrid,2,9,False,0.0
+q14,Is SMK-100 still active?,active,1,graph,0,0,False,0.0
+q14,Is SMK-100 still active?,active,1,vector,3,0,False,0.0
+q14,Is SMK-100 still active?,active,1,hybrid,3,0,False,0.0
+q15,What system type does TH1110D belong to?,HVAC,1,graph,0,8,False,0.0
+q15,What system type does TH1110D belong to?,HVAC,1,vector,2,0,True,0.5
+q15,What system type does TH1110D belong to?,HVAC,1,hybrid,2,12,True,0.5
+q16,What system type does T6-PRO belong to?,HVAC,1,graph,0,11,False,0.0
+q16,What system type does T6-PRO belong to?,HVAC,1,vector,2,0,True,0.5
+q16,What system type does T6-PRO belong to?,HVAC,1,hybrid,2,9,True,0.5
+q17,Which accessories are shared between T6-PRO and TH1110D?,WALL-PLATE-A,2,graph,0,9,False,0.0
+q17,Which accessories are shared between T6-PRO and TH1110D?,WALL-PLATE-A,2,vector,4,0,True,0.25
+q17,Which accessories are shared between T6-PRO and TH1110D?,WALL-PLATE-A,2,hybrid,4,12,True,0.25
+q18,What does T6-PRO replace?,TH1110D,1,graph,0,17,False,0.0
+q18,What does T6-PRO replace?,TH1110D,1,vector,2,0,True,1.0
+q18,What does T6-PRO replace?,TH1110D,1,hybrid,2,20,True,1.0
+q19,Is T6-PRO an active product?,active,1,graph,0,0,False,0.0
+q19,Is T6-PRO an active product?,active,1,vector,2,0,False,0.0
+q19,Is T6-PRO an active product?,active,1,hybrid,2,0,False,0.0
+q20,Which products are compatible with WALL-PLATE-A?,TH1110D and T6-PRO,2,graph,0,10,False,0.0
+q20,Which products are compatible with WALL-PLATE-A?,TH1110D and T6-PRO,2,vector,1,0,True,1.0
+q20,Which products are compatible with WALL-PLATE-A?,TH1110D and T6-PRO,2,hybrid,1,11,True,1.0
+q21,Which accessory is compatible with both TH1110D and T6-PRO for retrofit installations?,WALL-PLATE-A,1,graph,0,9,False,0.0
+q21,Which accessory is compatible with both TH1110D and T6-PRO for retrofit installations?,WALL-PLATE-A,1,vector,4,0,True,0.25
+q21,Which accessory is compatible with both TH1110D and T6-PRO for retrofit installations?,WALL-PLATE-A,1,hybrid,4,9,True,0.25
+q22,Which thermostat is the modern replacement for legacy TH1110D in standard residential HVAC systems?,T6-PRO,1,graph,0,245,False,0.0
+q22,Which thermostat is the modern replacement for legacy TH1110D in standard residential HVAC systems?,T6-PRO,1,vector,3,0,True,0.667
+q22,Which thermostat is the modern replacement for legacy TH1110D in standard residential HVAC systems?,T6-PRO,1,hybrid,3,34,True,0.667
+q23,What certification standard is mentioned for avionics software in the corpus?,DO-178C,1,graph,0,0,False,0.0
+q23,What certification standard is mentioned for avionics software in the corpus?,DO-178C,1,vector,3,0,True,0.333
+q23,What certification standard is mentioned for avionics software in the corpus?,DO-178C,1,hybrid,3,0,True,0.333
+q24,Which organizations are referenced for avionics certification evidence?,FAA and EASA,1,graph,0,0,False,0.0
+q24,Which organizations are referenced for avionics certification evidence?,FAA and EASA,1,vector,3,0,True,0.333
+q24,Which organizations are referenced for avionics certification evidence?,FAA and EASA,1,hybrid,3,0,True,0.333
+q25,What standards does the SMK-100 smoke detector follow?,UL 268 and NFPA 72,2,graph,0,0,False,0.0
+q25,What standards does the SMK-100 smoke detector follow?,UL 268 and NFPA 72,2,vector,2,0,True,0.5
+q25,What standards does the SMK-100 smoke detector follow?,UL 268 and NFPA 72,2,hybrid,2,0,True,0.5
+q26,Which product is a smoke detector?,SMK-100,1,graph,0,0,False,0.0
+q26,Which product is a smoke detector?,SMK-100,1,vector,3,0,True,0.333
+q26,Which product is a smoke detector?,SMK-100,1,hybrid,3,0,True,0.333
+q27,What is the replacement for TH1110D and what accessories support it?,T6-PRO and WALL-PLATE-A and REDLINK-GATEWAY,2,graph,0,32,False,0.0
+q27,What is the replacement for TH1110D and what accessories support it?,T6-PRO and WALL-PLATE-A and REDLINK-GATEWAY,2,vector,4,0,True,0.5
+q27,What is the replacement for TH1110D and what accessories support it?,T6-PRO and WALL-PLATE-A and REDLINK-GATEWAY,2,hybrid,4,28,True,0.5
+q28,What is the replacement for TH1110D and what system type does it belong to?,T6-PRO and HVAC,2,graph,0,30,False,0.0
+q28,What is the replacement for TH1110D and what system type does it belong to?,T6-PRO and HVAC,2,vector,4,0,True,0.5
+q28,What is the replacement for TH1110D and what system type does it belong to?,T6-PRO and HVAC,2,hybrid,4,26,True,0.5
+q29,Which products support REDLINK-GATEWAY?,T6-PRO,2,graph,0,0,False,0.0
+q29,Which products support REDLINK-GATEWAY?,T6-PRO,2,vector,0,0,False,0.0
+q29,Which products support REDLINK-GATEWAY?,T6-PRO,2,hybrid,0,0,False,0.0
+q30,Which accessory is compatible with TH1110D for retrofit installations?,WALL-PLATE-A,1,graph,0,8,False,0.0
+q30,Which accessory is compatible with TH1110D for retrofit installations?,WALL-PLATE-A,1,vector,3,0,True,0.333
+q30,Which accessory is compatible with TH1110D for retrofit installations?,WALL-PLATE-A,1,hybrid,3,9,True,0.333

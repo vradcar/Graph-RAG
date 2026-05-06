@@ -20,9 +20,11 @@ Prerequisites:
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 import textwrap
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -108,19 +110,44 @@ SHOWCASE_QUERIES = [
 ]
 
 
-def _run_mode(question: str, mode: str, depth: int) -> str:
+def _format_graph_hits(triples: list[tuple[str, str, str]]) -> str:
+    if not triples:
+        return "(no graph evidence)"
+    lines = [f"- {src} --[{rel}]--> {tgt}" for src, rel, tgt in triples]
+    return "\n".join(lines)
+
+
+def _format_vector_hits(hits: list[dict]) -> str:
+    if not hits:
+        return "(no vector hits)"
+    lines = []
+    for hit in hits:
+        doc_id = hit.get("id") or hit.get("node_id") or "(unknown)"
+        text = hit.get("text", "")
+        lines.append(f"- {doc_id}: {text}")
+    return "\n".join(lines)
+
+
+def _run_mode(question: str, mode: str, depth: int, vector_store, graph_store) -> str:
     """Run a single query in the given mode and return a formatted answer string."""
-    from src.pipeline.query import run_query
+    from src.retrieval.graph_retriever import graph_retrieve
+
     try:
-        return run_query(question, depth=depth, mode=mode)
+        if mode == "graph":
+            triples = graph_retrieve(graph_store, question, depth=depth)
+            return _format_graph_hits(list(triples))
+        if mode == "vector":
+            hits = vector_store.search(question, top_k=5)
+            return _format_vector_hits(hits)
+        return "[ERROR] Unsupported mode"
     except SystemExit:
         return "[ERROR] NEO4J_PASSWORD not set. Set it in .env and retry."
     except Exception as exc:
         return f"[ERROR] {exc}"
 
 
-def _print_divider(char: str = "=", width: int = 76) -> None:
-    print(char * width)
+def _print_divider(char: str = "=", width: int = 76) -> str:
+    return char * width
 
 
 def _wrap(text: str, indent: int = 4) -> str:
@@ -128,33 +155,67 @@ def _wrap(text: str, indent: int = 4) -> str:
     return textwrap.fill(text, width=76, initial_indent=prefix, subsequent_indent=prefix)
 
 
-def run_showcase(queries, modes: list[str], depth: int) -> None:
-    print()
-    _print_divider("#")
-    print("#  Honeywell T9 GraphRAG — Demo Showcase                              #")
-    print("#  Comparing retrieval modes: graph vs vector                         #")
-    _print_divider("#")
+def run_showcase(queries, modes: list[str], depth: int, output_path: str | None = None) -> None:
+    lines: list[str] = []
 
-    for entry in queries:
-        print()
-        _print_divider()
-        print(f"Query #{entry['id']}: {entry['question']}")
-        _print_divider()
-        print()
-        print("  WHY GRAPH WINS HERE:")
-        print(_wrap(entry["graph_advantage"]))
-        print()
+    def emit(line: str = "") -> None:
+        print(line)
+        lines.append(line)
 
-        for mode in modes:
-            print(f"  --- {mode.upper()} MODE ---")
-            answer_text = _run_mode(entry["question"], mode=mode, depth=depth)
-            for line in answer_text.splitlines():
-                print(f"    {line}")
-            print()
+    emit()
+    emit(_print_divider("#"))
+    emit("#  Honeywell T9 GraphRAG — Demo Showcase                              #")
+    emit("#  Comparing retrieval modes: graph vs vector                         #")
+    emit(_print_divider("#"))
 
-    _print_divider()
-    print("Showcase complete.")
-    _print_divider()
+    from src.common.config import load_settings
+    from src.graph.store import Neo4jGraphStore
+    from src.retrieval.vector_store import SimpleVectorStore
+
+    settings = load_settings()
+    neo4j_uri = os.getenv("NEO4J_URI") or settings["graph"]["neo4j_uri"]
+    neo4j_user = os.getenv("NEO4J_USER") or settings["graph"]["neo4j_user"]
+    neo4j_password = os.getenv("NEO4J_PASSWORD")
+    if not neo4j_password:
+        raise SystemExit("NEO4J_PASSWORD not set")
+
+    docs_path = Path("data/raw/doc_chunks.json")
+    with docs_path.open("r", encoding="utf-8") as f:
+        doc_chunks = json.load(f)
+    vector_store = SimpleVectorStore()
+    vector_store.add_documents(doc_chunks)
+
+    with Neo4jGraphStore(uri=neo4j_uri, user=neo4j_user, password=neo4j_password) as graph_store:
+        for entry in queries:
+            emit()
+            emit(_print_divider())
+            emit(f"Query #{entry['id']}: {entry['question']}")
+            emit(_print_divider())
+            emit()
+            emit("  WHY GRAPH WINS HERE:")
+            emit(_wrap(entry["graph_advantage"]))
+            emit()
+
+            for mode in modes:
+                emit(f"  --- {mode.upper()} MODE ---")
+                answer_text = _run_mode(
+                    entry["question"],
+                    mode=mode,
+                    depth=depth,
+                    vector_store=vector_store,
+                    graph_store=graph_store,
+                )
+                for line in answer_text.splitlines():
+                    emit(f"    {line}")
+                emit()
+
+    emit(_print_divider())
+    emit("Showcase complete.")
+    emit(_print_divider())
+
+    if output_path:
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
 
 
 def main() -> None:
@@ -179,6 +240,11 @@ def main() -> None:
         default=2,
         help="Graph traversal depth (default 2).",
     )
+    parser.add_argument(
+        "--output",
+        default=None,
+        help="Optional path to write a text transcript of the showcase output",
+    )
     args = parser.parse_args()
 
     if args.mode == "both":
@@ -193,7 +259,7 @@ def main() -> None:
             print(f"No query with id={args.query}. Valid range: 1-8.", file=sys.stderr)
             sys.exit(1)
 
-    run_showcase(queries, modes=modes, depth=args.depth)
+    run_showcase(queries, modes=modes, depth=args.depth, output_path=args.output)
 
 
 if __name__ == "__main__":

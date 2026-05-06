@@ -51,6 +51,15 @@ python -m src.pipeline.ingest --input data/raw/t9-thermostat.pdf --replacements 
 
 Expected: message showing output file with node and edge counts.
 
+## 5b) Multi-PDF Ingest (manifest)
+Use the manifest-based batch loader to process the full corpus:
+
+```powershell
+python scripts/batch_ingest.py --dry-run --manifest data/raw/manifest.json
+```
+
+Then run the same command without `--dry-run` to load into Neo4j.
+
 ## 6) Load Data Into Neo4j
 ```powershell
 python -m src.graph.neo4j_loader --input data/processed/graph_items.json --verify
@@ -76,6 +85,11 @@ python -m src.pipeline.evaluate --queries data/eval/queries.json --output data/e
 
 Check output in `data/eval/results.json`.
 
+Optional exports:
+```powershell
+python -m src.pipeline.evaluate --queries data/eval/queries.json --output data/eval/results.json --output-csv data/eval/results.csv --summary data/eval/summary.json
+```
+
 ## 9) Run Streamlit App
 ```powershell
 python -m streamlit run app.py
@@ -89,6 +103,11 @@ In app:
 - open **Graph Evidence**
 - use **Download Evidence (JSON/TXT)** for report artifacts
 
+## 9b) Demo showcase (graph vs vector)
+```powershell
+python -m scripts.demo_showcase --mode both --depth 2 --output reports/week3_demo_showcase.txt
+```
+
 ## 10) Common Issues
 - `ModuleNotFoundError` for packages:
   - Ensure `.venv` is active and reinstall: `python -m pip install -r requirements.txt`
@@ -98,6 +117,9 @@ In app:
   - Verify container is running and `.env` password matches Docker auth.
 - Query says not found:
   - Ask with concrete entity IDs or use the replacement question shown above.
+
+## 12) Docker Compose (recommended)
+See [docs/deployment.md](docs/deployment.md) for the one-command Docker setup.
 
 ## 11) Deliverable Evidence Checklist
 - Neo4j graph screenshot

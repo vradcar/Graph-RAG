@@ -1,27 +1,23 @@
 [
   {
+    "id": "q01",
     "question": "What is the modern replacement for TH1110D?",
     "depth": 1,
     "expected": "T6-PRO",
     "graph": {
-      "hit_count": 2,
-      "latency_sec": 0.065,
-      "evidence": [
-        {
-          "source": "rth6580wf_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t9_rcht9610wf"
-        },
-        {
-          "source": "th1110d_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t6_th6320wf"
-        }
-      ]
+      "hit_count": 0,
+      "latency_sec": 0.836,
+      "latency_ms": 836,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
     },
     "vector": {
       "hit_count": 3,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -29,9 +25,12 @@
       ]
     },
     "hybrid": {
-      "graph_hit_count": 2,
+      "graph_hit_count": 0,
       "doc_hit_count": 3,
-      "latency_sec": 0.009,
+      "latency_sec": 0.025,
+      "latency_ms": 24,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -40,17 +39,24 @@
     }
   },
   {
+    "id": "q02",
     "question": "Is TH1110D still an active product?",
     "depth": 1,
     "expected": "discontinued",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.006,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-1",
         "doc-2"
@@ -59,7 +65,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.006,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-1",
         "doc-2"
@@ -67,17 +76,24 @@
     }
   },
   {
+    "id": "q03",
     "question": "Which accessories are compatible with T6-PRO?",
     "depth": 1,
     "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.008,
+      "latency_sec": 0.209,
+      "latency_ms": 208,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -86,7 +102,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.01,
+      "latency_sec": 0.013,
+      "latency_ms": 12,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -94,17 +113,24 @@
     }
   },
   {
+    "id": "q04",
     "question": "Which accessories are compatible with TH1110D?",
     "depth": 1,
     "expected": "WALL-PLATE-A and WIRE-C-ADAPTER",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.008,
+      "latency_sec": 0.012,
+      "latency_ms": 11,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -113,7 +139,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.008,
+      "latency_sec": 0.011,
+      "latency_ms": 10,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -121,17 +150,24 @@
     }
   },
   {
+    "id": "q05",
     "question": "What system type does the SMK-100 belong to?",
     "depth": 1,
     "expected": "Fire Safety",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.005,
+      "latency_sec": 0.011,
+      "latency_ms": 11,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-3",
         "doc-1"
@@ -140,7 +176,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.006,
+      "latency_sec": 0.011,
+      "latency_ms": 11,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-3",
         "doc-1"
@@ -148,108 +187,24 @@
     }
   },
   {
+    "id": "q06",
     "question": "What accessories can I use with the replacement for TH1110D?",
     "depth": 2,
     "expected": "WALL-PLATE-A and REDLINK-GATEWAY",
     "graph": {
-      "hit_count": 25,
-      "latency_sec": 0.026,
-      "evidence": [
-        {
-          "source": "rth6580wf_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t9_rcht9610wf"
-        },
-        {
-          "source": "th1110d_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t6_th6320wf"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "MOUNTS_ON",
-          "target": "uwp"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "forced_air_heating"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "central_cooling"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "heat_pump"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "HAS_ELECTRICAL_SPEC",
-          "target": "t9_power"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "NEEDS_ADAPTER_IF_MISSING",
-          "target": "c_wire_adapter"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_a"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_c"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_e"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_g"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_k"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_o_b"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_r"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rc"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rh"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_u"
-        }
-      ]
+      "hit_count": 0,
+      "latency_sec": 0.029,
+      "latency_ms": 29,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
     },
     "vector": {
       "hit_count": 3,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -257,9 +212,12 @@
       ]
     },
     "hybrid": {
-      "graph_hit_count": 25,
+      "graph_hit_count": 0,
       "doc_hit_count": 3,
-      "latency_sec": 0.053,
+      "latency_sec": 0.031,
+      "latency_ms": 31,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -268,108 +226,24 @@
     }
   },
   {
+    "id": "q07",
     "question": "What system type does the replacement for TH1110D belong to?",
     "depth": 2,
     "expected": "HVAC",
     "graph": {
-      "hit_count": 25,
-      "latency_sec": 0.019,
-      "evidence": [
-        {
-          "source": "rth6580wf_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t9_rcht9610wf"
-        },
-        {
-          "source": "th1110d_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t6_th6320wf"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "MOUNTS_ON",
-          "target": "uwp"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "forced_air_heating"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "central_cooling"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "heat_pump"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "HAS_ELECTRICAL_SPEC",
-          "target": "t9_power"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "NEEDS_ADAPTER_IF_MISSING",
-          "target": "c_wire_adapter"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_a"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_c"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_e"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_g"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_k"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_o_b"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_r"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rc"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rh"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_u"
-        }
-      ]
+      "hit_count": 0,
+      "latency_sec": 0.033,
+      "latency_ms": 33,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
     },
     "vector": {
       "hit_count": 3,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -377,9 +251,12 @@
       ]
     },
     "hybrid": {
-      "graph_hit_count": 25,
+      "graph_hit_count": 0,
       "doc_hit_count": 3,
-      "latency_sec": 0.019,
+      "latency_sec": 0.033,
+      "latency_ms": 33,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -388,108 +265,24 @@
     }
   },
   {
+    "id": "q08",
     "question": "Which accessories are shared between TH1110D and its replacement?",
     "depth": 2,
     "expected": "WALL-PLATE-A",
     "graph": {
-      "hit_count": 25,
-      "latency_sec": 0.019,
-      "evidence": [
-        {
-          "source": "rth6580wf_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t9_rcht9610wf"
-        },
-        {
-          "source": "th1110d_legacy",
-          "relation": "REPLACED_BY",
-          "target": "t6_th6320wf"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "MOUNTS_ON",
-          "target": "uwp"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "forced_air_heating"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "central_cooling"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "COMPATIBLE_WITH",
-          "target": "heat_pump"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "HAS_ELECTRICAL_SPEC",
-          "target": "t9_power"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "NEEDS_ADAPTER_IF_MISSING",
-          "target": "c_wire_adapter"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_a"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_c"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_e"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_g"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_k"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_o_b"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_r"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rc"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_rh"
-        },
-        {
-          "source": "t9_rcht9610wf",
-          "relation": "REQUIRES",
-          "target": "terminal_u"
-        }
-      ]
+      "hit_count": 0,
+      "latency_sec": 0.051,
+      "latency_ms": 51,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
     },
     "vector": {
       "hit_count": 4,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -498,9 +291,12 @@
       ]
     },
     "hybrid": {
-      "graph_hit_count": 25,
+      "graph_hit_count": 0,
       "doc_hit_count": 4,
-      "latency_sec": 0.018,
+      "latency_sec": 0.032,
+      "latency_ms": 31,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
       "doc_ids": [
         "doc-1",
         "doc-2",
@@ -510,17 +306,24 @@
     }
   },
   {
+    "id": "q09",
     "question": "Which thermostat is recommended for retrofit installations?",
     "depth": 1,
     "expected": "T6-PRO",
     "graph": {
       "hit_count": 0,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 3,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
       "doc_ids": [
         "doc-2",
         "doc-1",
@@ -531,6 +334,9 @@
       "graph_hit_count": 0,
       "doc_hit_count": 3,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
       "doc_ids": [
         "doc-2",
         "doc-1",
@@ -539,17 +345,24 @@
     }
   },
   {
+    "id": "q10",
     "question": "What compliance standards apply to the SMK-100 smoke detector?",
     "depth": 2,
     "expected": "UL 268 and NFPA 72",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.006,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-3",
         "doc-1"
@@ -558,7 +371,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.006,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
       "doc_ids": [
         "doc-3",
         "doc-1"
@@ -566,17 +382,24 @@
     }
   },
   {
+    "id": "q11",
     "question": "Can WALL-PLATE-A be used with a discontinued thermostat?",
     "depth": 2,
     "expected": "yes",
     "graph": {
       "hit_count": 0,
-      "latency_sec": 0.061,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 2,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -585,7 +408,10 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 2,
-      "latency_sec": 0.008,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "doc_ids": [
         "doc-2",
         "doc-1"
@@ -593,17 +419,24 @@
     }
   },
   {
+    "id": "q12",
     "question": "Which active HVAC products support REDLINK-GATEWAY?",
     "depth": 2,
     "expected": "T6-PRO",
     "graph": {
       "hit_count": 0,
       "latency_sec": 0.011,
+      "latency_ms": 10,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
       "evidence": []
     },
     "vector": {
       "hit_count": 1,
       "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
       "doc_ids": [
         "doc-1"
       ]
@@ -611,9 +444,698 @@
     "hybrid": {
       "graph_hit_count": 0,
       "doc_hit_count": 1,
-      "latency_sec": 0.006,
+      "latency_sec": 0.012,
+      "latency_ms": 12,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
       "doc_ids": [
         "doc-1"
+      ]
+    }
+  },
+  {
+    "id": "q13",
+    "question": "Which accessories are compatible with SMK-100?",
+    "depth": 1,
+    "expected": "BASE-LOW-PROFILE",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.012,
+      "latency_ms": 11,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-3"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.01,
+      "latency_ms": 9,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-2",
+        "doc-3"
+      ]
+    }
+  },
+  {
+    "id": "q14",
+    "question": "Is SMK-100 still active?",
+    "depth": 1,
+    "expected": "active",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-3",
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-3",
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q15",
+    "question": "What system type does TH1110D belong to?",
+    "depth": 1,
+    "expected": "HVAC",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.009,
+      "latency_ms": 8,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.013,
+      "latency_ms": 12,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q16",
+    "question": "What system type does T6-PRO belong to?",
+    "depth": 1,
+    "expected": "HVAC",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.011,
+      "latency_ms": 11,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.009,
+      "latency_ms": 9,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q17",
+    "question": "Which accessories are shared between T6-PRO and TH1110D?",
+    "depth": 2,
+    "expected": "WALL-PLATE-A",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.009,
+      "latency_ms": 9,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 4,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-3",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 4,
+      "latency_sec": 0.013,
+      "latency_ms": 12,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-3",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "id": "q18",
+    "question": "What does T6-PRO replace?",
+    "depth": 1,
+    "expected": "TH1110D",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.017,
+      "latency_ms": 17,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.02,
+      "latency_ms": 20,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q19",
+    "question": "Is T6-PRO an active product?",
+    "depth": 1,
+    "expected": "active",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": [
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q20",
+    "question": "Which products are compatible with WALL-PLATE-A?",
+    "depth": 2,
+    "expected": "TH1110D and T6-PRO",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.011,
+      "latency_ms": 10,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 1,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
+      "doc_ids": [
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 1,
+      "latency_sec": 0.011,
+      "latency_ms": 11,
+      "contains_expected": true,
+      "precision_at_k": 1.0,
+      "doc_ids": [
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q21",
+    "question": "Which accessory is compatible with both TH1110D and T6-PRO for retrofit installations?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.009,
+      "latency_ms": 9,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 4,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4",
+        "doc-3"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 4,
+      "latency_sec": 0.01,
+      "latency_ms": 9,
+      "contains_expected": true,
+      "precision_at_k": 0.25,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4",
+        "doc-3"
+      ]
+    }
+  },
+  {
+    "id": "q22",
+    "question": "Which thermostat is the modern replacement for legacy TH1110D in standard residential HVAC systems?",
+    "depth": 1,
+    "expected": "T6-PRO",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.245,
+      "latency_ms": 245,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.035,
+      "latency_ms": 34,
+      "contains_expected": true,
+      "precision_at_k": 0.667,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4"
+      ]
+    }
+  },
+  {
+    "id": "q23",
+    "question": "What certification standard is mentioned for avionics software in the corpus?",
+    "depth": 1,
+    "expected": "DO-178C",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-1",
+        "doc-4",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-1",
+        "doc-4",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q24",
+    "question": "Which organizations are referenced for avionics certification evidence?",
+    "depth": 1,
+    "expected": "FAA and EASA",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-4",
+        "doc-1",
+        "doc-2"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-4",
+        "doc-1",
+        "doc-2"
+      ]
+    }
+  },
+  {
+    "id": "q25",
+    "question": "What standards does the SMK-100 smoke detector follow?",
+    "depth": 2,
+    "expected": "UL 268 and NFPA 72",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 2,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-3",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "id": "q26",
+    "question": "Which product is a smoke detector?",
+    "depth": 1,
+    "expected": "SMK-100",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-2",
+        "doc-3",
+        "doc-1"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-2",
+        "doc-3",
+        "doc-1"
+      ]
+    }
+  },
+  {
+    "id": "q27",
+    "question": "What is the replacement for TH1110D and what accessories support it?",
+    "depth": 2,
+    "expected": "T6-PRO and WALL-PLATE-A and REDLINK-GATEWAY",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.033,
+      "latency_ms": 32,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 4,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4",
+        "doc-3"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 4,
+      "latency_sec": 0.028,
+      "latency_ms": 28,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4",
+        "doc-3"
+      ]
+    }
+  },
+  {
+    "id": "q28",
+    "question": "What is the replacement for TH1110D and what system type does it belong to?",
+    "depth": 2,
+    "expected": "T6-PRO and HVAC",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.031,
+      "latency_ms": 30,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 4,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4",
+        "doc-3"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 4,
+      "latency_sec": 0.027,
+      "latency_ms": 26,
+      "contains_expected": true,
+      "precision_at_k": 0.5,
+      "doc_ids": [
+        "doc-1",
+        "doc-2",
+        "doc-4",
+        "doc-3"
+      ]
+    }
+  },
+  {
+    "id": "q29",
+    "question": "Which products support REDLINK-GATEWAY?",
+    "depth": 2,
+    "expected": "T6-PRO",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": []
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 0,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "doc_ids": []
+    }
+  },
+  {
+    "id": "q30",
+    "question": "Which accessory is compatible with TH1110D for retrofit installations?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A",
+    "graph": {
+      "hit_count": 0,
+      "latency_sec": 0.008,
+      "latency_ms": 8,
+      "contains_expected": false,
+      "precision_at_k": 0.0,
+      "evidence": []
+    },
+    "vector": {
+      "hit_count": 3,
+      "latency_sec": 0.0,
+      "latency_ms": 0,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4"
+      ]
+    },
+    "hybrid": {
+      "graph_hit_count": 0,
+      "doc_hit_count": 3,
+      "latency_sec": 0.009,
+      "latency_ms": 9,
+      "contains_expected": true,
+      "precision_at_k": 0.333,
+      "doc_ids": [
+        "doc-2",
+        "doc-1",
+        "doc-4"
       ]
     }
   }

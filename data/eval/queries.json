@@ -94,5 +94,149 @@
     "expected": "T6-PRO",
     "type": "multi_hop",
     "notes": "Reverse 2-hop: REDLINK-GATEWAY -> products -> filter by status=active and system_type=HVAC"
+  },
+  {
+    "id": "q13",
+    "question": "Which accessories are compatible with SMK-100?",
+    "depth": 1,
+    "expected": "BASE-LOW-PROFILE",
+    "type": "simple",
+    "notes": "1-hop neighbor lookup on SMK-100"
+  },
+  {
+    "id": "q14",
+    "question": "Is SMK-100 still active?",
+    "depth": 1,
+    "expected": "active",
+    "type": "simple",
+    "notes": "Single node attribute — status check"
+  },
+  {
+    "id": "q15",
+    "question": "What system type does TH1110D belong to?",
+    "depth": 1,
+    "expected": "HVAC",
+    "type": "simple",
+    "notes": "Single node attribute"
+  },
+  {
+    "id": "q16",
+    "question": "What system type does T6-PRO belong to?",
+    "depth": 1,
+    "expected": "HVAC",
+    "type": "simple",
+    "notes": "Single node attribute"
+  },
+  {
+    "id": "q17",
+    "question": "Which accessories are shared between T6-PRO and TH1110D?",
+    "depth": 2,
+    "expected": "WALL-PLATE-A",
+    "type": "multi_hop",
+    "notes": "2-hop: compare accessories across two products"
+  },
+  {
+    "id": "q18",
+    "question": "What does T6-PRO replace?",
+    "depth": 1,
+    "expected": "TH1110D",
+    "type": "simple",
+    "notes": "Direct replacement edge reversed"
+  },
+  {
+    "id": "q19",
+    "question": "Is T6-PRO an active product?",
+    "depth": 1,
+    "expected": "active",
+    "type": "simple",
+    "notes": "Single node attribute — status check"
+  },
+  {
+    "id": "q20",
+    "question": "Which products are compatible with WALL-PLATE-A?",
+    "depth": 2,
+    "expected": "TH1110D and T6-PRO",
+    "type": "multi_hop",
+    "notes": "Reverse traversal: accessory -> products"
+  },
+  {
+    "id": "q21",
+    "question": "Which accessory is compatible with both TH1110D and T6-PRO for retrofit installations?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A",
+    "type": "vector_favored",
+    "notes": "Answer is explicit in doc-2 text"
+  },
+  {
+    "id": "q22",
+    "question": "Which thermostat is the modern replacement for legacy TH1110D in standard residential HVAC systems?",
+    "depth": 1,
+    "expected": "T6-PRO",
+    "type": "vector_favored",
+    "notes": "Answer appears in doc-1 text"
+  },
+  {
+    "id": "q23",
+    "question": "What certification standard is mentioned for avionics software in the corpus?",
+    "depth": 1,
+    "expected": "DO-178C",
+    "type": "vector_favored",
+    "notes": "Answer lives in doc-4 text"
+  },
+  {
+    "id": "q24",
+    "question": "Which organizations are referenced for avionics certification evidence?",
+    "depth": 1,
+    "expected": "FAA and EASA",
+    "type": "vector_favored",
+    "notes": "Answer lives in doc-4 text"
+  },
+  {
+    "id": "q25",
+    "question": "What standards does the SMK-100 smoke detector follow?",
+    "depth": 2,
+    "expected": "UL 268 and NFPA 72",
+    "type": "vector_favored",
+    "notes": "Answer is in doc-3 text"
+  },
+  {
+    "id": "q26",
+    "question": "Which product is a smoke detector?",
+    "depth": 1,
+    "expected": "SMK-100",
+    "type": "simple",
+    "notes": "Direct product identification"
+  },
+  {
+    "id": "q27",
+    "question": "What is the replacement for TH1110D and what accessories support it?",
+    "depth": 2,
+    "expected": "T6-PRO and WALL-PLATE-A and REDLINK-GATEWAY",
+    "type": "multi_hop",
+    "notes": "2-hop: TH1110D -> T6-PRO -> accessories"
+  },
+  {
+    "id": "q28",
+    "question": "What is the replacement for TH1110D and what system type does it belong to?",
+    "depth": 2,
+    "expected": "T6-PRO and HVAC",
+    "type": "multi_hop",
+    "notes": "2-hop: TH1110D -> T6-PRO -> system_type"
+  },
+  {
+    "id": "q29",
+    "question": "Which products support REDLINK-GATEWAY?",
+    "depth": 2,
+    "expected": "T6-PRO",
+    "type": "multi_hop",
+    "notes": "Reverse traversal from accessory"
+  },
+  {
+    "id": "q30",
+    "question": "Which accessory is compatible with TH1110D for retrofit installations?",
+    "depth": 1,
+    "expected": "WALL-PLATE-A",
+    "type": "vector_favored",
+    "notes": "Answer is explicit in doc-2 text"
   }
 ]

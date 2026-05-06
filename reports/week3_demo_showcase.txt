@@ -1,0 +1,147 @@
+
+############################################################################
+#  Honeywell T9 GraphRAG — Demo Showcase                              #
+#  Comparing retrieval modes: graph vs vector                         #
+############################################################################
+
+============================================================================
+Query #1: What accessories are compatible with the T9?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph follows COMPATIBLE_WITH edges from the T9 node directly, returning
+    the exact accessory set with no false positives. Vector finds
+    'compatible' mentions in text chunks but can mix in accessories from
+    unrelated products.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-2: WALL-PLATE-A is compatible with TH1110D and T6-PRO for retrofit installations.
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+
+
+============================================================================
+Query #2: What wiring configurations does the T9 support?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph traverses HAS_WIRING_CONFIG / CONNECTS_TO relationships and
+    returns structured wiring nodes (2-wire, 4-wire, C-wire, etc.). Vector
+    returns paragraphs that mention wiring — harder to extract a clean list
+    from.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+
+
+============================================================================
+Query #3: What are the T9 specifications?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Both modes work here, but graph exposes HAS_ELECTRICAL_SPEC edges as
+    structured triples. Vector retrieves the spec table as raw text.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+
+
+============================================================================
+Query #4: What is the modern replacement for the RTH6580WF?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph follows the REPLACED_BY chain (RTH6580WF → T9) and at depth=2 also
+    surfaces what the T9 supports — the full migration picture. Vector has
+    no way to traverse a replacement chain; it can only find documents that
+    happen to mention both products together.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+    - doc-2: WALL-PLATE-A is compatible with TH1110D and T6-PRO for retrofit installations.
+    - doc-4: FAA and EASA commonly rely on aligned certification evidence for avionics software where DO-178C applies.
+
+
+============================================================================
+Query #5: Does the T9 need a C-wire for heat-only systems?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Multi-hop: T9 → REQUIRES → C-Wire → NEEDED_FOR → heat-only. Vector may
+    return relevant paragraphs but cannot confirm the causal chain without
+    traversing intermediate nodes.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+    - doc-2: WALL-PLATE-A is compatible with TH1110D and T6-PRO for retrofit installations.
+    - doc-4: FAA and EASA commonly rely on aligned certification evidence for avionics software where DO-178C applies.
+
+
+============================================================================
+Query #6: What HVAC system types work with the T9?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph finds COMPATIBLE_WITH edges pointing at HVACSystemType nodes
+    (conventional, heat pump, dual fuel). Vector returns prose with the same
+    info, but without the node type distinction.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+    - doc-2: WALL-PLATE-A is compatible with TH1110D and T6-PRO for retrofit installations.
+
+
+============================================================================
+Query #7: What are the T9 electrical specifications?
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph returns HAS_ELECTRICAL_SPEC triples — voltage, current draw,
+    frequency — as structured data. Vector returns the spec table as a text
+    string that requires further parsing.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-1: T6-PRO is the modern replacement for legacy thermostat TH1110D in standard residential HVAC systems.
+
+
+============================================================================
+Query #8: List all discontinued thermostats and their replacements.
+============================================================================
+
+  WHY GRAPH WINS HERE:
+    Graph can exhaustively traverse all REPLACED_BY edges to build the
+    complete discontinued → replacement mapping. Vector can only surface
+    documents that happen to mention specific model pairs — it cannot
+    guarantee completeness.
+
+  --- GRAPH MODE ---
+    (no graph evidence)
+
+  --- VECTOR MODE ---
+    - doc-2: WALL-PLATE-A is compatible with TH1110D and T6-PRO for retrofit installations.
+    - doc-3: SMK-100 smoke detector follows UL 268 performance guidance and NFPA 72 installation constraints.
+    - doc-4: FAA and EASA commonly rely on aligned certification evidence for avionics software where DO-178C applies.
+
+============================================================================
+Showcase complete.
+============================================================================
