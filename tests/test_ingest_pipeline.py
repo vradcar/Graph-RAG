@@ -8,6 +8,7 @@ Tests marked with @pytest.mark.integration require:
 Run integration tests: pytest tests/test_ingest_pipeline.py -m integration -v
 Run unit tests only:    pytest tests/test_ingest_pipeline.py -m "not integration" -v
 """
+import json
 import os
 import pytest
 from pathlib import Path
@@ -22,30 +23,46 @@ def test_missing_pdf_raises():
         extract_page_content("data/raw/does_not_exist_xyzzy.pdf")
 
 
-def test_dry_run_returns_zero_writes():
-    """--dry-run must return nodes_written=0 and edges_written=0."""
-    from src.pipeline.ingest import run_ingest
-    # Dry run does not call Groq or Neo4j
-    # It WILL call extract_page_content (pymupdf + pdfplumber) and build_client (raises if no key)
-    # So skip this test if GROQ_API_KEY or OPENAI_API_KEY is not set
-    if not os.getenv("GROQ_API_KEY") and not os.getenv("OPENAI_API_KEY"):
-        pytest.skip("No LLM API key set — skipping dry run test")
-    result = run_ingest(PDF_PATH, dry_run=True)
-    assert result["nodes_written"] == 0
-    assert result["edges_written"] == 0
-    assert result["pages_processed"] >= 1
+def _run_main_against(output_path: Path, monkeypatch, extra_args: list[str] | None = None) -> dict:
+    """Invoke src.pipeline.ingest.main() as the CLI would, writing to output_path.
+
+    With no --doc-id, main() always routes a .pdf input through the legacy
+    pdfplumber extraction path (src.graph.extract.extract_from_pdf) rather
+    than the LLM path — so this needs no GROQ_API_KEY/OPENAI_API_KEY, unlike
+    the --doc-id + LLM-extraction path elsewhere in ingest.py.
+    """
+    from src.pipeline.ingest import main
+
+    argv = ["ingest.py", "--input", PDF_PATH, "--output", str(output_path)]
+    monkeypatch.setattr("sys.argv", argv + (extra_args or []))
+    main()
+    with output_path.open(encoding="utf-8") as f:
+        return json.load(f)
 
 
-def test_run_ingest_summary_has_expected_keys():
-    """run_ingest return value has the required structure."""
-    from src.pipeline.ingest import run_ingest
-    if not os.getenv("GROQ_API_KEY") and not os.getenv("OPENAI_API_KEY"):
-        pytest.skip("No LLM API key set — skipping")
-    result = run_ingest(PDF_PATH, dry_run=True)
-    assert "pages_processed" in result
-    assert "nodes_written" in result
-    assert "edges_written" in result
-    assert "node_counts" in result
+def test_ingest_writes_populated_nodes_and_edges(tmp_path, monkeypatch):
+    """A bare PDF ingest (no --doc-id) must write a JSON file with at least
+    one extracted node — mirrors the old 'dry run produces output' check,
+    updated for the current legacy-path-by-default CLI behavior."""
+    result = _run_main_against(tmp_path / "graph_items.json", monkeypatch)
+    assert "nodes" in result
+    assert "edges" in result
+    assert len(result["nodes"]) >= 1
+
+
+def test_ingest_output_nodes_have_legacy_shape():
+    """Written nodes must have the node_id/kind keys GraphStore.upsert_node
+    (and Neo4j loading generally) expects — the legacy shape documented at
+    the top of src/pipeline/ingest.py."""
+    from src.graph.extract import extract_from_pdf, graph_items_to_legacy_format
+
+    rich_graph = extract_from_pdf(Path(PDF_PATH))
+    graph_items = graph_items_to_legacy_format(rich_graph)
+
+    assert graph_items["nodes"], "expected at least one extracted node"
+    sample = graph_items["nodes"][0]
+    assert "node_id" in sample
+    assert "kind" in sample
 
 
 @pytest.mark.integration

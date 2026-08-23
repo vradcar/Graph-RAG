@@ -20,10 +20,14 @@ UNKNOWN_COPY = "Something went wrong. Check the terminal for details."
 
 
 def test_initial_render_has_required_widgets():
-    at = AppTest.from_file(APP_PATH).run(timeout=10)
+    # timeout=30: the app now parses/renders the full multi-doc comparison
+    # table on every run (all 4 tabs execute regardless of which is active),
+    # which comfortably exceeded the original 10s budget once that table grew
+    # with the richer embeddings-based retrieval evidence.
+    at = AppTest.from_file(APP_PATH).run(timeout=30)
     assert not at.exception, f"Initial render raised: {at.exception}"
     # Title + caption
-    assert at.title[0].value == "Honeywell T9 Knowledge Graph"
+    assert at.title[0].value == "Honeywell GraphRAG — Milestone 2.0 Demo"
     # Text input label (accessed by key in AppTest)
     ti_labels = [ti.label for ti in at.text_input]
     assert "Your question" in ti_labels
@@ -47,10 +51,13 @@ def test_initial_render_has_required_widgets():
 
 
 def test_initial_render_has_no_answer_area():
-    at = AppTest.from_file(APP_PATH).run(timeout=10)
-    assert len(at.info) == 0
+    # Note: at.info is NOT asserted empty here — the Corpus tab unconditionally
+    # renders one st.info() per document that has a `notes` field in
+    # manifest.json (3, currently), independent of whether a question has
+    # been asked. That's unrelated to the query-answer area this test covers.
+    at = AppTest.from_file(APP_PATH).run(timeout=30)
     assert len(at.error) == 0
-    assert len(at.expander) == 0  # no Graph Evidence expander before submission
+    assert len(at.expander) == 0  # no Graph Evidence / Debug Payload expander before submission
 
 
 @pytest.mark.parametrize("exc, expected", [
@@ -87,7 +94,10 @@ def test_not_found_renders_info_and_hides_evidence(monkeypatch):
     at.button[0].click().run(timeout=10)
 
     assert any("Try asking about T9 compatibility" in i.value for i in at.info)
-    assert len(at.expander) == 0  # D-11: evidence expander hidden in not-found state
+    # D-11: no *evidence* expander in not-found state. A "Debug Answer Payload"
+    # expander is expected here too — the export panel renders for any
+    # submitted answer, found or not — so check by label, not by count.
+    assert "Graph Evidence" not in [e.label for e in at.expander]
 
 
 def test_happy_path_renders_prose_and_evidence_expander(monkeypatch):

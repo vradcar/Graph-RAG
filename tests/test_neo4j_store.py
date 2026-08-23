@@ -52,16 +52,24 @@ def test_upsert_edge_calls_merge(mock_driver_factory, mock_driver):
 
 
 @patch("src.graph.store.GraphDatabase.driver")
-def test_setup_constraints_creates_five(mock_driver_factory, mock_driver):
+def test_setup_constraints_creates_one_per_node_kind(mock_driver_factory, mock_driver):
     driver, session = mock_driver
     mock_driver_factory.return_value = driver
     from src.graph.store import Neo4jGraphStore
+    from src.graph.schema import VALID_KINDS
     store = Neo4jGraphStore("bolt://localhost:7687", "neo4j", "password")
+    # __init__ itself issues one session.run (_load_id_keys' db.propertyKeys()
+    # call) against this same mocked session — baseline before setup_constraints
+    # so the assertion measures only what setup_constraints() contributes.
+    calls_before = session.run.call_count
     store.setup_constraints()
-    # Each label triggers one session.run call
-    assert session.run.call_count == 5
+    new_calls = session.run.call_args_list[calls_before:]
+    # Each label in the schema triggers one session.run call — asserted
+    # against VALID_KINDS itself, not a hardcoded count, so this doesn't go
+    # stale again the next time a node kind is added.
+    assert len(new_calls) == len(VALID_KINDS)
     # All calls include IF NOT EXISTS
-    for c in session.run.call_args_list:
+    for c in new_calls:
         assert "IF NOT EXISTS" in c[0][0]
 
 

@@ -27,6 +27,18 @@ class QueryAnswer(BaseModel):
     pipeline_stage: str = Field(default="", description="Which retrieval stage produced the triples: fast_path | llm_understanding | vector_fallback | none")
 
 
+NOT_FOUND_SUGGESTION = (
+    "This system answers questions about product compatibility, wiring/adapter "
+    "requirements, replacement paths, and specs grounded in the ingested "
+    "installation guides — it can't diagnose failures or general HVAC problems. "
+    "Try a question shaped like one of these:\n"
+    '  - "Is <accessory> compatible with <model>?"\n'
+    '  - "Does <model> need a C-wire adapter?"\n'
+    '  - "What replaced <old model>?"\n'
+    '  - "What is the electrical spec for <model>?"'
+)
+
+
 ANSWER_SYSTEM_PROMPT = (
     "You are an HVAC product knowledge assistant.\n"
     "Answer the user's question using ONLY the graph evidence provided.\n"
@@ -34,7 +46,11 @@ ANSWER_SYSTEM_PROMPT = (
     "- prose: a clear answer in 2-4 sentences\n"
     "- evidence: the specific triples that support your answer\n"
     "- not_found: true if the evidence does not contain relevant information\n"
-    "- suggestion: if not_found, suggest a related question the user could ask\n"
+    "- suggestion: if not_found, explain that this system answers product "
+    "compatibility, wiring/adapter requirements, replacement paths, and spec "
+    "lookups (not general troubleshooting or failure diagnosis), then give ONE "
+    "example question in that shape, e.g. 'Is <accessory> compatible with "
+    "<model>?' or 'Does <model> need a C-wire adapter?'\n"
     "Do not add information not present in the graph evidence."
 )
 
@@ -71,7 +87,7 @@ def _fallback_answer(question: str, triples: list[tuple[str, str, str]]) -> Quer
             prose="",
             evidence=[],
             not_found=True,
-            suggestion="Try asking about T9 compatibility, replacement paths, or wiring requirements.",
+            suggestion=NOT_FOUND_SUGGESTION,
         )
 
     rel_counts = Counter(rel for _, rel, _ in triples)

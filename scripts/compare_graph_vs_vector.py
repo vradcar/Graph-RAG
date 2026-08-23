@@ -333,8 +333,8 @@ def run(
     with_llm=True: calls generate_answer() — requires GROQ_API_KEY or OPENAI_API_KEY.
     """
     settings = load_settings()
-    neo4j_uri = settings["graph"]["neo4j_uri"]
-    neo4j_user = settings["graph"]["neo4j_user"]
+    neo4j_uri = os.getenv("NEO4J_URI") or settings["graph"]["neo4j_uri"]
+    neo4j_user = os.getenv("NEO4J_USER") or settings["graph"]["neo4j_user"]
     neo4j_password = os.getenv("NEO4J_PASSWORD")
     if not neo4j_password:
         print("ERROR: NEO4J_PASSWORD environment variable is required", file=sys.stderr)

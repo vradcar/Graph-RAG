@@ -1,27 +1,43 @@
-import re
-from typing import Dict, List
+from typing import Dict, List, Optional
+
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+_MODEL_NAME = "all-MiniLM-L6-v2"
+_MIN_SIMILARITY = 0.25  # cosine similarity floor below which a hit is treated as irrelevant
+
+_model: Optional[SentenceTransformer] = None
 
 
-def _tokenize(text: str) -> set:
-    return set(re.findall(r"[a-zA-Z0-9_]+", text.lower()))
+def _get_model() -> SentenceTransformer:
+    """Lazy singleton — the model is ~80MB and loading it is the expensive part."""
+    global _model
+    if _model is None:
+        _model = SentenceTransformer(_MODEL_NAME)
+    return _model
 
 
 class SimpleVectorStore:
+    """Semantic search over doc/node text using sentence-transformer embeddings."""
+
     def __init__(self):
         self.docs: List[Dict] = []
+        self._embeddings: Optional[np.ndarray] = None
 
     def add_documents(self, docs: List[Dict]) -> None:
         self.docs.extend(docs)
+        self._embeddings = None  # invalidate cache; rebuilt lazily on next search
 
     def search(self, query: str, top_k: int = 5) -> List[Dict]:
-        q_tokens = _tokenize(query)
-        scored = []
+        if not self.docs:
+            return []
 
-        for doc in self.docs:
-            d_tokens = _tokenize(doc.get("text", ""))
-            overlap = len(q_tokens & d_tokens)
-            if overlap > 0:
-                scored.append((overlap, doc))
+        if self._embeddings is None:
+            texts = [doc.get("text", "") for doc in self.docs]
+            self._embeddings = _get_model().encode(texts, normalize_embeddings=True)
 
-        scored.sort(key=lambda item: item[0], reverse=True)
-        return [item[1] for item in scored[:top_k]]
+        query_embedding = _get_model().encode([query], normalize_embeddings=True)[0]
+        scores = self._embeddings @ query_embedding  # cosine similarity (both sides normalized)
+
+        ranked = np.argsort(-scores)[:top_k]
+        return [self.docs[i] for i in ranked if scores[i] >= _MIN_SIMILARITY]
