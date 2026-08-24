@@ -25,3 +25,4 @@ reports/ingest_failures.log
 
 # Pre-migration backups
 data/processed/_pre_gemini_backup/
+Neo4j-3b68cef5-Created-2026-08-22.txt
