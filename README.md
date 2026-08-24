@@ -187,11 +187,23 @@ python -m scripts.demo_showcase --mode both --depth 2 --output reports/week3_dem
 
 `--mode` accepts `graph`, `vector`, `hybrid`, or `both`; use `--query N` to run a single one of the 8 curated demo questions.
 
+## Run the tests
+
+```
+python -m pytest tests/ -q -m "not integration"
+```
+
+148 passed, 3 skipped, 0 failed as of the last full run. Everything external (Neo4j, LLM calls) is mocked in the non-integration suite, so this needs no live services or API keys. A handful of tests are marked `@pytest.mark.integration` and require a running Neo4j plus a real API key — run those separately with `-m integration` when you actually want to exercise the live stack:
+
+```
+python -m pytest tests/ -q -m integration
+```
+
 ## Common issues
 
 - **ModuleNotFoundError: No module named 'src'**: run scripts as modules from the repo root (`python -m ...`), or set `PYTHONPATH=.` first — `scripts/seed_aura.py` and a few others import `src.*` at the top level.
 - **`neo4j.exceptions.AuthError: Unauthorized`**: almost always one of — (a) `.env` has `NEO4J_USERNAME` instead of `NEO4J_USER` (the code doesn't read the former, see Setup step 3); (b) on Aura, the username isn't `neo4j` — check the downloaded credentials file; (c) a local Docker volume from a previous run has different baked-in credentials than what's currently in `.env` (Neo4j only applies `NEO4J_AUTH` the first time a volume is created) — either recover the original password or wipe the volume and reseed.
-- **`ModuleNotFoundError: No module named 'sentence_transformers'`**: rerun `pip install -r requirements.txt` inside the active `.venv`.
+- **`ModuleNotFoundError: No module named 'sentence_transformers'` or `'fitz'`**: rerun `pip install -r requirements.txt` inside the active `.venv` — both `sentence-transformers` (vector search) and `pymupdf` (PDF parsing, imported as `fitz`) are declared dependencies.
 - **UnicodeEncodeError on Windows** printing `→`/`…` to the console: set `PYTHONIOENCODING=utf-8` before running.
 - **Streamlit mismatch**: use `python -m streamlit run app.py` from the venv, not a bare `streamlit run`.
 - **Query returns `not_found`**: either the graph doesn't have relevant data, or the question doesn't match a real node/relation — try one of the suggested rephrasings in the response, or check actual node IDs in Neo4j Browser / Aura console.
