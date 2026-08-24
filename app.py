@@ -22,9 +22,18 @@ def _friendly_error_message(exc: Exception) -> str:
     """Classify an exception and return a user-friendly error string."""
     text = str(exc).lower()
     if "neo4j" in text or "bolt" in text or "connection refused" in text or "serviceunavailable" in text:
+        uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+        # A rejected credential is not a reachability problem — telling the user
+        # to "make sure the database is running" sends them the wrong way.
+        if "unauthorized" in text or "authentication" in text:
+            return (
+                f"Neo4j rejected the credentials for {uri}. Check NEO4J_USER and "
+                "NEO4J_PASSWORD in your .env — note the code reads NEO4J_USER (not "
+                "NEO4J_USERNAME), and on Aura the username is the instance ID, not 'neo4j'."
+            )
         return (
-            "Could not connect to Neo4j. Make sure the database is running at "
-            "bolt://localhost:7687 and NEO4J_PASSWORD is set in your .env file."
+            f"Could not connect to Neo4j at {uri}. Make sure the database is "
+            "running and NEO4J_URI / NEO4J_PASSWORD are set in your .env file."
         )
     if "api key" in text or "unauthorized" in text or "authentication" in text or "401" in text:
         return (

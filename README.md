@@ -71,9 +71,13 @@ The first vector search will download the `all-MiniLM-L6-v2` embedding model (~8
 
 ### 3) Configure environment variables
 
+**Only if you don't already have a `.env`** — this command overwrites one if it exists, replacing working credentials with placeholders:
+
 ```
 cp .env.example .env
 ```
+
+If you already have a `.env`, edit it by hand instead and skip the copy.
 
 Fill in:
 
@@ -81,7 +85,7 @@ Fill in:
 - `GROQ_MODEL`
 - `GROQ_API_KEY`
 - `NEO4J_URI`
-- `NEO4J_USER` — **use exactly this key name.** `.env.example` currently ships with `NEO4J_USERNAME` instead, which the code does not read; if you copy it as-is, every script silently falls back to a hardcoded default of `neo4j`. Add `NEO4J_USER` yourself (or rename the existing key) after copying.
+- `NEO4J_USER` — **use exactly this key name.** `NEO4J_USERNAME` is not read anywhere in the codebase; if that's the only one set, every script silently falls back to a hardcoded default of `neo4j`.
 - `NEO4J_PASSWORD`
 
 > **Aura gotcha:** if you're using Neo4j Aura, the username is **not** `neo4j` by default on newer instances — it's the instance ID shown in your connection details (e.g. `3b68cef5`), and the credentials file Aura downloads on instance creation (`Neo4j-<id>-Created-<date>.txt`) has the exact values. Don't check that file into git.

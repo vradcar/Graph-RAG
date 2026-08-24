@@ -8,10 +8,10 @@ from streamlit.testing.v1 import AppTest
 
 APP_PATH = "app.py"
 
-NEO4J_COPY = (
-    "Could not connect to Neo4j. Make sure the database is running at "
-    "bolt://localhost:7687 and NEO4J_PASSWORD is set in your .env file."
-)
+# The Neo4j messages embed the configured NEO4J_URI, so match on the stable
+# leading phrase rather than the full string.
+NEO4J_UNREACHABLE_COPY = "Could not connect to Neo4j at "
+NEO4J_AUTH_COPY = "Neo4j rejected the credentials for "
 LLM_COPY = (
     "The LLM call failed. Check that your API key is set correctly in .env "
     "and that the model name in settings.yaml is valid."
@@ -61,15 +61,17 @@ def test_initial_render_has_no_answer_area():
 
 
 @pytest.mark.parametrize("exc, expected", [
-    (Exception("Neo4j connection refused on bolt://localhost:7687"), NEO4J_COPY),
-    (Exception("ServiceUnavailable: bolt driver could not connect"), NEO4J_COPY),
+    (Exception("Neo4j connection refused on bolt://localhost:7687"), NEO4J_UNREACHABLE_COPY),
+    (Exception("ServiceUnavailable: bolt driver could not connect"), NEO4J_UNREACHABLE_COPY),
+    # A Neo4j auth rejection must NOT be reported as an unreachable database.
+    (Exception("{code: Neo.ClientError.Security.Unauthorized} bolt"), NEO4J_AUTH_COPY),
     (Exception("401 Unauthorized: invalid api key"), LLM_COPY),
     (Exception("openai.AuthenticationError: API key not found"), LLM_COPY),
     (Exception("KeyError: 'nodes'"), UNKNOWN_COPY),
 ])
 def test_friendly_error_message_mapping(exc, expected):
     import app
-    assert app._friendly_error_message(exc) == expected
+    assert app._friendly_error_message(exc).startswith(expected)
 
 
 def test_not_found_renders_info_and_hides_evidence(monkeypatch):
