@@ -205,7 +205,7 @@ python -m pytest tests/ -q -m integration
 
 ## Common issues
 
-- **ModuleNotFoundError: No module named 'src'**: run scripts as modules from the repo root (`python -m ...`), or set `PYTHONPATH=.` first — `scripts/seed_aura.py` and a few others import `src.*` at the top level.
+- **ModuleNotFoundError: No module named 'src'**: run from the repo root. Everything in `scripts/` bootstraps `sys.path` itself, so `python scripts/seed_aura.py` works directly; `python -m` also works from the root. If you're running from another directory, `cd` to the repo root first.
 - **`neo4j.exceptions.AuthError: Unauthorized`**: almost always one of — (a) `.env` has `NEO4J_USERNAME` instead of `NEO4J_USER` (the code doesn't read the former, see Setup step 3); (b) on Aura, the username isn't `neo4j` — check the downloaded credentials file; (c) a local Docker volume from a previous run has different baked-in credentials than what's currently in `.env` (Neo4j only applies `NEO4J_AUTH` the first time a volume is created) — either recover the original password or wipe the volume and reseed.
 - **`ModuleNotFoundError: No module named 'sentence_transformers'` or `'fitz'`**: rerun `pip install -r requirements.txt` inside the active `.venv` — both `sentence-transformers` (vector search) and `pymupdf` (PDF parsing, imported as `fitz`) are declared dependencies.
 - **UnicodeEncodeError on Windows** printing `→`/`…` to the console: set `PYTHONIOENCODING=utf-8` before running.

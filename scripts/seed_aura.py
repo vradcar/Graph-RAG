@@ -44,6 +44,12 @@ from time import perf_counter
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
+# Ensure the project root is on sys.path so src/ imports work when called
+# directly as a script (vs python -m).
+_PROJECT_ROOT = Path(__file__).parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
 # Reuse the battle-tested loader helpers from the existing pipeline.
 from src.graph.neo4j_loader import (
     create_constraints,

@@ -21,6 +21,15 @@ Prerequisites:
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Ensure the project root is on sys.path so src/ imports work when called
+# directly as a script (vs python -m).
+_PROJECT_ROOT = Path(__file__).parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
 from src.graph.neo4j_query import Neo4jQueryEngine, TraversalPath
 
 
