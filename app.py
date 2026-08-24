@@ -223,10 +223,14 @@ with tab_ask:
         ask_clicked = st.button("Ask", type="primary")
 
     # Demo query buttons
+    # Each button is verified to resolve against the seeded 4-PDF graph and to
+    # exercise a different relation type (COMPATIBLE_WITH / cross-doc adapter
+    # compatibility / MOUNTS_ON). Re-verify these if the corpus changes — a
+    # demo button that returns not_found is worse than no button.
     DEMO_QUERIES = [
         "What accessories are compatible with the T9?",
-        "What wiring configs does the T9 support?",
-        "What are the T9 specifications?",
+        "Does the THP9045 C-wire adapter work with heat pump systems?",
+        "What does the UWP wallplate mount on?",
     ]
 
     demo_cols = st.columns(3)

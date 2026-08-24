@@ -36,8 +36,8 @@ def test_initial_render_has_required_widgets():
     assert "Ask" in ask_labels
     # Demo query buttons
     assert "What accessories are compatible with the T9?" in ask_labels
-    assert "What wiring configs does the T9 support?" in ask_labels
-    assert "What are the T9 specifications?" in ask_labels
+    assert "Does the THP9045 C-wire adapter work with heat pump systems?" in ask_labels
+    assert "What does the UWP wallplate mount on?" in ask_labels
     # Sidebar Neo4j link — st.link_button renders as UnknownElement in AppTest 1.35;
     # verify by inspecting the proto of the first sidebar child.
     sidebar_link = at.sidebar[0]
